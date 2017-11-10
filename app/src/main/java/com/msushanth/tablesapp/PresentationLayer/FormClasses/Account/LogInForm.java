@@ -1,4 +1,4 @@
-package com.msushanth.tablesapp;
+package com.msushanth.tablesapp.PresentationLayer.FormClasses.Account;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +7,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class SignIn extends AppCompatActivity {
+import com.msushanth.tablesapp.MainActivity;
+import com.msushanth.tablesapp.R;
+
+/*
+ */
+public class LogInForm extends AppCompatActivity {
 
     EditText usernameET;
     EditText passwordET;
@@ -26,7 +31,7 @@ public class SignIn extends AppCompatActivity {
         String print = "Signing on with Username: " + usernameET.getText().toString() + ", Passowrd: " + passwordET.getText().toString();
         Toast.makeText(this, print, Toast.LENGTH_SHORT).show();
 
-        Intent mainActivity = new Intent(SignIn.this, MainActivity.class);
+        Intent mainActivity = new Intent(LogInForm.this, MainActivity.class);
         startActivity(mainActivity);
         finish();
     }
@@ -37,7 +42,7 @@ public class SignIn extends AppCompatActivity {
         String print = "Create Account Clicked";
         Toast.makeText(this, print, Toast.LENGTH_SHORT).show();
 
-        Intent createAccountIntent = new Intent(SignIn.this, CreateAccount.class);
+        Intent createAccountIntent = new Intent(LogInForm.this, CreateAccountForm.class);
         startActivity(createAccountIntent);
         finish();
     }

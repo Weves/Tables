@@ -1,4 +1,4 @@
-package com.msushanth.tablesapp;
+package com.msushanth.tablesapp.PresentationLayer.FormClasses.Search;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -6,11 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.msushanth.tablesapp.R;
+
 /**
  * Created by Sushanth on 10/26/17.
  */
 
-public class SearchTab extends android.support.v4.app.Fragment {
+public class SearchFormXML extends android.support.v4.app.Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

@@ -7,9 +7,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Sushanth on 10/26/17.
- */
+
+/*************** IGNORE THIS FILE ***************/
+/*************** IGNORE THIS FILE ***************/
+/*************** IGNORE THIS FILE ***************/
+/*************** IGNORE THIS FILE ***************/
+
 
 public class SectionsPageAdapter extends FragmentPagerAdapter {
 
