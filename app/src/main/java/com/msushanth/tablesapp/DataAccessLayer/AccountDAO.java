@@ -5,4 +5,11 @@ package com.msushanth.tablesapp.DataAccessLayer;
  */
 
 public class AccountDAO {
+    public void logout(){
+        //TODO
+    }
+
+    public void passwordRecovery(){
+        //TODO
+    }
 }
