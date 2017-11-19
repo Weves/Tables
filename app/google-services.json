@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "155959582396",
+    "firebase_url": "https://tablesapp-d1125.firebaseio.com",
+    "project_id": "tablesapp-d1125",
+    "storage_bucket": "tablesapp-d1125.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:155959582396:android:86f1977a17661b49",
+        "android_client_info": {
+          "package_name": "com.msushanth.tablesapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "155959582396-admq2dnd5lf7ua2b528rrgv6i78642h5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.msushanth.tablesapp",
+            "certificate_hash": "0c26185620b5c02d315cac4a216fb82eb9117d07"
+          }
+        },
+        {
+          "client_id": "155959582396-cgutn95rr17s1ll7pbcfr1sb8h8flv46.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGuGudzZnFz8K5hhd7WFmeYSOBfpmOKM4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "155959582396-cgutn95rr17s1ll7pbcfr1sb8h8flv46.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
