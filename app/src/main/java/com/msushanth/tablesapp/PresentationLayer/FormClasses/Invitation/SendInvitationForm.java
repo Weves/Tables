@@ -5,4 +5,6 @@ package com.msushanth.tablesapp.PresentationLayer.FormClasses.Invitation;
  */
 
 public class SendInvitationForm {
+
+
 }
