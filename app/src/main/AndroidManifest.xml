@@ -14,7 +14,8 @@
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -24,10 +25,19 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
+            android:name=".PresentationLayer.FormClasses.Invitation.SelectMatchedUsersForm"
+            android:label="SelectMatchedUsersForm"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
             android:name=".MainActivity"
             android:label="Tables"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".PresentationLayer.FormClasses.Invitation.ProfileViewer"
+            android:label="@string/title_activity_profile_viewer"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
