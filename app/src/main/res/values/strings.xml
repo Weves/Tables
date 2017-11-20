@@ -5,4 +5,41 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="title_activity_profile_viewer">ProfileViewer</string>
+
+    <string-array name="genders">
+        <item>Select</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Non-Binary</item>
+    </string-array>
+
+    <string-array name="courses">
+        <item>CSE 3</item> <item>CSE 4GS</item> <item>CSE 6GS</item> <item>CSE 5A</item> <item>CSE 7</item> <item>CSE 8A</item>
+        <item>CSE 8B</item> <item>CSE 11</item> <item>CSE 12</item> <item>CSE 15L</item> <item>CSE 20</item> <item>CSE 21</item>
+        <item>CSE 30</item> <item>CSE 80</item> <item>CSE 86</item> <item>CSE 87</item> <item>CSE 90</item> <item>CSE 91</item>
+        <item>CSE 99</item> <item>CSE 100</item> <item>CSE 101</item> <item>CSE 103</item> <item>CSE 105</item>
+        <item>CSE 107</item> <item>CSE 110</item> <item>CSE 112</item> <item>CSE 118</item> <item>CSE 120</item>
+        <item>CSE 123</item> <item>CSE 124</item> <item>CSE 125</item> <item>CSE 127</item> <item>CSE 130</item>
+        <item>CSE 131</item> <item>CSE 132A</item> <item>CSE 132B</item> <item>CSE 134B</item> <item>CSE 135</item>
+        <item>CSE 140</item> <item>CSE 140L</item> <item>CSE 141</item> <item>CSE 141L</item> <item>CSE 143</item>
+        <item>CSE 145</item> <item>CSE 148</item> <item>CSE 150</item> <item>CSE 151</item> <item>CSE 152</item>
+        <item>CSE 153</item> <item>CSE 158</item> <item>CSE 160</item> <item>CSE 164</item> <item>CSE 165</item>
+        <item>CSE 166</item> <item>CSE 167</item> <item>CSE 168</item> <item>CSE 169</item> <item>CSE 170</item>
+        <item>CSE 181</item> <item>CSE 182</item> <item>CSE 184</item> <item>CSE 190</item> <item>CSE 191</item>
+        <item>CSE 192</item> <item>CSE 195</item> <item>CSE 197</item> <item>CSE 198</item> <item>CSE 199</item>
+        <item>CSE 199H</item> <item>CSE 200</item> <item>CSE 201A</item> <item>CSE 202</item> <item>CSE 203A</item>
+        <item>CSE 205A</item> <item>CSE 206A</item> <item>CSE 207</item> <item>CSE 208</item> <item>CSE 209A</item>
+        <item>CSE 209B</item> <item>CSE 210</item> <item>CSE 211</item> <item>CSE 216</item> <item>CSE 218</item>
+        <item>CSE 219</item> <item>CSE 221</item> <item>CSE 222A</item> <item>CSE 222B</item> <item>CSE 223B</item>
+        <item>CSE 227</item> <item>CSE 229A</item> <item>CSE 229C</item> <item>CSE 230</item> <item>CSE 231</item>
+        <item>CSE 232</item> <item>CSE 232B</item> <item>CSE 233</item> <item>CSE 237A</item> <item>CSE 237B</item>
+        <item>CSE 237C</item> <item>CSE 237D</item> <item>CSE 239A</item> <item>CSE 240A</item> <item>CSE 240B</item>
+        <item>CSE 240C</item> <item>CSE 241A</item> <item>CSE 243A</item> <item>CSE 244A</item> <item>CSE 245</item>
+        <item>CSE 248</item> <item>CSE 249A</item> <item>CSE 249B</item> <item>CSE 250A</item> <item>CSE 250B</item>
+        <item>CSE 250C</item> <item>CSE 252A</item> <item>CSE 252B</item> <item>CSE 252C</item> <item>CSE 253</item>
+        <item>CSE 254</item> <item>CSE 255</item> <item>CSE 258</item> <item>CSE 258A</item> <item>CSE 259</item>
+        <item>CSE 260</item> <item>CSE 262</item> <item>CSE 272</item> <item>CSE 274</item> <item>CSE 280A</item>
+        <item>CSE 282</item> <item>CSE 283</item> <item>CSE 290</item> <item>CSE 291</item> <item>CSE 292</item>
+        <item>CSE 293</item> <item>CSE 294</item> <item>CSE 298</item> <item>CSE 299</item> <item>CSE 500</item>
+    </string-array>
 </resources>

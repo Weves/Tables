@@ -16,7 +16,7 @@ public class SendMessagesForm implements SendMessagesInterface {
     Room thisRoom;
     User sender;
 
-    public SendMessagesForm(Room thisRoom, User poster){
+    public SendMessagesForm(Room thisRoom, User sender){
         this.thisRoom = thisRoom;
         this.sender = sender;
     }

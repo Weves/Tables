@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.msushanth.tablesapp.MainActivity;
+import com.msushanth.tablesapp.PresentationLayer.FormClasses.Profile.CreatePersonalProfileForm;
 import com.msushanth.tablesapp.R;
 
 /*
@@ -42,9 +43,9 @@ public class LogInForm extends AppCompatActivity {
         String print = "Create Account Clicked";
         Toast.makeText(this, print, Toast.LENGTH_SHORT).show();
 
-        Intent createAccountIntent = new Intent(LogInForm.this, CreateAccountForm.class);
+        //Intent createAccountIntent = new Intent(LogInForm.this, CreateAccountForm.class);
         //this is a SelectMathcedUsersForm test
-        //Intent createAccountIntent = new Intent(LogInForm.this, SelectMatchedUsersForm.class);
+        Intent createAccountIntent = new Intent(LogInForm.this, CreatePersonalProfileForm.class);
         startActivity(createAccountIntent);
         finish();
     }

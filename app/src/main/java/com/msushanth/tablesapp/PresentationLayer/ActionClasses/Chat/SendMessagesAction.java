@@ -14,7 +14,7 @@ public class SendMessagesAction implements SendMessagesInterface{
     Room thisRoom;
     User sender;
 
-    public SendMessagesAction(Room thisRoom, User poster){
+    public SendMessagesAction(Room thisRoom, User sender){
         this.thisRoom = thisRoom;
         this.sender = sender;
     }

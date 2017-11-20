@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sign_on_gradient"
+    android:paddingBottom="30dp"
+    android:paddingLeft="48dp"
+    android:paddingRight="48dp"
+    tools:context="com.msushanth.tablesapp.PresentationLayer.FormClasses.Profile.CreatePersonalProfileForm">
+
+    <TextView
+        android:id="@+id/createProfileTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:text="Create Profile"
+        android:textColor="@color/textColor"
+        android:textSize="45sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/createProfileTextView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/usernameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username:"
+                android:textColor="@color/textColor"
+                android:textSize="20sp" />
+            <EditText
+                android:id="@+id/usernameEditText"
+                style="@style/sign_on_edit_text_style" />
+
+            <TextView
+                android:id="@+id/firstNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="First Name:"
+                android:textColor="@color/textColor"
+                android:textSize="20sp" />
+            <EditText
+                android:id="@+id/firstNameEditText"
+                style="@style/sign_on_edit_text_style" />
+
+            <TextView
+                android:id="@+id/lastNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Last Name:"
+                android:textColor="@color/textColor"
+                android:textSize="20sp" />
+            <EditText
+                android:id="@+id/lastNameEditText"
+                style="@style/sign_on_edit_text_style" />
+
+            <TextView
+                android:id="@+id/genderTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender:"
+                android:textColor="@color/textColor"
+                android:textSize="20sp" />
+            <Spinner
+                android:id="@+id/genderSpinner"
+                android:theme="@style/SpinnerTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/coursesTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Courses:"
+                android:textColor="@color/textColor"
+                android:textSize="20sp" />
+            <MultiAutoCompleteTextView
+                android:id="@+id/coursesMultiAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:hint="Enter enrolled courses"
+                android:textAlignment="center"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/grey300"
+                android:theme="@style/MultiAutoCompleteTheme" />
+
+            <TextView
+                android:id="@+id/InterestLevelsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Interest Levels:"
+                android:textColor="@color/textColor"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"/>
+            <TextView
+                android:id="@+id/InterestLevelsTextViewDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Select how interested you are in the topics below.)"
+                android:textColor="@color/textColor"
+                android:textSize="12sp" />
+            <TextView
+                android:id="@+id/sportsInterestTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sports (0)"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:layout_marginTop="12dp" />
+            <SeekBar
+                android:id="@+id/sportsSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/musicInterestTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Music (0)"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:layout_marginTop="12dp" />
+            <SeekBar
+                android:id="@+id/musicSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/gamesInterestTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Games (0)"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:layout_marginTop="12dp" />
+            <SeekBar
+                android:id="@+id/gamesSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/moviesInterestTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Movies (0)"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:layout_marginTop="12dp" />
+            <SeekBar
+                android:id="@+id/moviesSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/technologyInterestTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Technology (0)"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:layout_marginTop="12dp" />
+            <SeekBar
+                android:id="@+id/technologySeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/scienceInterestTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Science (0)"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:layout_marginTop="12dp" />
+            <SeekBar
+                android:id="@+id/scienceSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/politicsInterestTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Politics (0)"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:layout_marginTop="12dp" />
+            <SeekBar
+                android:id="@+id/politicsSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/historyInterestTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="History (0)"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:layout_marginTop="12dp" />
+            <SeekBar
+                android:id="@+id/historySeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/engineeringInterestTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Engineering (0)"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:layout_marginTop="12dp" />
+            <SeekBar
+                android:id="@+id/engineeringSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/economicsInterestTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Economics (0)"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:layout_marginTop="12dp" />
+            <SeekBar
+                android:id="@+id/economicsSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/literatureInterestTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Literature (0)"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:layout_marginTop="12dp" />
+            <SeekBar
+                android:id="@+id/literatureSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/comicsInterestTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comics (0)"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:layout_marginTop="12dp" />
+            <SeekBar
+                android:id="@+id/comicsSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/religionInterestTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Religion (0)"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:layout_marginTop="12dp" />
+            <SeekBar
+                android:id="@+id/religionSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/artsInterestTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Arts (0)"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:layout_marginTop="12dp" />
+            <SeekBar
+                android:id="@+id/artsSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/travelInterestTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Travel (0)"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:layout_marginTop="12dp" />
+            <SeekBar
+                android:id="@+id/travelSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

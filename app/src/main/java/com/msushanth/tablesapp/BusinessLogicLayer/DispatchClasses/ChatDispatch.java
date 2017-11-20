@@ -15,7 +15,7 @@ public class ChatDispatch implements ChatInterface {
     Room thisRoom;
     User sender;
 
-    public ChatDispatch(Room thisRoom, User poster){
+    public ChatDispatch(Room thisRoom, User sender){
         this.thisRoom = thisRoom;
         this.sender = sender;
         //other coders add other constructors below if needed
