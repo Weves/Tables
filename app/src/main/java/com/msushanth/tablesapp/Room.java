@@ -12,4 +12,12 @@ public class Room {
     String data;
     String location;
     List<String> users;
+
+    public Room(String owner, String time, String data, String location, List<String> users){
+        this.owner = owner;
+        this.time = time;
+        this.data = data;
+        this.location = location;
+        this.users = users;
+    }
 }

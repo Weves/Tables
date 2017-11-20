@@ -8,4 +8,10 @@ public class Course {
     String number;
     String professor;
     String quarter;
+
+    public Course(String number, String professor, String quarter){
+        this.number = number;
+        this.professor = professor;
+        this.quarter = quarter;
+    }
 }
