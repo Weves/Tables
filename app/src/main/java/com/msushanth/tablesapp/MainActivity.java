@@ -1,5 +1,6 @@
 package com.msushanth.tablesapp;
 
+import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Chat.ChatFormXML;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Search.SearchFormXML;
 
@@ -33,10 +36,14 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private NavigationView navigationView;
 
+    DatabaseReference databaseUsers;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        databaseUsers = FirebaseDatabase.getInstance().getReference();
 
         // Set up the toolbar, which contains the navigation icon, tabs, and app name
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
