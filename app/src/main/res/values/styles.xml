@@ -34,6 +34,28 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <!-- EditText layout for the edittexts on any screen -->
+    <style name="normal_edit_text_style">
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/edit_text_background</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ems">10</item>
+        <item name="android:textColor">@color/hintTextColor</item>
+    </style>
+
+    <!-- Button layout for the buttons on any screen -->
+    <style name="normal_button_style">
+        <item name="android:background">@drawable/sign_on_button</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <!-- Spinner layout -->
     <style name="SpinnerTheme">
         <item name="colorControlNormal">#FFFFFF</item>

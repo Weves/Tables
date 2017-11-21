@@ -35,9 +35,14 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
+            android:name=".PresentationLayer.FormClasses.Profile.CreatePersonalProfileForm"
+            android:label="CreatePersonalProfileForm"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
             android:name=".PresentationLayer.FormClasses.Invitation.ProfileViewer"
             android:label="@string/title_activity_profile_viewer"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

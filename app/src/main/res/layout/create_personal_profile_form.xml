@@ -42,6 +42,7 @@
                 android:textSize="20sp" />
             <EditText
                 android:id="@+id/usernameEditText"
+                android:singleLine="true"
                 style="@style/sign_on_edit_text_style" />
 
             <TextView
@@ -50,9 +51,11 @@
                 android:layout_height="wrap_content"
                 android:text="First Name:"
                 android:textColor="@color/textColor"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_marginTop="@dimen/separate_categories_margin" />
             <EditText
                 android:id="@+id/firstNameEditText"
+                android:singleLine="true"
                 style="@style/sign_on_edit_text_style" />
 
             <TextView
@@ -61,9 +64,11 @@
                 android:layout_height="wrap_content"
                 android:text="Last Name:"
                 android:textColor="@color/textColor"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_marginTop="@dimen/separate_categories_margin" />
             <EditText
                 android:id="@+id/lastNameEditText"
+                android:singleLine="true"
                 style="@style/sign_on_edit_text_style" />
 
             <TextView
@@ -72,7 +77,8 @@
                 android:layout_height="wrap_content"
                 android:text="Gender:"
                 android:textColor="@color/textColor"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_marginTop="@dimen/separate_categories_margin" />
             <Spinner
                 android:id="@+id/genderSpinner"
                 android:theme="@style/SpinnerTheme"
@@ -86,13 +92,15 @@
                 android:layout_height="wrap_content"
                 android:text="Courses:"
                 android:textColor="@color/textColor"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_marginTop="@dimen/separate_categories_margin" />
             <MultiAutoCompleteTextView
                 android:id="@+id/coursesMultiAutoCompleteTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:hint="Enter enrolled courses"
+                android:inputType="textMultiLine"
                 android:textAlignment="center"
                 android:textColor="@color/textColor"
                 android:textColorHint="@color/grey300"
@@ -105,7 +113,7 @@
                 android:text="Interest Levels:"
                 android:textColor="@color/textColor"
                 android:textSize="20sp"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="@dimen/separate_categories_margin" />
             <TextView
                 android:id="@+id/InterestLevelsTextViewDescription"
                 android:layout_width="wrap_content"
@@ -113,6 +121,7 @@
                 android:text="(Select how interested you are in the topics below.)"
                 android:textColor="@color/textColor"
                 android:textSize="12sp" />
+
             <TextView
                 android:id="@+id/sportsInterestTextView"
                 android:layout_width="wrap_content"
@@ -120,7 +129,9 @@
                 android:text="Sports (0)"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="@dimen/seekbar_margin"
+                android:focusable="true"
+                android:focusableInTouchMode="true"	/>
             <SeekBar
                 android:id="@+id/sportsSeekBar"
                 android:layout_width="match_parent"
@@ -133,7 +144,9 @@
                 android:text="Music (0)"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="@dimen/seekbar_margin"
+                android:focusable="true"
+                android:focusableInTouchMode="true"	/>
             <SeekBar
                 android:id="@+id/musicSeekBar"
                 android:layout_width="match_parent"
@@ -146,7 +159,9 @@
                 android:text="Games (0)"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="@dimen/seekbar_margin"
+                android:focusable="true"
+                android:focusableInTouchMode="true"	/>
             <SeekBar
                 android:id="@+id/gamesSeekBar"
                 android:layout_width="match_parent"
@@ -159,7 +174,9 @@
                 android:text="Movies (0)"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="@dimen/seekbar_margin"
+                android:focusable="true"
+                android:focusableInTouchMode="true"	/>
             <SeekBar
                 android:id="@+id/moviesSeekBar"
                 android:layout_width="match_parent"
@@ -172,7 +189,9 @@
                 android:text="Technology (0)"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="@dimen/seekbar_margin"
+                android:focusable="true"
+                android:focusableInTouchMode="true"	/>
             <SeekBar
                 android:id="@+id/technologySeekBar"
                 android:layout_width="match_parent"
@@ -185,7 +204,9 @@
                 android:text="Science (0)"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="@dimen/seekbar_margin"
+                android:focusable="true"
+                android:focusableInTouchMode="true"	/>
             <SeekBar
                 android:id="@+id/scienceSeekBar"
                 android:layout_width="match_parent"
@@ -198,7 +219,9 @@
                 android:text="Politics (0)"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="@dimen/seekbar_margin"
+                android:focusable="true"
+                android:focusableInTouchMode="true"	/>
             <SeekBar
                 android:id="@+id/politicsSeekBar"
                 android:layout_width="match_parent"
@@ -211,7 +234,9 @@
                 android:text="History (0)"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="@dimen/seekbar_margin"
+                android:focusable="true"
+                android:focusableInTouchMode="true"	/>
             <SeekBar
                 android:id="@+id/historySeekBar"
                 android:layout_width="match_parent"
@@ -224,7 +249,9 @@
                 android:text="Engineering (0)"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="@dimen/seekbar_margin"
+                android:focusable="true"
+                android:focusableInTouchMode="true"	/>
             <SeekBar
                 android:id="@+id/engineeringSeekBar"
                 android:layout_width="match_parent"
@@ -237,7 +264,9 @@
                 android:text="Economics (0)"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="@dimen/seekbar_margin"
+                android:focusable="true"
+                android:focusableInTouchMode="true"	/>
             <SeekBar
                 android:id="@+id/economicsSeekBar"
                 android:layout_width="match_parent"
@@ -250,7 +279,9 @@
                 android:text="Literature (0)"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="@dimen/seekbar_margin"
+                android:focusable="true"
+                android:focusableInTouchMode="true"	/>
             <SeekBar
                 android:id="@+id/literatureSeekBar"
                 android:layout_width="match_parent"
@@ -263,7 +294,9 @@
                 android:text="Comics (0)"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="@dimen/seekbar_margin"
+                android:focusable="true"
+                android:focusableInTouchMode="true"	/>
             <SeekBar
                 android:id="@+id/comicsSeekBar"
                 android:layout_width="match_parent"
@@ -276,7 +309,9 @@
                 android:text="Religion (0)"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="@dimen/seekbar_margin"
+                android:focusable="true"
+                android:focusableInTouchMode="true"	/>
             <SeekBar
                 android:id="@+id/religionSeekBar"
                 android:layout_width="match_parent"
@@ -289,7 +324,9 @@
                 android:text="Arts (0)"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="@dimen/seekbar_margin"
+                android:focusable="true"
+                android:focusableInTouchMode="true"	/>
             <SeekBar
                 android:id="@+id/artsSeekBar"
                 android:layout_width="match_parent"
@@ -302,11 +339,40 @@
                 android:text="Travel (0)"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="@dimen/seekbar_margin"
+                android:focusable="true"
+                android:focusableInTouchMode="true"	/>
             <SeekBar
                 android:id="@+id/travelSeekBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tagsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter some topics of interest:"
+                android:textColor="@color/textColor"
+                android:textSize="20sp"
+                android:layout_marginTop="@dimen/separate_categories_margin" />
+            <TextView
+                android:id="@+id/tagsTextViewDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(ex: Lakers, cooking, baseball, Gary Gillespie)"
+                android:textColor="@color/textColor"
+                android:textSize="12sp" />
+            <EditText
+                android:id="@+id/tagsEditText"
+                style="@style/sign_on_edit_text_style"
+                android:inputType="textMultiLine" />
+
+            <Button
+                style="@style/normal_button_style"
+                android:id="@+id/continueCreateProfileButton"
+                android:text="Continue"
+                android:onClick="continueCreateProfileButtonClicked"
+                android:layout_marginTop="30dp" />
         </LinearLayout>
 
     </ScrollView>

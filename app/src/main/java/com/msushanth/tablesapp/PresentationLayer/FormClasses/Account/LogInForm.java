@@ -44,7 +44,8 @@ public class LogInForm extends AppCompatActivity {
         Toast.makeText(this, print, Toast.LENGTH_SHORT).show();
 
         //Intent createAccountIntent = new Intent(LogInForm.this, CreateAccountForm.class);
-        //this is a SelectMathcedUsersForm test
+
+        //this is a CreatePersonalProfileForm test
         Intent createAccountIntent = new Intent(LogInForm.this, CreatePersonalProfileForm.class);
         startActivity(createAccountIntent);
         finish();

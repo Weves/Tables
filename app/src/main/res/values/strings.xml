@@ -13,6 +13,12 @@
         <item>Non-Binary</item>
     </string-array>
 
+    <string-array name="interests">
+        <item>Sports</item> <item>Music</item> <item>Games</item> <item>Movies</item> <item>Technology</item>
+        <item>Science</item> <item>Politics</item> <item>History</item> <item>Engineering</item> <item>Economics</item>
+        <item>Literature</item> <item>Comics</item> <item>Religion</item> <item>Arts</item> <item>Travel</item>
+    </string-array>
+
     <string-array name="courses">
         <item>CSE 3</item> <item>CSE 4GS</item> <item>CSE 6GS</item> <item>CSE 5A</item> <item>CSE 7</item> <item>CSE 8A</item>
         <item>CSE 8B</item> <item>CSE 11</item> <item>CSE 12</item> <item>CSE 15L</item> <item>CSE 20</item> <item>CSE 21</item>
