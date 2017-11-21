@@ -1,12 +1,14 @@
 package com.msushanth.tablesapp.PresentationLayer.FormClasses.Search;
 
+import com.msushanth.tablesapp.Interfaces.Search.SearchInterface;
 import com.msushanth.tablesapp.PresentationLayer.ActionClasses.Search.SearchAction;
 
 /**
  * Created by Sushanth on 11/9/17.
+ * Implemented by YinlongQian on 11/19/17
  */
 
-public class SearchForm {
+public class SearchForm implements SearchInterface {
     private String[] idList;
     private String[] lastNameList;
     private String[] firstNameList;
