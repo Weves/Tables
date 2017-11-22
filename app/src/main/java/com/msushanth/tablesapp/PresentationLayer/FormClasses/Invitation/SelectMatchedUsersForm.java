@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.msushanth.tablesapp.Interfaces.Invitation.SelectMatchedUsersInterface;
+import com.msushanth.tablesapp.PresentationLayer.ActionClasses.Invitation.SelectMatchedUserAction;
 import com.msushanth.tablesapp.R;
 
 /**
@@ -14,6 +15,8 @@ import com.msushanth.tablesapp.R;
 
 public class SelectMatchedUsersForm extends AppCompatActivity implements SelectMatchedUsersInterface {
 
+    SelectMatchedUserAction action = new SelectMatchedUserAction();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,10 +24,13 @@ public class SelectMatchedUsersForm extends AppCompatActivity implements SelectM
     }
 
     public void viewProfileButtonClicked(View v) {
+        viewProfile();
+    }
+
+    public void viewProfile() {
+        action.viewProfile();
         Intent selectMatchedUsersIntent = new Intent(SelectMatchedUsersForm.this, ProfileViewer.class);
         startActivity(selectMatchedUsersIntent);
-
-
 
     }
 

@@ -5,4 +5,7 @@ package com.msushanth.tablesapp.Interfaces.Invitation;
  */
 
 public interface SelectMatchedUsersInterface {
+
+
+
 }
