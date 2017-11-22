@@ -80,7 +80,7 @@ public class CreateAccountForm extends AppCompatActivity {
             //getting the portion of the e-mail behind the @ sign
             Toast.makeText(this, "2nd part: " + emailParts[1], Toast.LENGTH_SHORT).show();
             String ucsdCheck = emailParts[1];
-            //ucsd.edu check gg
+            //ucsd.edu check
             String ucsdEduCheck = "ucsd.edu";
             if(ucsdCheck.equals(ucsdEduCheck)==false) {
                 Toast.makeText(this, "email does not contain ucsd.edu", Toast.LENGTH_SHORT).show();
