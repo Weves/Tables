@@ -12,8 +12,8 @@ public class AccountDispatch {
         ma.logout();
     }
 
-    public void passwordRecovery(String email){
+    public boolean passwordRecovery(String email){
         AccountManager ma = new AccountManager();
-        ma.passwordRecovery(email);
+        return ma.passwordRecovery(email);
     }
 }

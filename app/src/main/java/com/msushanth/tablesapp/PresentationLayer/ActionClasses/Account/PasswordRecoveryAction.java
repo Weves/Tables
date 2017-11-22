@@ -7,8 +7,8 @@ import com.msushanth.tablesapp.BusinessLogicLayer.DispatchClasses.AccountDispatc
  */
 
 public class PasswordRecoveryAction {
-    public void passwordRecovery(String email){
+    public boolean passwordRecovery(String email){
         AccountDispatch dis = new AccountDispatch();
-        dis.passwordRecovery(email);
+        return dis.passwordRecovery(email);
     }
 }
