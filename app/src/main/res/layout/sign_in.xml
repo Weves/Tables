@@ -15,9 +15,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <ImageView
             android:id="@+id/imageView3"
@@ -53,31 +53,61 @@
             android:text="Sign In"
             android:onClick="signInButtonClicked"/>
 
+
+
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_gravity="center">
-            <TextView
-                android:id="@+id/createAccount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="createAccount"
-                android:text="Don't have an account? "
-                android:textAlignment="center"
-                android:textColor="@color/textColor"
-                android:textSize="15sp" />
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
 
-            <TextView
-                android:id="@+id/createAccount2"
-                android:layout_width="match_parent"
+            <RelativeLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="createAccount"
-                android:text="Sign Up"
-                android:textAlignment="center"
-                android:textColor="@color/textColor"
-                android:textSize="17sp"
-                android:textStyle="bold"/>
+                android:layout_weight="1"
+                android:gravity="left" >
+                <TextView
+                    android:id="@+id/resetPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="resetPassword"
+                    android:text="Forgot Password?"
+                    android:textColor="@color/textColor"
+                    android:textSize="15sp"
+                    android:layout_gravity="left" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right">
+
+                <TextView
+                    android:id="@+id/createAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:onClick="createAccount"
+                    android:text="New here? "
+                    android:textColor="@color/textColor"
+                    android:textSize="15sp" />
+                <TextView
+                    android:layout_toRightOf="@+id/createAccount"
+                    android:id="@+id/createAccount2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="createAccount"
+                    android:text="Sign Up"
+                    android:textColor="@color/textColor"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="right"/>
+            </RelativeLayout>
+
         </LinearLayout>
 
     </LinearLayout>

@@ -5,13 +5,13 @@ package com.msushanth.tablesapp;
  */
 
 public class Course {
-    String number;
-    String professor;
-    String quarter;
+    String name;
+    /*String professor;
+    String quarter;*/
 
-    public Course(String number, String professor, String quarter){
-        this.number = number;
-        this.professor = professor;
-        this.quarter = quarter;
+    public Course(String name){
+        this.name = name;
+        /*this.professor = professor;
+        this.quarter = quarter;*/
     }
 }

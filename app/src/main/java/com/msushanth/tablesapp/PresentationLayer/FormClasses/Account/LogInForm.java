@@ -51,4 +51,10 @@ public class LogInForm extends AppCompatActivity {
         finish();
     }
 
+    // use this method to handle resetting password
+    // when the user click forgot password, this method will be called
+    public void resetPassword(View view) {
+        String print = "Reset Password Clicked";
+        Toast.makeText(this, print, Toast.LENGTH_SHORT).show();
+    }
 }

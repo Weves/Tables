@@ -1,5 +1,6 @@
 package com.msushanth.tablesapp.PresentationLayer.FormClasses.Profile;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.msushanth.tablesapp.Course;
+import com.msushanth.tablesapp.MainActivity;
+import com.msushanth.tablesapp.PresentationLayer.FormClasses.Account.CreateAccountForm;
+import com.msushanth.tablesapp.PresentationLayer.FormClasses.Account.LogInForm;
 import com.msushanth.tablesapp.R;
 import com.msushanth.tablesapp.Room;
 
@@ -429,16 +433,41 @@ public class CreatePersonalProfileForm extends AppCompatActivity {
             Toast.makeText(this, "Invalid Last Name.", Toast.LENGTH_SHORT).show();
         }
 
-        // make sure that some interest levels have been selected. true if no interests selected. (all are 0)
+        // make sure that some interest levels have been selected.
+        // true if no interests selected. (all are 0)
         else if(checkIfInterestLevelsSelected()) {
-            Toast.makeText(this, "Select how interested you are in the topics above.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Use the sliders to select how interested you are in the topics above.", Toast.LENGTH_SHORT).show();
+        }
+
+        // True if there is a problem with the tags user input
+        else if(checkIfTagsAreIlleegal(tagsEditText.getText().toString())) {
+            Toast.makeText(this, "There are invalid characters in the tags you entered.", Toast.LENGTH_SHORT).show();
         }
 
         // it has passed all the cases to check valid input
         // go to the next screen (search screen?)
         else {
+            /*Intent mainActivity = new Intent(CreatePersonalProfileForm.this, MainActivity.class);
+            startActivity(mainActivity);
+            finish();*/
         }
 
+    }
+
+
+    // True if there is a problem with the tags user input
+    private boolean checkIfTagsAreIlleegal(String str) {
+        str = str.replaceAll(" ", "");
+
+        String[] tags = str.split(",");
+        for(String tag : tags) {
+            Toast.makeText(this, tag.replaceFirst("'", ""), Toast.LENGTH_SHORT).show();
+            if(!containsLettersOrDigits(tag)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 
@@ -458,22 +487,24 @@ public class CreatePersonalProfileForm extends AppCompatActivity {
     public boolean containsLettersOrDigits(String str) {
         char[] charArray = str.toCharArray();
         for(char c : charArray) {
-            if (!Character.isLetterOrDigit(c)) {
+            int charVal = (int) c;
+            if( !(((charVal>=65) && (charVal<=90)) || ((charVal>=97) && (charVal<=122)) || ((charVal>=48) && (charVal<=57))) ) {
                 return false;
             }
         }
         return true;
     }
+
 
     public boolean containsLettersOnly(String str) {
         char[] charArray = str.toCharArray();
         for(char c : charArray) {
-            if (!Character.isLetter(c)) {
+            int charVal = (int) c;
+            if( !(((charVal>=65) && (charVal<=90)) || ((charVal>=97) && (charVal<=122))) ) {
                 return false;
             }
         }
         return true;
     }
-
 
 }
