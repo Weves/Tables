@@ -68,6 +68,30 @@ public class CreateAccountForm extends AppCompatActivity {
         String email = emailET.getText().toString();
         String password = passwordET.getText().toString();
 
+        // Checking that email has a ., as there needs to be at least two
+        String[] emailParts = email.split(".");
+        if(emailParts.length < 3){
+            //the e-mail fails
+            Toast.makeText(this, "email does not end with UCSD", Toast.LENGTH_SHORT).show();
+
+        }
+        //check that the e-mail has the appropriate length
+        if(emailParts.length >= 3) {
+            String edu = "edu";
+            String lastEmailPart = emailParts[emailParts.length - 1];
+            if (lastEmailPart.equals(edu) == false) {
+                //the e-mail does not end in .edu
+                Toast.makeText(this, "email does not end with edu", Toast.LENGTH_SHORT).show();
+            }
+            String ucsd = "ucsd";
+            String penultimateEmailPart = emailParts[emailParts.length - 2];
+            if (penultimateEmailPart.equals(ucsd) == false) {
+                //the e-mail does not end in .edu
+                Toast.makeText(this, "email does not contain ucsd", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+
 
         String print = "Creating Account with Email" + email + ", Passowrd: " + password;
         Toast.makeText(this, print, Toast.LENGTH_SHORT).show();
