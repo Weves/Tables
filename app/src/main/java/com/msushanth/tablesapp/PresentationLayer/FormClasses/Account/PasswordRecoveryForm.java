@@ -7,8 +7,8 @@ import com.msushanth.tablesapp.PresentationLayer.ActionClasses.Account.PasswordR
  */
 
 public class PasswordRecoveryForm {
-    public void passwordRecovery(){
+    public void passwordRecovery(String email){
         PasswordRecoveryAction act = new PasswordRecoveryAction();
-        act.passwordRecovery();
+        act.passwordRecovery(email);
     }
 }

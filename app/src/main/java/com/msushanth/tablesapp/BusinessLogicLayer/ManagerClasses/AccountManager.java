@@ -12,8 +12,8 @@ public class AccountManager {
         da.logout();
     }
 
-    public void passwordRecovery(){
+    public void passwordRecovery(String email){
         AccountDAO da = new AccountDAO();
-        da.passwordRecovery();
+        da.passwordRecovery(email);
     }
 }
