@@ -68,7 +68,7 @@ public class CreateAccountForm extends AppCompatActivity {
         String email = emailET.getText().toString();
         String password = passwordET.getText().toString();
 
-        // Checking that email has a ., as there needs to be at least two
+        // Checking that email has a @, as there needs to be at least two
         String[] emailParts = email.split("@");
         if(emailParts.length != 2){
             //the e-mail fails
@@ -78,23 +78,14 @@ public class CreateAccountForm extends AppCompatActivity {
         //check that the e-mail has the appropriate length
         if(emailParts.length == 2) {
             //getting the portion of the e-mail behind the @ sign
-            String ucsdCheck = emailParts[emailParts.length-1];
-            String[] UCSDCheck = ucsdCheck.split(".");
-            //string should be split into two parts, ucsd and edu
-            //edu check
-            String edu = "edu";
-            String ucsdCheckPart1 = UCSDCheck[UCSDCheck.length - 1];
-            if (ucsdCheckPart1.equals(edu) == false) {
-                //the e-mail does not end in .edu
-                Toast.makeText(this, "email does not end with edu", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "2nd part: " + emailParts[1], Toast.LENGTH_SHORT).show();
+            String ucsdCheck = emailParts[1];
+            //ucsd.edu check
+            String ucsdEduCheck = "ucsd.edu";
+            if(ucsdCheck.equals(ucsdEduCheck)==false) {
+                Toast.makeText(this, "email does not contain ucsd.edu", Toast.LENGTH_SHORT).show();
             }
-            //ucsd check
-            String ucsd = "ucsd";
-            String penultimateEmailPart = UCSDCheck[0];
-            if (penultimateEmailPart.equals(ucsd) == false) {
-                //the e-mail does not end in .edu
-                Toast.makeText(this, "email does not contain ucsd", Toast.LENGTH_SHORT).show();
-            }
+
         }
 
 
