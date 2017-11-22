@@ -34,12 +34,6 @@
 
         <EditText
             style="@style/sign_on_edit_text_style"
-            android:id="@+id/usernameEditText"
-            android:hint="Username"
-            android:inputType="textEmailAddress" />
-
-        <EditText
-            style="@style/sign_on_edit_text_style"
             android:id="@+id/emailEditText"
             android:hint="E-mail"
             android:inputType="textEmailAddress" />
@@ -48,7 +42,7 @@
             style="@style/sign_on_edit_text_style"
             android:id="@+id/passwordEditText"
             android:hint="Password"
-            android:inputType="textEmailAddress" />
+            android:inputType="textPassword" />
 
         <Button
             style="@style/sign_on_button_style"
