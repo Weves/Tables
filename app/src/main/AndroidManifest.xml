@@ -40,6 +40,11 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
+            android:name=".PresentationLayer.FormClasses.Account.PasswordRecoveryForm"
+            android:label="PasswordResetForm"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
             android:name=".PresentationLayer.FormClasses.Invitation.ProfileViewer"
             android:label="@string/title_activity_profile_viewer"
             android:theme="@style/AppTheme"/>

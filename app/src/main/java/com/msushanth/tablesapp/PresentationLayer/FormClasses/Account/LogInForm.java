@@ -56,5 +56,8 @@ public class LogInForm extends AppCompatActivity {
     public void resetPassword(View view) {
         String print = "Reset Password Clicked";
         Toast.makeText(this, print, Toast.LENGTH_SHORT).show();
+
+        Intent resetPasswordIntent = new Intent(LogInForm.this, PasswordRecoveryForm.class);
+        startActivity(resetPasswordIntent);
     }
 }
