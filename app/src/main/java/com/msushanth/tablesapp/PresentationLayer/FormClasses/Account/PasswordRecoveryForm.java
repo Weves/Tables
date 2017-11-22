@@ -34,8 +34,9 @@ public class PasswordRecoveryForm extends AppCompatActivity {
         String email = emailEditText.getText().toString();
 
         // TODO check if email is not empty.. other checks...
-        if (email == null || email.isEmpty()){
+        if (email == null || email.isEmpty()) {
             Toast.makeText(this, "Please enter a valid email", Toast.LENGTH_SHORT).show();
+            return;
         }
 
         //Toast.makeText(this, "Email entered: " + email, Toast.LENGTH_SHORT).show();
