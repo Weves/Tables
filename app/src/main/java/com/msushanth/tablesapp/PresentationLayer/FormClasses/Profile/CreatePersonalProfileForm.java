@@ -1,6 +1,5 @@
 package com.msushanth.tablesapp.PresentationLayer.FormClasses.Profile;
 
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,13 +14,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.msushanth.tablesapp.Course;
-import com.msushanth.tablesapp.MainActivity;
-import com.msushanth.tablesapp.PresentationLayer.FormClasses.Account.CreateAccountForm;
-import com.msushanth.tablesapp.PresentationLayer.FormClasses.Account.LogInForm;
+import com.msushanth.tablesapp.Interfaces.Profile.PersonalProfileInterface;
+import com.msushanth.tablesapp.PresentationLayer.ActionClasses.Profile.CreatePersonalProfileAction;
 import com.msushanth.tablesapp.R;
 import com.msushanth.tablesapp.Room;
+import com.msushanth.tablesapp.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +29,7 @@ import java.util.Map;
  * Created by Sushanth on 11/9/17.
  */
 
-public class CreatePersonalProfileForm extends AppCompatActivity {
+public class CreatePersonalProfileForm extends AppCompatActivity implements PersonalProfileInterface {
 
     EditText usernameEditText;
     EditText firstNameEditText;
@@ -76,11 +75,12 @@ public class CreatePersonalProfileForm extends AppCompatActivity {
 
     String[] interestsArray;
 
+    User user;
     String username;
     String first_name;
     String last_name;
     String gender;
-    List<Course> courses;
+    List<String> courses;
     Map<String,Integer> interestsMap;
     List<String> tags;
     List<Integer> met_history;
@@ -117,6 +117,13 @@ public class CreatePersonalProfileForm extends AppCompatActivity {
 
         // Initialize the SeekBars and their corresponding TextViews
         initializeSeekBars();
+    }
+
+
+    @Override
+    public void setProfile(User user) {
+        CreatePersonalProfileAction createProfileAction = new CreatePersonalProfileAction();
+        createProfileAction.setProfile(user);
     }
 
 
@@ -440,13 +447,39 @@ public class CreatePersonalProfileForm extends AppCompatActivity {
         }
 
         // True if there is a problem with the tags user input
-        else if(checkIfTagsAreIlleegal(tagsEditText.getText().toString())) {
+        else if(checkIfTagsAreIllegal(tagsEditText.getText().toString())) {
             Toast.makeText(this, "There are invalid characters in the tags you entered.", Toast.LENGTH_SHORT).show();
         }
 
         // it has passed all the cases to check valid input
         // go to the next screen (search screen?)
         else {
+
+            // Update variable needed to create a User
+            username = usernameEditText.getText().toString();
+            first_name = firstNameEditText.getText().toString();
+            last_name = lastNameEditText.getText().toString();
+            gender = genderSpinner.getSelectedItem().toString();
+
+            // Initialize variable needed to create a User
+            courses  = new ArrayList<String>();
+            tags  = new ArrayList<String>();
+            met_history  = new ArrayList<Integer>();
+            room_ids = new ArrayList<Room>();
+
+            String[] coursesArray = macTextView.getText().toString().split(",");
+            for(int i=0; i<coursesArray.length; i++) {
+                courses.add(coursesArray[i]);
+            }
+
+            String[] tagArray = tagsEditText.getText().toString().split(",");
+            for(int i=0; i<tagArray.length; i++) {
+                tags.add(tagArray[i]);
+            }
+
+            user = new User(username, first_name, last_name, gender, courses, interestsMap, tags, met_history, room_ids);
+            this.setProfile(user);
+
             /*Intent mainActivity = new Intent(CreatePersonalProfileForm.this, MainActivity.class);
             startActivity(mainActivity);
             finish();*/
@@ -456,17 +489,14 @@ public class CreatePersonalProfileForm extends AppCompatActivity {
 
 
     // True if there is a problem with the tags user input
-    private boolean checkIfTagsAreIlleegal(String str) {
+    private boolean checkIfTagsAreIllegal(String str) {
         str = str.replaceAll(" ", "");
-
         String[] tags = str.split(",");
         for(String tag : tags) {
-            Toast.makeText(this, tag.replaceFirst("'", ""), Toast.LENGTH_SHORT).show();
             if(!containsLettersOrDigits(tag)) {
                 return true;
             }
         }
-
         return false;
     }
 
