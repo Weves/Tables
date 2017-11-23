@@ -6,30 +6,124 @@
     android:layout_height="match_parent"
     tools:context="com.msushanth.tablesapp.PresentationLayer.FormClasses.Invitation.ProfileViewer">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
-        <TextView
-            android:id="@+id/UserName"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="UserName" />
+            android:paddingBottom="10dp"
+            android:background="@color/colorSecondary800">
+            <ImageView
+                android:id="@+id/profilePicture"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="10dp"
+                app:srcCompat="@drawable/default_profile_pic_one" />
 
-        <Button
-            android:id="@+id/backButton"
+            <TextView
+                android:id="@+id/UsersName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profilePicture"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="5dp"
+                android:text="Your Name"
+                android:textColor="@color/textColor"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/UsersEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/UsersName"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="5dp"
+                android:text="Users E-mail"
+                android:textColor="@color/textColor"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="backButtonClicked"
-            android:text="Back" />
+            android:layout_height="match_parent">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Courses: "
+                            android:textColor="@color/black800"
+                            android:textSize="22dp"/>
+
+                        <TextView
+                            android:id="@+id/UsersCourses"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Users Courses Go Here"
+                            android:textColor="@color/black700"
+                            android:textSize="22dp"/>
+
+                    </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Interest Levels: "
+                        android:textColor="@color/black800"
+                        android:textSize="22dp"/>
+
+                    <TextView
+                        android:id="@+id/UsersInterestLevels"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Users Interest Levels Go Here"
+                        android:textColor="@color/black700"
+                        android:textSize="22dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="5dp"
+        app:srcCompat="@drawable/ic_arrow_back_white_48px"
+        android:onClick="backButtonClicked" />
+
 
 </RelativeLayout>
+
+

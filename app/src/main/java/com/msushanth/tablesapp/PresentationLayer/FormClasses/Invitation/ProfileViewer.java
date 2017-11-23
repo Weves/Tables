@@ -9,14 +9,19 @@ import com.msushanth.tablesapp.R;
 
 public class ProfileViewer extends AppCompatActivity {
 
-    TextView userName;
+    TextView usersName;
+    TextView usersEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_viewer);
-        userName = (TextView) findViewById(R.id.UserName);
-        userName.setText("Jon");
+
+        usersName = (TextView) findViewById(R.id.UsersName);
+        usersEmail = (TextView) findViewById(R.id.UsersEmail);
+
+        usersName.setText("Jon John");
+        usersEmail.setText("JonJohn@ucsd.edu");
     }
 
 
