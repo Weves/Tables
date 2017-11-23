@@ -56,12 +56,13 @@ public class LogInForm extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressDialog.dismiss();
 
-                // If login successful, go to the search tab on the main page.
+                // If login successful and email is verified, go to the search tab on the main page.
                 if(task.isSuccessful()) {
                     firebaseAuth.getCurrentUser().reload();
                     user = FirebaseAuth.getInstance().getCurrentUser();
                     //Toast.makeText(LogInForm.this, "Login Successful.", Toast.LENGTH_SHORT).show();
 
+                    // Check if email has been verified
                     if(user.isEmailVerified()) {
                         Intent mainActivity = new Intent(LogInForm.this, MainActivity.class);
                         startActivity(mainActivity);
@@ -78,14 +79,15 @@ public class LogInForm extends AppCompatActivity {
     }
 
 
+    // When the "sign up" is clicked, this method will be called
     public void createAccount(View v) {
         Intent createAccountIntent = new Intent(LogInForm.this, CreateAccountForm.class);
         startActivity(createAccountIntent);
         finish();
     }
 
-    // use this method to handle resetting password
-    // when the user click forgot password, this method will be called
+    // Use this method to handle resetting password
+    // When the "forgot password" is clicked, this method will be called
     public void resetPassword(View view) {
         Intent resetPasswordIntent = new Intent(LogInForm.this, PasswordRecoveryForm.class);
         startActivity(resetPasswordIntent);

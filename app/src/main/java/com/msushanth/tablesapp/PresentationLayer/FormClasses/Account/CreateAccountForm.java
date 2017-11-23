@@ -82,6 +82,7 @@ public class CreateAccountForm extends AppCompatActivity {
             return;
         }
 
+        // TODO: Do this is the DAO layer
         // Create firebase account
         progressDialog = ProgressDialog.show(CreateAccountForm.this, "Please wait...", "Processing", true);
         (firebaseAuth.createUserWithEmailAndPassword(email, password))
