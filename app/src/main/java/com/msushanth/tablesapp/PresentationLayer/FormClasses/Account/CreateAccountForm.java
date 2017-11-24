@@ -16,14 +16,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.msushanth.tablesapp.R;
+import com.msushanth.tablesapp.User;
 
 public class CreateAccountForm extends AppCompatActivity {
 
     EditText emailET;
     EditText passwordET;
+
+    DatabaseReference databaseReference;
     FirebaseAuth firebaseAuth;
-    FirebaseUser user;
+    FirebaseUser fbUser;
 
     ProgressDialog progressDialog;
 
@@ -66,7 +71,7 @@ public class CreateAccountForm extends AppCompatActivity {
             String ucsdEduCheck = "ucsd.edu";
             if(ucsdCheck.equals(ucsdEduCheck)==false) {
                 Toast.makeText(this, "Enter a valid UCSD email.", Toast.LENGTH_SHORT).show();
-                return;
+                //return;
             }
         }
 
@@ -92,14 +97,21 @@ public class CreateAccountForm extends AppCompatActivity {
                 // if registration successful, send email verification and go to login screen
                 if(task.isSuccessful()) {
                     firebaseAuth.getCurrentUser().reload();
-                    user = firebaseAuth.getCurrentUser();
-                    if(user != null) {
-                        user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    fbUser = firebaseAuth.getCurrentUser();
+                    if(fbUser != null) {
+                        fbUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()) {
                                     progressDialog.dismiss();
                                     Toast.makeText(CreateAccountForm.this, "Registration Successful. Check your email.", Toast.LENGTH_SHORT).show();
+
+                                    // Create a new user. Initialize User fields in database to empty by calling the empty User constructor and sending it to firebase
+                                    databaseReference = FirebaseDatabase.getInstance().getReference();
+                                    User newUser = new User();
+                                    newUser.setIdForFirebase(fbUser.getUid());
+                                    databaseReference.child(newUser.getIdForFirebase()).setValue(newUser);
+
 
                                     // Wait until the toast is done displaying before going back to the log in screen
                                     (new Handler()).postDelayed(

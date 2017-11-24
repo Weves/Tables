@@ -1,5 +1,6 @@
 package com.msushanth.tablesapp.PresentationLayer.FormClasses.Profile;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.msushanth.tablesapp.Interfaces.Profile.PersonalProfileInterface;
+import com.msushanth.tablesapp.MainActivity;
 import com.msushanth.tablesapp.PresentationLayer.ActionClasses.Profile.CreatePersonalProfileAction;
 import com.msushanth.tablesapp.R;
 import com.msushanth.tablesapp.Room;
@@ -480,9 +482,10 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
             user = new User(username, first_name, last_name, gender, courses, interestsMap, tags, met_history, room_ids);
             this.setProfile(user);
 
-            /*Intent mainActivity = new Intent(CreatePersonalProfileForm.this, MainActivity.class);
+            // Go to the main activity after creating the user.
+            Intent mainActivity = new Intent(CreatePersonalProfileForm.this, MainActivity.class);
             startActivity(mainActivity);
-            finish();*/
+            finish();
         }
 
     }

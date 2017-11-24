@@ -1,5 +1,7 @@
 package com.msushanth.tablesapp;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +15,7 @@ public class User {
     // ***  IMPORTANT: MUST ADD GETTERS AND SETTERS SO THAT WE CAN STORE THE DATA IN FIREBASE  ***
     // *** FIREBASE REQUIRES GETTERS AND SETTERES ***
     // *** USE REFACTOR -> ENCAPSULATE FIELDS TO GENERATE GETTERS AND SETTERS
+    private boolean accountCreated;
     private String idForFirebase;
     private String username;
     private String first_name;
@@ -24,9 +27,29 @@ public class User {
     private List<Integer> met_history;
     private List<Room> room_ids;
 
+
+
+
+    public User() {
+        this.setAccountCreated(false);
+        this.setIdForFirebase("");
+        this.setUsername("");
+        this.setFirst_name("");
+        this.setLast_name("");
+        this.setGender("");
+        this.setCourses(new ArrayList<String>());
+        this.setInterests(new HashMap<String, Integer>());
+        this.setTags(new ArrayList<String>());
+        this.setMet_history(new ArrayList<Integer>());
+        this.setRoom_ids(new ArrayList<Room>());
+    }
+
+
+
+
     public User(String username, String first_name, String last_name, String gender, List<String> courses,
                 Map<String,Integer> interests, List<String> tags, List<Integer> met_history, List<Room> room_ids) {
-
+        this.setAccountCreated(true);
         this.setIdForFirebase("");
         this.setUsername(username);
         this.setFirst_name(first_name);
@@ -41,7 +64,9 @@ public class User {
 
 
 
+
     public void printUserData() {
+        System.out.println("Is account created: " + isAccountCreated());
         System.out.println("ID for Firebase: " + getIdForFirebase());
         System.out.println("Username: " + getUsername());
         System.out.println("First name: " + getFirst_name());
@@ -65,6 +90,49 @@ public class User {
             System.out.println("\t" + ints);
         }
         System.out.println("Room Ids: ** not yet implemented**");
+    }
+
+
+
+
+    public String userDataToPrint() {
+        String allData = "";
+
+        allData += "Is account created: " + isAccountCreated() + "\n";
+        allData += "ID for Firebase: " + getIdForFirebase() + "\n";
+        allData += "Username: " + getUsername() + "\n";
+        allData += "First name: " + getFirst_name() + "\n";
+        allData += "Last name: " + getLast_name() + "\n";
+        allData += "Gender: " + getGender() + "\n";
+        allData += "Courses: " + "\n";
+        for(String str : getCourses()) {
+            allData += "\t" + str + "\n";
+        }
+        allData += "Interests: " + "\n";
+        for (String key : getInterests().keySet()) {
+            allData += "\tKey = " + key;
+            allData += "\tValue = " + getInterests().get(key) + "\n";
+        }
+        allData += "Tags: ";
+        for(String str : getTags()) {
+            allData += "\t" + str + "\n";
+        }
+        allData += "Met History: ";
+        for(Integer ints : getMet_history()) {
+            allData += "\t" + ints + "\n";
+        }
+
+        return allData;
+    }
+
+
+
+
+    public boolean isAccountCreated() {
+        return accountCreated;
+    }
+    public void setAccountCreated(boolean accountCreated) {
+        this.accountCreated = accountCreated;
     }
 
 

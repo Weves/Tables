@@ -14,9 +14,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.msushanth.tablesapp.CurrentFirebaseUser;
 import com.msushanth.tablesapp.MainActivity;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Invitation.SelectMatchedUsersForm;
+import com.msushanth.tablesapp.PresentationLayer.FormClasses.Profile.CreatePersonalProfileForm;
 import com.msushanth.tablesapp.R;
+import com.msushanth.tablesapp.User;
 
 /*
  */
@@ -25,7 +33,8 @@ public class LogInForm extends AppCompatActivity {
     EditText emailET;
     EditText passwordET;
     FirebaseAuth firebaseAuth;
-    FirebaseUser user;
+    DatabaseReference dbReference;
+    FirebaseUser fireBaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +44,14 @@ public class LogInForm extends AppCompatActivity {
         emailET = (EditText) findViewById(R.id.emailEditText);
         passwordET = (EditText) findViewById(R.id.passwordEditText);
         firebaseAuth = FirebaseAuth.getInstance();
+        dbReference = FirebaseDatabase.getInstance().getReference();
+
+        // *** IGNORE *** If user is auto-logged in. If user is already logged in.
+        /*if(firebaseAuth.getCurrentUser() != null) {
+            Intent createAccountIntent = new Intent(LogInForm.this, CreateAccountForm.class);
+            startActivity(createAccountIntent);
+            finish();
+        }*/
     }
 
     public void signInButtonClicked(View v) {
@@ -59,14 +76,36 @@ public class LogInForm extends AppCompatActivity {
                 // If login successful and email is verified, go to the search tab on the main page.
                 if(task.isSuccessful()) {
                     firebaseAuth.getCurrentUser().reload();
-                    user = FirebaseAuth.getInstance().getCurrentUser();
+                    fireBaseUser = firebaseAuth.getCurrentUser();
                     //Toast.makeText(LogInForm.this, "Login Successful.", Toast.LENGTH_SHORT).show();
 
                     // Check if email has been verified
-                    if(user.isEmailVerified()) {
-                        Intent mainActivity = new Intent(LogInForm.this, MainActivity.class);
-                        startActivity(mainActivity);
-                        finish();
+                    if(fireBaseUser.isEmailVerified()) {
+
+                        // Check if the user has created a profile.
+                        // If he hasn't, take him to the CreateAccountForm
+                        // If he has, take him to the main activity
+                        Toast.makeText(LogInForm.this, "Your unique ID: " + fireBaseUser.getUid(), Toast.LENGTH_SHORT).show();
+
+                        dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                boolean accountStatus = checkIfUserCreatedProfile(dataSnapshot);
+                                if(accountStatus) {
+                                    Intent mainActivity = new Intent(LogInForm.this, MainActivity.class);
+                                    startActivity(mainActivity);
+                                    finish();
+                                } else {
+                                    Intent mainActivity = new Intent(LogInForm.this, CreatePersonalProfileForm.class);
+                                    startActivity(mainActivity);
+                                    finish();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {}
+                        });
+
                     } else {
                         Toast.makeText(LogInForm.this, "Your email has not yet been verified. Check your email.", Toast.LENGTH_SHORT).show();
                     }
@@ -76,6 +115,14 @@ public class LogInForm extends AppCompatActivity {
             }
         });
 
+    }
+
+
+
+
+    // Get data from the database to check if the current logged in user has created a profile.
+    public boolean checkIfUserCreatedProfile(DataSnapshot dataSnapshot) {
+        return dataSnapshot.child(fireBaseUser.getUid()).getValue(User.class).isAccountCreated();
     }
 
 
