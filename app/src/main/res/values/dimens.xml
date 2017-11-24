@@ -2,4 +2,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="seekbar_margin">16dp</dimen>
     <dimen name="separate_categories_margin">20dp</dimen>
+    <dimen name="profile_padding">10dp</dimen>
 </resources>
