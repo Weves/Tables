@@ -1,5 +1,6 @@
 package com.msushanth.tablesapp.PresentationLayer.ActionClasses.Invitation;
 
+import com.msushanth.tablesapp.BusinessLogicLayer.DispatchClasses.InvitationDispatch;
 import com.msushanth.tablesapp.Interfaces.Invitation.SelectMatchedUsersInterface;
 
 /**
@@ -8,8 +9,10 @@ import com.msushanth.tablesapp.Interfaces.Invitation.SelectMatchedUsersInterface
 
 public class SelectMatchedUserAction implements SelectMatchedUsersInterface {
 
-    public void viewProfile() {
+    InvitationDispatch dispatch = new InvitationDispatch();
 
+    public void viewProfile() {
+        dispatch.viewProfile();
     }
 
 }
