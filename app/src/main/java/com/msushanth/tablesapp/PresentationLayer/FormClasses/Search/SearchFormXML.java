@@ -1,9 +1,11 @@
 package com.msushanth.tablesapp.PresentationLayer.FormClasses.Search;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -13,6 +15,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.msushanth.tablesapp.PresentationLayer.FormClasses.Account.LogInForm;
+import com.msushanth.tablesapp.PresentationLayer.FormClasses.Invitation.SelectMatchedUsersForm;
 import com.msushanth.tablesapp.R;
 import com.msushanth.tablesapp.User;
 
@@ -23,6 +27,14 @@ import java.util.ArrayList;
  */
 
 public class SearchFormXML extends android.support.v4.app.Fragment {
+
+    Button searchForUsersButton;
+
+    View rootView;
+    LayoutInflater inflater;
+    ViewGroup container;
+    Bundle savedInstanceState;
+
 
     FirebaseAuth firebaseAuth;
     DatabaseReference dbReference;
@@ -36,13 +48,20 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.search_fragment, container, false);
+        this.rootView = inflater.inflate(R.layout.search_fragment, container, false);
         label = (TextView) rootView.findViewById(R.id.search_label);
+        searchForUsersButton = (Button) rootView.findViewById(R.id.searchForUsersButton);
+
+
+        this.inflater = inflater;
+        this.container = container;
+        this.savedInstanceState = savedInstanceState;
 
 
         firebaseAuth = FirebaseAuth.getInstance();
         dbReference = FirebaseDatabase.getInstance().getReference();
         fireBaseUser = firebaseAuth.getCurrentUser();
+
 
         allUsers = new ArrayList<User>();
 
@@ -77,10 +96,23 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
             public void onCancelled(DatabaseError databaseError) {}
         });
 
+
+        searchForUsersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // TODO: send arraylist of possible users (found by the algorithm) as part of this intent
+                Intent resetPasswordIntent = new Intent(getActivity(), SelectMatchedUsersForm.class);
+                startActivity(resetPasswordIntent);
+            }
+        });
+
+
         return rootView;
     }
 
 }
+
 
 
 // The for loop gets all the users in the database. Create an arraylist (or other data structure) to store

@@ -136,8 +136,7 @@ public class LogInForm extends AppCompatActivity {
     // Use this method to handle resetting password
     // When the "forgot password" is clicked, this method will be called
     public void resetPassword(View view) {
-        //Intent resetPasswordIntent = new Intent(LogInForm.this, PasswordRecoveryForm.class);
-        Intent resetPasswordIntent = new Intent(LogInForm.this, SelectMatchedUsersForm.class);
+        Intent resetPasswordIntent = new Intent(LogInForm.this, PasswordRecoveryForm.class);
         startActivity(resetPasswordIntent);
     }
 }

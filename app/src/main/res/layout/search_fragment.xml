@@ -15,6 +15,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
+            <Button
+                android:id="@+id/searchForUsersButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Search" />
             <TextView
                 android:id="@+id/search_label"
                 android:layout_width="wrap_content"

@@ -31,7 +31,6 @@ public class SelectMatchedUsersForm extends AppCompatActivity implements SelectM
         action.viewProfile();
         Intent selectMatchedUsersIntent = new Intent(SelectMatchedUsersForm.this, ProfileViewer.class);
         startActivity(selectMatchedUsersIntent);
-
     }
 
 }
