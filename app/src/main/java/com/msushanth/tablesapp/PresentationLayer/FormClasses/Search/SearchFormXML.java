@@ -2,6 +2,7 @@ package com.msushanth.tablesapp.PresentationLayer.FormClasses.Search;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,12 +21,17 @@ import com.msushanth.tablesapp.R;
 import com.msushanth.tablesapp.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Sushanth on 10/26/17.
  */
 
+
+
 public class SearchFormXML extends android.support.v4.app.Fragment {
+
+    final private int MAX_TAGS = 4;
 
     Button searchForUsersButton;
 
@@ -42,6 +48,8 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
     User currentUserProfile;
     ArrayList<User> allUsers;
     ArrayList<String> names;
+    ArrayList<String> tags;
+    ArrayList<String> IDs;
 
     TextView label;
 
@@ -65,6 +73,8 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
 
         allUsers = new ArrayList<User>();
         names = new ArrayList<String>();
+        tags = new ArrayList<String>();
+        IDs = new ArrayList<String>();
 
         dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -90,6 +100,17 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
                     allUsers.add(user);
                     if (user.isProfileCreated()) {
                         names.add(user.getFirst_name() + " " + user.getLast_name());
+                        String tagsString = "";
+                        for (int i=0; i < MAX_TAGS && i < user.getTags().size(); i++) {
+                            tagsString += user.getTags().get(i) + ", ";
+
+                        }
+                        tagsString = tagsString.substring(0, tagsString.length()-2);
+                        tags.add(tagsString);
+
+                        IDs.add(user.getIdForFirebase());
+
+
                     }
                 }
 
@@ -108,7 +129,9 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
 
                 // TODO: send arraylist of possible users (found by the algorithm) as part of this intent
                 Intent selectMatchedUsersIntent = new Intent(getActivity(), SelectMatchedUsersForm.class);
-                selectMatchedUsersIntent.putStringArrayListExtra("matchedUsers", names);
+                selectMatchedUsersIntent.putStringArrayListExtra("matchedUsersNames", names);
+                selectMatchedUsersIntent.putStringArrayListExtra("matchedUsersTags", tags);
+                selectMatchedUsersIntent.putStringArrayListExtra("matchedUsersIDs", IDs);
                 startActivity(selectMatchedUsersIntent);
             }
         });

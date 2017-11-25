@@ -1,6 +1,7 @@
 package com.msushanth.tablesapp.PresentationLayer.FormClasses.Invitation;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,7 @@ public class ProfileViewer extends AppCompatActivity {
     DatabaseReference dbReference;
     FirebaseUser fireBaseUser;
     User currentUserProfile;
+    String ID;
 
     TextView usersName;
     TextView usersEmail;
@@ -225,7 +227,9 @@ public class ProfileViewer extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This is the current users profile
-                currentUserProfile = dataSnapshot.child(fireBaseUser.getUid()).getValue(User.class);
+                Intent intent = getIntent();
+                ID = intent.getStringExtra("matchedUsersID");
+                currentUserProfile = dataSnapshot.child(ID).getValue(User.class);
 
                 // Set the text for the TextViews using the appropriate User data.
                 // set users name text view
