@@ -20,11 +20,25 @@ public class ChatDispatch implements ChatInterface {
         this.sender = sender;
         //other coders add other constructors below if needed
     }
-
+    public ChatDispatch(){
+    }
 
     @Override
     public void postMessage(String message) {
         ChatManager msgMan = new ChatManager(thisRoom, sender);
         msgMan.postMessage(message);
+    }
+    public void setMeetingDate(String meetingDate) {
+        ChatManager ma = new ChatManager();
+        ma.setMeetingDate(meetingDate);
+    }
+    public void setMeetingTime(String meetingTime) {
+        ChatManager ma = new ChatManager();
+        ma.setMeetingDate(meetingTime);
+    }
+
+    public void setMeetingLocation(String meetingLocation) {
+        ChatManager ma = new ChatManager();
+        ma.setMeetingDate(meetingLocation);
     }
 }
