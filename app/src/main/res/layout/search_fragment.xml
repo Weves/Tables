@@ -15,26 +15,34 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
-            <Button
-                android:id="@+id/searchForUsersButton"
-
-                android:text="Search"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
-                android:layout_margin="5dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center_vertical">
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Search for other people to grab a meal with."
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:textColor="@color/black900"/>
+            <Button
+                android:id="@+id/searchForUsersButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Search"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
                 android:background="@drawable/rounded_button"
                 android:textColor="@color/black50"/>
 
             <Button
                 android:id="@+id/searchForRandomUsersButton"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
-                android:layout_margin="5dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
                 android:background="@drawable/rounded_button"
                 android:textColor="@color/black50"
                 android:onClick="randomSearchButtonClicked"

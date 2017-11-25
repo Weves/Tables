@@ -62,7 +62,7 @@ public class PasswordRecoveryForm extends AppCompatActivity {
                 return;
             }
         }
-        
+
         passwordRecovery(email, getApplicationContext());
     }
 }
