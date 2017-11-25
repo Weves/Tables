@@ -40,10 +40,10 @@
         android:layout_margin="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:background="@drawable/rounded_button"
         android:textColor="@color/black50"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:onClick="sendInvitationsButtonClicked"
         android:text="@string/send_invitations" />
 

@@ -5,7 +5,8 @@
     android:paddingTop="20dp"
     android:paddingBottom="20dp"
     android:paddingLeft="20dp"
-    android:paddingRight="20dp" >
+    android:paddingRight="20dp"
+    android:background="@color/black200">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,9 +18,27 @@
             android:orientation="vertical" >
             <Button
                 android:id="@+id/searchForUsersButton"
-                android:layout_width="match_parent"
+
+                android:text="Search"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Search" />
+                android:background="@drawable/rounded_button"
+                android:textColor="@color/black50"/>
+
+            <Button
+                android:id="@+id/searchForRandomUsersButton"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_button"
+                android:textColor="@color/black50"
+                android:onClick="randomSearchButtonClicked"
+                android:text="Random Search" />
             <TextView
                 android:id="@+id/search_label"
                 android:layout_width="wrap_content"

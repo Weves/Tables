@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +23,7 @@ import com.msushanth.tablesapp.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Sushanth on 10/26/17.
@@ -31,9 +33,13 @@ import java.util.List;
 
 public class SearchFormXML extends android.support.v4.app.Fragment {
 
+    final private int NAMES = 0;
+    final private int TAGS = 1;
+    final private int IDS = 2;
     final private int MAX_TAGS = 4;
 
     Button searchForUsersButton;
+    Button searchForRandomUsersButton;
 
     View rootView;
     LayoutInflater inflater;
@@ -41,15 +47,15 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
     Bundle savedInstanceState;
 
 
-    FirebaseAuth firebaseAuth;
-    DatabaseReference dbReference;
-    FirebaseUser fireBaseUser;
+    protected FirebaseAuth firebaseAuth;
+    protected DatabaseReference dbReference;
+    protected FirebaseUser fireBaseUser;
 
-    User currentUserProfile;
-    ArrayList<User> allUsers;
-    ArrayList<String> names;
-    ArrayList<String> tags;
-    ArrayList<String> IDs;
+    protected User currentUserProfile;
+    protected ArrayList<User> allUsers;
+    protected ArrayList<String> names;
+    protected ArrayList<String> tags;
+    protected ArrayList<String> IDs;
 
     TextView label;
 
@@ -59,6 +65,7 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
         this.rootView = inflater.inflate(R.layout.search_fragment, container, false);
         label = (TextView) rootView.findViewById(R.id.search_label);
         searchForUsersButton = (Button) rootView.findViewById(R.id.searchForUsersButton);
+        searchForRandomUsersButton = (Button)rootView.findViewById(R.id.searchForRandomUsersButton);
 
 
         this.inflater = inflater;
@@ -133,6 +140,25 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
                 selectMatchedUsersIntent.putStringArrayListExtra("matchedUsersTags", tags);
                 selectMatchedUsersIntent.putStringArrayListExtra("matchedUsersIDs", IDs);
                 startActivity(selectMatchedUsersIntent);
+            }
+        });
+
+        searchForRandomUsersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ArrayList<ArrayList<String>> usersT = new ArrayList<>();
+
+                RandomSearchForm randomSearchForm = new RandomSearchForm();
+                usersT = randomSearchForm.randomSearch();
+
+                // Send arraylist of random users as part of this intent
+                Intent selectMatchedUsersIntent = new Intent(getActivity(), SelectMatchedUsersForm.class);
+                selectMatchedUsersIntent.putStringArrayListExtra("matchedUsersNames", usersT.get(NAMES));
+                selectMatchedUsersIntent.putStringArrayListExtra("matchedUsersTags", usersT.get(TAGS));
+                selectMatchedUsersIntent.putStringArrayListExtra("matchedUsersIDs", usersT.get(IDS));
+                startActivity(selectMatchedUsersIntent);
+
             }
         });
 

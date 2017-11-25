@@ -73,11 +73,4 @@ public class SelectMatchedUsersForm extends AppCompatActivity implements SelectM
         // TODO send actual invites to the users in the selected users array
     }
 
-    public void viewProfile() {
-        action.viewProfile();
-        Intent selectMatchedUsersIntent = new Intent(SelectMatchedUsersForm.this, ProfileViewer.class);
-        startActivity(selectMatchedUsersIntent);
-
-    }
-
 }
