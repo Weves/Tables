@@ -32,7 +32,7 @@ public class ProfileViewer extends AppCompatActivity {
     String ID;
 
     TextView usersName;
-    TextView usersEmail;
+    //TextView usersEmail;
     TextView usersCourses;
     TextView usersTags;
     TextView usersGender;
@@ -79,7 +79,7 @@ public class ProfileViewer extends AppCompatActivity {
         final ProgressDialog progressDialog = ProgressDialog.show(ProfileViewer.this, "Please wait...", "Processing", true);
 
         usersName = (TextView) findViewById(R.id.UsersName);
-        usersEmail = (TextView) findViewById(R.id.UsersEmail);
+        //usersEmail = (TextView) findViewById(R.id.UsersEmail);
         usersCourses = (TextView) findViewById(R.id.usersCourses);
         usersTags = (TextView) findViewById(R.id.usersTags);
         usersGender = (TextView) findViewById(R.id.usersGender);
@@ -236,7 +236,7 @@ public class ProfileViewer extends AppCompatActivity {
                 usersName.setText(currentUserProfile.getFirst_name() + " " + currentUserProfile.getLast_name());
 
                 //set users email text view
-                usersEmail.setText(fireBaseUser.getEmail());
+                //usersEmail.setText(fireBaseUser.getEmail());
 
                 // set users courses textview
                 usersCourses.setText(TextUtils.join(", ", currentUserProfile.getCourses()));

@@ -36,6 +36,7 @@
                 android:textColor="@color/textColor"
                 android:textSize="30sp" />
 
+            <!--
             <TextView
                 android:id="@+id/UsersEmail"
                 android:layout_width="wrap_content"
@@ -46,6 +47,7 @@
                 android:text="Users E-mail"
                 android:textColor="@color/textColor"
                 android:textSize="15sp" />
+                -->
         </RelativeLayout>
 
 
