@@ -1,52 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="51dp"
-        android:text="Select Users"
-        android:textAlignment="center"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="50dp"
-        tools:ignore="MissingConstraints" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Users"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+        />
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
 
-
-    <Button
-        android:id="@+id/viewProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="viewProfileButtonClicked"
-        android:text="View User Profile"
-        tools:layout_editor_absoluteX="135dp"
-        tools:layout_editor_absoluteY="193dp" />
-
-    <Switch
-        android:id="@+id/selectUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="285dp"
-        tools:layout_editor_absoluteY="204dp" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/sendInvitations"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Send Invitation(s)"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="441dp" />
+        android:layout_alignParentBottom="true"
+        android:fontFamily="monospace"
+        android:onClick="sendInvitationsButtonClicked"
+        android:text="@string/send_invitations" />
 
-</LinearLayout>
+</RelativeLayout>

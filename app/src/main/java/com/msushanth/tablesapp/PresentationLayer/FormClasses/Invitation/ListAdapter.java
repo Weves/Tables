@@ -6,8 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +25,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     private List<ListUser> listUsers;
     private Context context;
-    private View parent;
+    private Switch userSwitch;
+    private View v;
 
     public ListAdapter(List<ListUser> listUsers, Context context) {
         this.listUsers = listUsers;
@@ -34,7 +37,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.select_users_item, parent, false);
-        this.parent = v;
+        this.v = v;
         return new ViewHolder(v);
     }
 
@@ -52,6 +55,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 Intent selectMatchedUsersIntent = new Intent(context, ProfileViewer.class);
                 selectMatchedUsersIntent.putExtra("matchedUsersID", listUser.getID());
                 context.startActivity(selectMatchedUsersIntent);
+            }
+        });
+
+        userSwitch = (Switch) v.findViewById(R.id.userSwitch);
+        userSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                listUser.setSelected(b);
+                System.out.println("HI");
             }
         });
     }
@@ -76,5 +88,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             usersList = (LinearLayout) itemView.findViewById(R.id.usersList);
             profilePicture = (ImageView) itemView.findViewById(R.id.profilePicture);
         }
+
+
     }
 }
