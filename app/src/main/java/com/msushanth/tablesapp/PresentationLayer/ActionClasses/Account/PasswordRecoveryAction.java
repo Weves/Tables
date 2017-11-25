@@ -1,5 +1,7 @@
 package com.msushanth.tablesapp.PresentationLayer.ActionClasses.Account;
 
+import android.content.Context;
+
 import com.msushanth.tablesapp.BusinessLogicLayer.DispatchClasses.AccountDispatch;
 
 /**
@@ -7,8 +9,8 @@ import com.msushanth.tablesapp.BusinessLogicLayer.DispatchClasses.AccountDispatc
  */
 
 public class PasswordRecoveryAction {
-    public boolean passwordRecovery(String email){
+    public void passwordRecovery(String email, Context context){
         AccountDispatch dis = new AccountDispatch();
-        return dis.passwordRecovery(email);
+        dis.passwordRecovery(email, context);
     }
 }

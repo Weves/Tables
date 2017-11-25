@@ -1,5 +1,7 @@
 package com.msushanth.tablesapp.BusinessLogicLayer.DispatchClasses;
 
+import android.content.Context;
+
 import com.msushanth.tablesapp.BusinessLogicLayer.ManagerClasses.AccountManager;
 
 /**
@@ -12,8 +14,8 @@ public class AccountDispatch {
         ma.logout();
     }
 
-    public boolean passwordRecovery(String email){
+    public void passwordRecovery(String email, Context context){
         AccountManager ma = new AccountManager();
-        return ma.passwordRecovery(email);
+        ma.passwordRecovery(email, context);
     }
 }

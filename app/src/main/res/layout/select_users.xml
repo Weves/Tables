@@ -2,7 +2,8 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black200">
 
     <LinearLayout
         xmlns:tools="http://schemas.android.com/tools"
@@ -16,8 +17,10 @@
             android:layout_height="wrap_content"
             android:text="Select Users"
             android:textAlignment="center"
-            android:textSize="30sp"
-            android:fontFamily="monospace"
+            android:background="@color/colorPrimary700"
+            android:textColor="@color/black50"
+            android:padding="10dp"
+            android:textSize="35sp"
             android:textStyle="bold"
         />
 
@@ -32,10 +35,15 @@
 
     <Button
         android:id="@+id/sendInvitations"
-        android:layout_width="match_parent"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:fontFamily="monospace"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/black50"
         android:onClick="sendInvitationsButtonClicked"
         android:text="@string/send_invitations" />
 
