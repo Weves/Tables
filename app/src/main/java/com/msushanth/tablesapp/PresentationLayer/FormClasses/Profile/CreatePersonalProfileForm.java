@@ -37,6 +37,7 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
     EditText firstNameEditText;
     EditText lastNameEditText;
     EditText tagsEditText;
+    EditText bioEditText;
 
     Spinner genderSpinner;
     ArrayAdapter<CharSequence> genderAdapter;
@@ -81,12 +82,13 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
     String username;
     String first_name;
     String last_name;
+    String bio;
     String gender;
     List<String> courses;
     Map<String,Integer> interestsMap;
     List<String> tags;
     List<Integer> met_history;
-    List<Room> room_ids;
+    List<String> room_ids;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +112,11 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
         macTextView.setImeOptions(EditorInfo.IME_ACTION_DONE);
         macTextView.setRawInputType(InputType.TYPE_CLASS_TEXT);
 
+        bioEditText = (EditText) findViewById(R.id.bioEditText);
+        bioEditText.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        bioEditText.setRawInputType(InputType.TYPE_CLASS_TEXT);
+
+
         tagsEditText = (EditText) findViewById(R.id.tagsEditText);
         tagsEditText.setImeOptions(EditorInfo.IME_ACTION_DONE);
         tagsEditText.setRawInputType(InputType.TYPE_CLASS_TEXT);
@@ -119,13 +126,6 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
 
         // Initialize the SeekBars and their corresponding TextViews
         initializeSeekBars();
-    }
-
-
-    @Override
-    public void setProfile(User user) {
-        CreatePersonalProfileAction createProfileAction = new CreatePersonalProfileAction();
-        createProfileAction.setProfile(user);
     }
 
 
@@ -423,6 +423,12 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
         else if(tagsEditText.getText().toString().equals("")) {
             Toast.makeText(this, "Enter topics of interest. (separated by commas)", Toast.LENGTH_SHORT).show();
         }
+        else if(bioEditText.getText().toString().equals("")) {
+            Toast.makeText(this, "Enter a short bio.", Toast.LENGTH_SHORT).show();
+        }
+        else if(bioEditText.getText().toString().length() < 50) {
+            Toast.makeText(this, "Enter a longer bio.", Toast.LENGTH_SHORT).show();
+        }
 
         // make sure a gender is selected
         else if(genderSpinner.getSelectedItem().toString().equals("Select")) {
@@ -470,7 +476,9 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
             courses  = new ArrayList<String>();
             tags  = new ArrayList<String>();
             met_history  = new ArrayList<Integer>();
-            room_ids = new ArrayList<Room>();
+            room_ids = new ArrayList<String>();
+
+            bio = bioEditText.getText().toString();
 
             String[] coursesArray = macTextView.getText().toString().split(",");
             for(int i=0; i<coursesArray.length; i++) {
@@ -482,7 +490,7 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
                 tags.add(tagArray[i]);
             }
 
-            user = new User(username, first_name, last_name, gender, courses, interestsMap, tags, met_history, room_ids);
+            user = new User(username, first_name, last_name, gender, courses, interestsMap, tags, met_history, room_ids, bio);
             this.setProfile(user);
 
             // Go to the main activity after creating the user.
@@ -491,6 +499,13 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
             finish();
         }
 
+    }
+
+
+    @Override
+    public void setProfile(User user) {
+        CreatePersonalProfileAction createProfileAction = new CreatePersonalProfileAction();
+        createProfileAction.setProfile(user);
     }
 
 
