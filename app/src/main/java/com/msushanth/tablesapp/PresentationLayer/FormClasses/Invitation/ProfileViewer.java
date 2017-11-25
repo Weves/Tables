@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -37,21 +38,21 @@ public class ProfileViewer extends AppCompatActivity {
     TextView usersTags;
     TextView usersGender;
 
-    SeekBar sportsSeekBar;
-    SeekBar musicSeekBar;
-    SeekBar gamesSeekBar;
-    SeekBar moviesSeekBar;
-    SeekBar technologySeekBar;
-    SeekBar scienceSeekBar;
-    SeekBar politicsSeekBar;
-    SeekBar historySeekBar;
-    SeekBar engineeringSeekBar;
-    SeekBar economicsSeekBar;
-    SeekBar literatureSeekBar;
-    SeekBar comicsSeekBar;
-    SeekBar religionSeekBar;
-    SeekBar artsSeekBar;
-    SeekBar travelSeekBar;
+    ProgressBar sportsProgressBar;
+    ProgressBar musicProgressBar;
+    ProgressBar gamesProgressBar;
+    ProgressBar moviesProgressBar;
+    ProgressBar technologyProgressBar;
+    ProgressBar scienceProgressBar;
+    ProgressBar politicsProgressBar;
+    ProgressBar historyProgressBar;
+    ProgressBar engineeringProgressBar;
+    ProgressBar economicsProgressBar;
+    ProgressBar literatureProgressBar;
+    ProgressBar comicsProgressBar;
+    ProgressBar religionProgressBar;
+    ProgressBar artsProgressBar;
+    ProgressBar travelProgressBar;
     TextView sportsTextView;
     TextView musicTextView;
     TextView gamesTextView;
@@ -86,111 +87,22 @@ public class ProfileViewer extends AppCompatActivity {
 
 
         // Create seekbars and prevent them from being changed
-        sportsSeekBar = (SeekBar) findViewById(R.id.sportsSeekBar); sportsSeekBar.setMax(10); sportsSeekBar.setProgress(0);
-        sportsSeekBar.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
-        musicSeekBar = (SeekBar) findViewById(R.id.musicSeekBar); musicSeekBar.setMax(10); musicSeekBar.setProgress(0);
-        musicSeekBar.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
-        gamesSeekBar = (SeekBar) findViewById(R.id.gamesSeekBar); gamesSeekBar.setMax(10); gamesSeekBar.setProgress(0);
-        gamesSeekBar.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
-        moviesSeekBar = (SeekBar) findViewById(R.id.moviesSeekBar); moviesSeekBar.setMax(10); moviesSeekBar.setProgress(0);
-        moviesSeekBar.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
-        technologySeekBar = (SeekBar) findViewById(R.id.technologySeekBar); technologySeekBar.setMax(10); technologySeekBar.setProgress(0);
-        technologySeekBar.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
-        scienceSeekBar = (SeekBar) findViewById(R.id.scienceSeekBar); scienceSeekBar.setMax(10); scienceSeekBar.setProgress(0);
-        scienceSeekBar.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
-        politicsSeekBar = (SeekBar) findViewById(R.id.politicsSeekBar); politicsSeekBar.setMax(10); politicsSeekBar.setProgress(0);
-        politicsSeekBar.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
-        historySeekBar = (SeekBar) findViewById(R.id.historySeekBar); historySeekBar.setMax(10); historySeekBar.setProgress(0);
-        historySeekBar.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
-        engineeringSeekBar = (SeekBar) findViewById(R.id.engineeringSeekBar); engineeringSeekBar.setMax(10); engineeringSeekBar.setProgress(0);
-        engineeringSeekBar.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
-        economicsSeekBar = (SeekBar) findViewById(R.id.economicsSeekBar); economicsSeekBar.setMax(10); economicsSeekBar.setProgress(0);
-        economicsSeekBar.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
-        literatureSeekBar = (SeekBar) findViewById(R.id.literatureSeekBar); literatureSeekBar.setMax(10); literatureSeekBar.setProgress(0);
-        literatureSeekBar.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
-        comicsSeekBar = (SeekBar) findViewById(R.id.comicsSeekBar); comicsSeekBar.setMax(10); comicsSeekBar.setProgress(0);
-        comicsSeekBar.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
-        religionSeekBar = (SeekBar) findViewById(R.id.religionSeekBar); religionSeekBar.setMax(10); religionSeekBar.setProgress(0);
-        religionSeekBar.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
-        artsSeekBar = (SeekBar) findViewById(R.id.artsSeekBar); artsSeekBar.setMax(10); artsSeekBar.setProgress(0);
-        artsSeekBar.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
-        travelSeekBar = (SeekBar) findViewById(R.id.travelSeekBar); travelSeekBar.setMax(10); travelSeekBar.setProgress(0);
-        travelSeekBar.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
+        sportsProgressBar = (ProgressBar) findViewById(R.id.sportsProgressBar); sportsProgressBar.setMax(10); sportsProgressBar.setProgress(0);
+        musicProgressBar = (ProgressBar) findViewById(R.id.musicProgressBar); musicProgressBar.setMax(10); musicProgressBar.setProgress(0);
+        gamesProgressBar = (ProgressBar) findViewById(R.id.gamesProgressbar); gamesProgressBar.setMax(10); gamesProgressBar.setProgress(0);
+        moviesProgressBar = (ProgressBar) findViewById(R.id.moviesProgressBar); moviesProgressBar.setMax(10); moviesProgressBar.setProgress(0);
+        technologyProgressBar = (ProgressBar) findViewById(R.id.technologyProgressBar); technologyProgressBar.setMax(10); technologyProgressBar.setProgress(0);
+        scienceProgressBar = (ProgressBar) findViewById(R.id.scienceProgressBar); scienceProgressBar.setMax(10); scienceProgressBar.setProgress(0);
+        politicsProgressBar = (ProgressBar) findViewById(R.id.politicsProgressBar); politicsProgressBar.setMax(10); politicsProgressBar.setProgress(0);
+        historyProgressBar = (ProgressBar) findViewById(R.id.historyProgressBar); historyProgressBar.setMax(10); historyProgressBar.setProgress(0);
+        engineeringProgressBar = (ProgressBar) findViewById(R.id.engineeringProgressBar); engineeringProgressBar.setMax(10); engineeringProgressBar.setProgress(0);
+        economicsProgressBar = (ProgressBar) findViewById(R.id.economicsProgressBar); economicsProgressBar.setMax(10); economicsProgressBar.setProgress(0);
+        literatureProgressBar = (ProgressBar) findViewById(R.id.literatureProgressBar); literatureProgressBar.setMax(10); literatureProgressBar.setProgress(0);
+        comicsProgressBar = (ProgressBar) findViewById(R.id.comicsProgressBar); comicsProgressBar.setMax(10); comicsProgressBar.setProgress(0);
+        religionProgressBar = (ProgressBar) findViewById(R.id.religionProgressBar); religionProgressBar.setMax(10); religionProgressBar.setProgress(0);
+        artsProgressBar = (ProgressBar) findViewById(R.id.artsProgressBar); artsProgressBar.setMax(10); artsProgressBar.setProgress(0);
+        travelProgressBar = (ProgressBar) findViewById(R.id.travelProgressBar); travelProgressBar.setMax(10); travelProgressBar.setProgress(0);
+
         sportsTextView = (TextView) findViewById(R.id.sportsInterestTextView);
         musicTextView = (TextView) findViewById(R.id.musicInterestTextView);
         gamesTextView = (TextView) findViewById(R.id.gamesInterestTextView);
@@ -245,21 +157,22 @@ public class ProfileViewer extends AppCompatActivity {
                 Resources res = getResources();
                 interestsArray = res.getStringArray(R.array.interests);
                 Map<String,Integer> interestsMap = currentUserProfile.getInterests();
-                sportsSeekBar.setProgress(interestsMap.get(interestsArray[0]));
-                musicSeekBar.setProgress(interestsMap.get(interestsArray[1]));
-                gamesSeekBar.setProgress(interestsMap.get(interestsArray[2]));
-                moviesSeekBar.setProgress(interestsMap.get(interestsArray[3]));
-                technologySeekBar.setProgress(interestsMap.get(interestsArray[4]));
-                scienceSeekBar.setProgress(interestsMap.get(interestsArray[5]));
-                politicsSeekBar.setProgress(interestsMap.get(interestsArray[6]));
-                historySeekBar.setProgress(interestsMap.get(interestsArray[7]));
-                engineeringSeekBar.setProgress(interestsMap.get(interestsArray[8]));
-                economicsSeekBar.setProgress(interestsMap.get(interestsArray[9]));
-                literatureSeekBar.setProgress(interestsMap.get(interestsArray[10]));
-                comicsSeekBar.setProgress(interestsMap.get(interestsArray[11]));
-                religionSeekBar.setProgress(interestsMap.get(interestsArray[12]));
-                artsSeekBar.setProgress(interestsMap.get(interestsArray[13]));
-                travelSeekBar.setProgress(interestsMap.get(interestsArray[14]));
+                sportsProgressBar.setProgress(interestsMap.get(interestsArray[0]));
+                musicProgressBar.setProgress(interestsMap.get(interestsArray[1]));
+                gamesProgressBar.setProgress(interestsMap.get(interestsArray[2]));
+                moviesProgressBar.setProgress(interestsMap.get(interestsArray[3]));
+                technologyProgressBar.setProgress(interestsMap.get(interestsArray[4]));
+                scienceProgressBar.setProgress(interestsMap.get(interestsArray[5]));
+                politicsProgressBar.setProgress(interestsMap.get(interestsArray[6]));
+                historyProgressBar.setProgress(interestsMap.get(interestsArray[7]));
+                engineeringProgressBar.setProgress(interestsMap.get(interestsArray[8]));
+                economicsProgressBar.setProgress(interestsMap.get(interestsArray[9]));
+                literatureProgressBar.setProgress(interestsMap.get(interestsArray[10]));
+                comicsProgressBar.setProgress(interestsMap.get(interestsArray[11]));
+                religionProgressBar.setProgress(interestsMap.get(interestsArray[12]));
+                artsProgressBar.setProgress(interestsMap.get(interestsArray[13]));
+                travelProgressBar.setProgress(interestsMap.get(interestsArray[14]));
+
                 sportsTextView.setText("Sports (" + interestsMap.get(interestsArray[0]) + ")");
                 musicTextView.setText("Music (" + interestsMap.get(interestsArray[1]) + ")");
                 gamesTextView.setText("Games (" + interestsMap.get(interestsArray[2]) + ")");
