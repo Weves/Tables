@@ -15,7 +15,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.msushanth.tablesapp.PresentationLayer.FormClasses.Account.LogInForm;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Invitation.SelectMatchedUsersForm;
 import com.msushanth.tablesapp.R;
 import com.msushanth.tablesapp.User;
@@ -42,6 +41,7 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
 
     User currentUserProfile;
     ArrayList<User> allUsers;
+    ArrayList<String> names;
 
     TextView label;
 
@@ -64,6 +64,7 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
 
 
         allUsers = new ArrayList<User>();
+        names = new ArrayList<String>();
 
         dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -86,6 +87,10 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
 
                     textToDisplay += "\n\n\n****************\n*** ANOTHER USER ***\n";
                     textToDisplay += user.userDataToPrint();
+                    allUsers.add(user);
+                    if (user.isProfileCreated()) {
+                        names.add(user.getFirst_name() + " " + user.getLast_name());
+                    }
                 }
 
 
@@ -102,8 +107,9 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
             public void onClick(View v) {
 
                 // TODO: send arraylist of possible users (found by the algorithm) as part of this intent
-                Intent resetPasswordIntent = new Intent(getActivity(), SelectMatchedUsersForm.class);
-                startActivity(resetPasswordIntent);
+                Intent selectMatchedUsersIntent = new Intent(getActivity(), SelectMatchedUsersForm.class);
+                selectMatchedUsersIntent.putStringArrayListExtra("matchedUsers", names);
+                startActivity(selectMatchedUsersIntent);
             }
         });
 

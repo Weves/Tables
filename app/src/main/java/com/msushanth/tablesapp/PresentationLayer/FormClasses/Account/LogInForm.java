@@ -19,9 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.msushanth.tablesapp.CurrentFirebaseUser;
 import com.msushanth.tablesapp.MainActivity;
-import com.msushanth.tablesapp.PresentationLayer.FormClasses.Invitation.SelectMatchedUsersForm;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Profile.CreatePersonalProfileForm;
 import com.msushanth.tablesapp.R;
 import com.msushanth.tablesapp.User;
@@ -122,7 +120,7 @@ public class LogInForm extends AppCompatActivity {
 
     // Get data from the database to check if the current logged in user has created a profile.
     public boolean checkIfUserCreatedProfile(DataSnapshot dataSnapshot) {
-        return dataSnapshot.child(fireBaseUser.getUid()).getValue(User.class).isAccountCreated();
+        return dataSnapshot.child(fireBaseUser.getUid()).getValue(User.class).isProfileCreated();
     }
 
 

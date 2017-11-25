@@ -24,6 +24,8 @@ public class SelectMatchedUsersForm extends AppCompatActivity implements SelectM
     private RecyclerView.Adapter adapter;
     private List<ListUser> users = new ArrayList<ListUser>();
 
+    ArrayList<String> names = new ArrayList<>();
+
     SelectMatchedUserAction action = new SelectMatchedUserAction();
 
     @Override
@@ -35,8 +37,11 @@ public class SelectMatchedUsersForm extends AppCompatActivity implements SelectM
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        for (int i=0; i <5; i++) {
-            ListUser user = new ListUser("JON" + i);
+        Intent intent = getIntent();
+        names = intent.getStringArrayListExtra("matchedUsers");
+
+        for (int i=0; i <names.size(); i++) {
+            ListUser user = new ListUser(names.get(i));
 
             users.add(user);
         }

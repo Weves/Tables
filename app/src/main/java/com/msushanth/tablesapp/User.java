@@ -15,7 +15,7 @@ public class User {
     // ***  IMPORTANT: MUST ADD GETTERS AND SETTERS SO THAT WE CAN STORE THE DATA IN FIREBASE  ***
     // *** FIREBASE REQUIRES GETTERS AND SETTERES ***
     // *** USE REFACTOR -> ENCAPSULATE FIELDS TO GENERATE GETTERS AND SETTERS
-    private boolean accountCreated;
+    private boolean profileCreated;
     private String idForFirebase;
     private String username;
     private String first_name;
@@ -31,7 +31,7 @@ public class User {
 
 
     public User() {
-        this.setAccountCreated(false);
+        this.setProfileCreated(false);
         this.setIdForFirebase("");
         this.setUsername("");
         this.setFirst_name("");
@@ -49,7 +49,7 @@ public class User {
 
     public User(String username, String first_name, String last_name, String gender, List<String> courses,
                 Map<String,Integer> interests, List<String> tags, List<Integer> met_history, List<Room> room_ids) {
-        this.setAccountCreated(true);
+        this.setProfileCreated(true);
         this.setIdForFirebase("");
         this.setUsername(username);
         this.setFirst_name(first_name);
@@ -66,7 +66,7 @@ public class User {
 
 
     public void printUserData() {
-        System.out.println("Is account created: " + isAccountCreated());
+        System.out.println("Is account created: " + isProfileCreated());
         System.out.println("ID for Firebase: " + getIdForFirebase());
         System.out.println("Username: " + getUsername());
         System.out.println("First name: " + getFirst_name());
@@ -98,7 +98,7 @@ public class User {
     public String userDataToPrint() {
         String allData = "";
 
-        allData += "Is account created: " + isAccountCreated() + "\n";
+        allData += "Is account created: " + isProfileCreated() + "\n";
         allData += "ID for Firebase: " + getIdForFirebase() + "\n";
         allData += "Username: " + getUsername() + "\n";
         allData += "First name: " + getFirst_name() + "\n";
@@ -128,11 +128,11 @@ public class User {
 
 
 
-    public boolean isAccountCreated() {
-        return accountCreated;
+    public boolean isProfileCreated() {
+        return profileCreated;
     }
-    public void setAccountCreated(boolean accountCreated) {
-        this.accountCreated = accountCreated;
+    public void setProfileCreated(boolean profileCreated) {
+        this.profileCreated = profileCreated;
     }
 
 

@@ -1,13 +1,10 @@
 package com.msushanth.tablesapp.DataAccessLayer;
 
-import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.msushanth.tablesapp.Interfaces.Profile.ProfileInterface;
-import com.msushanth.tablesapp.PresentationLayer.FormClasses.Profile.CreatePersonalProfileForm;
 import com.msushanth.tablesapp.User;
 
 /**
@@ -37,7 +34,7 @@ public class ProfileDAO implements ProfileInterface {
 
     @Override
     public void setProfile(User user) {
-        this.user.setAccountCreated(true);
+        this.user.setProfileCreated(true);
         this.user.setIdForFirebase(firebaseUser.getUid());
         this.user.printUserData();
 
