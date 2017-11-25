@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
-            android:background="@color/colorSecondary800">
+            android:background="@color/colorPrimary700">
             <ImageView
                 android:id="@+id/profilePicture"
                 android:layout_width="100dp"
@@ -137,11 +137,11 @@
                             android:text="Sports (0)"
                             android:textColor="@color/black700"
                             android:textSize="18sp" />
-
-                        <SeekBar
-                            android:id="@+id/sportsSeekBar"
+                        <ProgressBar
+                            android:id="@+id/sportsProgressBar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
 
                         <TextView
                             android:id="@+id/musicInterestTextView"
@@ -153,11 +153,12 @@
                             android:text="Music (0)"
                             android:textColor="@color/black700"
                             android:textSize="18sp" />
-
-                        <SeekBar
-                            android:id="@+id/musicSeekBar"
+                        <ProgressBar
+                            android:id="@+id/musicProgressBar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
+
 
                         <TextView
                             android:id="@+id/gamesInterestTextView"
@@ -169,11 +170,11 @@
                             android:text="Games (0)"
                             android:textColor="@color/black700"
                             android:textSize="18sp" />
-
-                        <SeekBar
-                            android:id="@+id/gamesSeekBar"
+                        <ProgressBar
+                            android:id="@+id/gamesProgressbar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
 
                         <TextView
                             android:id="@+id/moviesInterestTextView"
@@ -185,11 +186,11 @@
                             android:text="Movies (0)"
                             android:textColor="@color/black700"
                             android:textSize="18sp" />
-
-                        <SeekBar
-                            android:id="@+id/moviesSeekBar"
+                        <ProgressBar
+                            android:id="@+id/moviesProgressBar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
 
                         <TextView
                             android:id="@+id/technologyInterestTextView"
@@ -201,11 +202,11 @@
                             android:text="Technology (0)"
                             android:textColor="@color/black700"
                             android:textSize="18sp" />
-
-                        <SeekBar
-                            android:id="@+id/technologySeekBar"
+                        <ProgressBar
+                            android:id="@+id/technologyProgressBar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
 
                         <TextView
                             android:id="@+id/scienceInterestTextView"
@@ -217,11 +218,11 @@
                             android:text="Science (0)"
                             android:textColor="@color/black700"
                             android:textSize="18sp" />
-
-                        <SeekBar
-                            android:id="@+id/scienceSeekBar"
+                        <ProgressBar
+                            android:id="@+id/scienceProgressBar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
 
                         <TextView
                             android:id="@+id/politicsInterestTextView"
@@ -233,11 +234,11 @@
                             android:text="Politics (0)"
                             android:textColor="@color/black700"
                             android:textSize="18sp" />
-
-                        <SeekBar
-                            android:id="@+id/politicsSeekBar"
+                        <ProgressBar
+                            android:id="@+id/politicsProgressBar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
 
                         <TextView
                             android:id="@+id/historyInterestTextView"
@@ -249,11 +250,11 @@
                             android:text="History (0)"
                             android:textColor="@color/black700"
                             android:textSize="18sp" />
-
-                        <SeekBar
-                            android:id="@+id/historySeekBar"
+                        <ProgressBar
+                            android:id="@+id/historyProgressBar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
 
                         <TextView
                             android:id="@+id/engineeringInterestTextView"
@@ -265,11 +266,11 @@
                             android:text="Engineering (0)"
                             android:textColor="@color/black700"
                             android:textSize="18sp" />
-
-                        <SeekBar
-                            android:id="@+id/engineeringSeekBar"
+                        <ProgressBar
+                            android:id="@+id/engineeringProgressBar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
 
                         <TextView
                             android:id="@+id/economicsInterestTextView"
@@ -281,11 +282,11 @@
                             android:text="Economics (0)"
                             android:textColor="@color/black700"
                             android:textSize="18sp" />
-
-                        <SeekBar
-                            android:id="@+id/economicsSeekBar"
+                        <ProgressBar
+                            android:id="@+id/economicsProgressBar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
 
                         <TextView
                             android:id="@+id/literatureInterestTextView"
@@ -297,11 +298,11 @@
                             android:text="Literature (0)"
                             android:textColor="@color/black700"
                             android:textSize="18sp" />
-
-                        <SeekBar
-                            android:id="@+id/literatureSeekBar"
+                        <ProgressBar
+                            android:id="@+id/literatureProgressBar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
 
                         <TextView
                             android:id="@+id/comicsInterestTextView"
@@ -313,11 +314,11 @@
                             android:text="Comics (0)"
                             android:textColor="@color/black700"
                             android:textSize="18sp" />
-
-                        <SeekBar
-                            android:id="@+id/comicsSeekBar"
+                        <ProgressBar
+                            android:id="@+id/comicsProgressBar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
 
                         <TextView
                             android:id="@+id/religionInterestTextView"
@@ -329,11 +330,11 @@
                             android:text="Religion (0)"
                             android:textColor="@color/black700"
                             android:textSize="18sp" />
-
-                        <SeekBar
-                            android:id="@+id/religionSeekBar"
+                        <ProgressBar
+                            android:id="@+id/religionProgressBar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
 
                         <TextView
                             android:id="@+id/artsInterestTextView"
@@ -345,11 +346,11 @@
                             android:text="Arts (0)"
                             android:textColor="@color/black700"
                             android:textSize="18sp" />
-
-                        <SeekBar
-                            android:id="@+id/artsSeekBar"
+                        <ProgressBar
+                            android:id="@+id/artsProgressBar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
 
                         <TextView
                             android:id="@+id/travelInterestTextView"
@@ -361,11 +362,11 @@
                             android:text="Travel (0)"
                             android:textColor="@color/black700"
                             android:textSize="18sp" />
-
-                        <SeekBar
-                            android:id="@+id/travelSeekBar"
+                        <ProgressBar
+                            android:id="@+id/travelProgressBar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"/>
                     </LinearLayout>
                 </LinearLayout>
 

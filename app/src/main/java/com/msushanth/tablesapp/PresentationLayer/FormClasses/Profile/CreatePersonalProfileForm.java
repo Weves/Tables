@@ -458,9 +458,12 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
         else {
 
             // Update variable needed to create a User
+            // Capitalize the first letter in the first and last name if they are not already capitalized.
             username = usernameEditText.getText().toString();
             first_name = firstNameEditText.getText().toString();
+            first_name = first_name.substring(0,1).toUpperCase() + first_name.substring(1).toLowerCase();
             last_name = lastNameEditText.getText().toString();
+            last_name = last_name.substring(0,1).toUpperCase() + last_name.substring(1).toLowerCase();
             gender = genderSpinner.getSelectedItem().toString();
 
             // Initialize variable needed to create a User
