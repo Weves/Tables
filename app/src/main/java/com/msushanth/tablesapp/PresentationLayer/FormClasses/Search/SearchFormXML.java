@@ -100,25 +100,24 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
                 // This will print out the profile of everyone in the database
                 // TODO: store these users in an arraylist to use for the algorithm
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    User user = snapshot.getValue(User.class);
+                        User user = snapshot.getValue(User.class);
 
-                    textToDisplay += "\n\n\n****************\n*** ANOTHER USER ***\n";
-                    textToDisplay += user.userDataToPrint();
-                    allUsers.add(user);
-                    if (user.isProfileCreated()) {
-                        names.add(user.getFirst_name() + " " + user.getLast_name());
-                        String tagsString = "";
-                        for (int i=0; i < MAX_TAGS && i < user.getTags().size(); i++) {
-                            tagsString += user.getTags().get(i) + ", ";
+                        textToDisplay += "\n\n\n****************\n*** ANOTHER USER ***\n";
+                        textToDisplay += user.userDataToPrint();
+                        if (user.isProfileCreated()) {
+                            allUsers.add(user);
 
+                            names.add(user.getFirst_name() + " " + user.getLast_name());
+                            String tagsString = "";
+                            for (int i=0; i < MAX_TAGS && i < user.getTags().size(); i++) {
+                                tagsString += user.getTags().get(i) + ", ";
+
+                            }
+                            tagsString = tagsString.substring(0, tagsString.length()-2);
+                            tags.add(tagsString);
+
+                            IDs.add(user.getIdForFirebase());
                         }
-                        tagsString = tagsString.substring(0, tagsString.length()-2);
-                        tags.add(tagsString);
-
-                        IDs.add(user.getIdForFirebase());
-
-
-                    }
                 }
 
 
