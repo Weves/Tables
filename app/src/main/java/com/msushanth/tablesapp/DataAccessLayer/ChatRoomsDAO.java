@@ -18,9 +18,18 @@ public class ChatRoomsDAO implements ChatInterface {
         this.thisRoom = thisRoom;
         this.sender = sender;
     }
+    public ChatRoomsDAO() {}
 
     @Override
     public void postMessage(String message) {
         // get data from database
     }
+    public void setMeetingDate(String meetingDate) {
+
+    }
+    public void setMeetingTime(String meetingTime) {
+    }
+    public void setMeetingLocation(String meetingLocation) {
+    }
+
 }
