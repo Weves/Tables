@@ -33,6 +33,7 @@ public class RandomSearchForm implements FindRandomUsersInterface {
     ArrayList<String> tags;
     ArrayList<String> IDs;
 
+
     User currentUserProfile;
 
     public ArrayList<ArrayList<String>> randomSearch() {
@@ -64,9 +65,6 @@ public class RandomSearchForm implements FindRandomUsersInterface {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
 
-                    textToDisplay += "\n\n\n****************\n*** ANOTHER USER ***\n";
-                    textToDisplay += user.userDataToPrint();
-
                     if (user.isProfileCreated()) {
                         names.add(user.getFirst_name() + " " + user.getLast_name());
                         String tagsString = "";
@@ -88,6 +86,7 @@ public class RandomSearchForm implements FindRandomUsersInterface {
             @Override
             public void onCancelled(DatabaseError databaseError) {}
         });
+
 
         ArrayList<ArrayList<String>> usersT = new ArrayList<>();
         usersT.add(names);

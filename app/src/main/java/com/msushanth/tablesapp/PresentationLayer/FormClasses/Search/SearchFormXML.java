@@ -53,6 +53,7 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
 
     protected User currentUserProfile;
     protected ArrayList<User> allUsers;
+    private ArrayList<ArrayList<String>> usersT;
     protected ArrayList<String> names;
     protected ArrayList<String> tags;
     protected ArrayList<String> IDs;
@@ -122,7 +123,7 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
                 }
 
 
-                label.setText(textToDisplay);
+                //label.setText(textToDisplay);
             }
 
             @Override
@@ -143,14 +144,12 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
             }
         });
 
+        RandomSearchForm randomSearchForm = new RandomSearchForm();
+        usersT = randomSearchForm.randomSearch();
+
         searchForRandomUsersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                ArrayList<ArrayList<String>> usersT = new ArrayList<>();
-
-                RandomSearchForm randomSearchForm = new RandomSearchForm();
-                usersT = randomSearchForm.randomSearch();
 
                 // Send arraylist of random users as part of this intent
                 Intent selectMatchedUsersIntent = new Intent(getActivity(), SelectMatchedUsersForm.class);
