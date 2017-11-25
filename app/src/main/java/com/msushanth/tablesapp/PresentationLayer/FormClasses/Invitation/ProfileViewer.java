@@ -34,6 +34,7 @@ public class ProfileViewer extends AppCompatActivity {
 
     TextView usersName;
     //TextView usersEmail;
+    TextView usersBio;
     TextView usersCourses;
     TextView usersTags;
     TextView usersGender;
@@ -81,6 +82,7 @@ public class ProfileViewer extends AppCompatActivity {
 
         usersName = (TextView) findViewById(R.id.UsersName);
         //usersEmail = (TextView) findViewById(R.id.UsersEmail);
+        usersBio = (TextView) findViewById(R.id.bioContent);
         usersCourses = (TextView) findViewById(R.id.usersCourses);
         usersTags = (TextView) findViewById(R.id.usersTags);
         usersGender = (TextView) findViewById(R.id.usersGender);
@@ -149,6 +151,7 @@ public class ProfileViewer extends AppCompatActivity {
 
                 //set users email text view
                 //usersEmail.setText(fireBaseUser.getEmail());
+                usersBio.setText(currentUserProfile.getBio());
 
                 // set users courses textview
                 usersCourses.setText(TextUtils.join(", ", currentUserProfile.getCourses()));
