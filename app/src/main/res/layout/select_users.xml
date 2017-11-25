@@ -3,6 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black200">
 
     <LinearLayout
@@ -46,5 +47,15 @@
         android:layout_centerHorizontal="true"
         android:onClick="sendInvitationsButtonClicked"
         android:text="@string/send_invitations" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="5dp"
+        app:srcCompat="@drawable/ic_arrow_back_white_48px"
+        android:onClick="backButtonClicked" />
 
 </RelativeLayout>

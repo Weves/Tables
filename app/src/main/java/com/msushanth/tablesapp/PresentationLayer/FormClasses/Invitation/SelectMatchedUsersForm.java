@@ -73,4 +73,10 @@ public class SelectMatchedUsersForm extends AppCompatActivity implements SelectM
         // TODO send actual invites to the users in the selected users array
     }
 
+
+
+
+    public void backButtonClicked(View view) {
+        finish();
+    }
 }
