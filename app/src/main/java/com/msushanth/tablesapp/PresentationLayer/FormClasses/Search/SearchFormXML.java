@@ -24,6 +24,7 @@ import com.msushanth.tablesapp.User;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Collections;
 
 /**
  * Created by Sushanth on 10/26/17.
@@ -56,6 +57,7 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
     protected ArrayList<String> names;
     protected ArrayList<String> tags;
     protected ArrayList<String> IDs;
+    protected ArrayList<pair<Double,Integer>> allLevels;
 
     TextView label;
 
@@ -82,6 +84,7 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
         names = new ArrayList<String>();
         tags = new ArrayList<String>();
         IDs = new ArrayList<String>();
+        allLevels = new ArrayList<pair<Double,Integer>>();
 
         dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -90,6 +93,7 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
 
                 // This is the current users profile
                 currentUserProfile = dataSnapshot.child(fireBaseUser.getUid()).getValue(User.class);
+                ArrayList<Integer> userLevels = new ArrayList<Integer>(currentUserProfile.getInterests().values());
 
 
                 String textToDisplay = "";
@@ -103,7 +107,7 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
                         User user = snapshot.getValue(User.class);
 
                         textToDisplay += "\n\n\n****************\n*** ANOTHER USER ***\n";
-                        textToDisplay += user.userDataToPrint();
+                        //textToDisplay += user.userDataToPrint();
                         if (user.isProfileCreated()) {
                             allUsers.add(user);
 
@@ -117,9 +121,20 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
                             tags.add(tagsString);
 
                             IDs.add(user.getIdForFirebase());
+
+                            ArrayList<Integer> currLevels = new ArrayList<Integer>(user.getInterests().values());
+                            Double distance = eclideanDist(userLevels, currLevels);
+                            allLevels.add(new pair(distance, IDs.size() - 1));
                         }
                 }
 
+                Collections.sort(allLevels, new SortbyDist());
+
+                for(int i = 0; i < allLevels.size(); i++){
+                    int index = allLevels.get(i).index;
+                    User user1 = allUsers.get(index);
+                    textToDisplay += user1.userDataToPrint();
+                }
 
                 label.setText(textToDisplay);
             }
@@ -127,6 +142,7 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
             @Override
             public void onCancelled(DatabaseError databaseError) {}
         });
+
 
 
         searchForUsersButton.setOnClickListener(new View.OnClickListener() {
@@ -165,6 +181,17 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
         return rootView;
     }
 
+    public Double eclideanDist(ArrayList<Integer> thisUser, ArrayList<Integer> other){
+        int sum = 0;
+
+        for(int i = 0; i < thisUser.size(); i ++){
+            sum += Math.pow(thisUser.get(i) - other.get(i), 2);
+        }
+
+        Double dist = Math.sqrt(sum);
+
+        return dist;
+    }
 }
 
 
