@@ -21,11 +21,13 @@ public class User {
     private String first_name;
     private String last_name;
     private String gender;
+    private String availability;
+    private String bio;
     private List<String> courses;
     private Map<String,Integer> interests;
     private List<String> tags;
     private List<Integer> met_history;
-    private List<Room> room_ids;
+    private List<String> room_ids;
 
 
 
@@ -41,14 +43,17 @@ public class User {
         this.setInterests(new HashMap<String, Integer>());
         this.setTags(new ArrayList<String>());
         this.setMet_history(new ArrayList<Integer>());
-        this.setRoom_ids(new ArrayList<Room>());
+        this.setRoom_ids(new ArrayList<String>());
+        this.setAvailability("");
+        this.setBio("");
     }
 
 
 
 
     public User(String username, String first_name, String last_name, String gender, List<String> courses,
-                Map<String,Integer> interests, List<String> tags, List<Integer> met_history, List<Room> room_ids) {
+                Map<String,Integer> interests, List<String> tags, List<Integer> met_history, List<String> room_ids,
+                String bio) {
         this.setProfileCreated(true);
         this.setIdForFirebase("");
         this.setUsername(username);
@@ -60,6 +65,8 @@ public class User {
         this.setTags(tags);
         this.setMet_history(met_history);
         this.setRoom_ids(room_ids);
+        this.setAvailability("Available");
+        this.setBio(bio);
     }
 
 
@@ -208,11 +215,25 @@ public class User {
     }
 
 
-    public List<Room> getRoom_ids() {
+    public List<String> getRoom_ids() {
         return room_ids;
     }
-    public void setRoom_ids(List<Room> room_ids) {
+    public void setRoom_ids(List<String> room_ids) {
         this.room_ids = room_ids;
+    }
+
+    public String getAvailability() {
+        return availability;
+    }
+    public void setAvailability(String availability) {
+        this.availability = availability;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 }
 
