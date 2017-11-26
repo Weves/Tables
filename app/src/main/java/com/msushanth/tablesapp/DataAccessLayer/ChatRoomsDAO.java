@@ -41,5 +41,8 @@ abstract class ChatRoomsDAO implements ChatInterface {
 
     }
 
+    @Override
+    public void deleteChatRoom() {
 
+    }
 }
