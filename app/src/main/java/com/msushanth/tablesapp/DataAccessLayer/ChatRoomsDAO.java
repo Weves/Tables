@@ -9,7 +9,7 @@ import com.msushanth.tablesapp.User;
  * Created by Sushanth on 11/10/17.
  */
 
-abstract class ChatRoomsDAO implements ChatInterface {
+public class ChatRoomsDAO implements ChatInterface {
 
     Room thisRoom;
     User sender;
