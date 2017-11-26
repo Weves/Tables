@@ -124,7 +124,7 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
 
 
                         ArrayList<Integer> currLevels = new ArrayList<Integer>(user.getInterests().values());
-                        Double distance = eclideanDist(userLevels, currLevels);
+                        Double distance = euclideanDist(userLevels, currLevels);
                         allLevels.add(new pair(distance, IDs.size() - 1));
                     }
                 }
@@ -195,7 +195,7 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
         return rootView;
     }
 
-    public Double eclideanDist(ArrayList<Integer> thisUser, ArrayList<Integer> other){
+    public Double euclideanDist(ArrayList<Integer> thisUser, ArrayList<Integer> other){
         int sum = 0;
 
         for(int i = 0; i < thisUser.size(); i ++){
