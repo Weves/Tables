@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.msushanth.tablesapp.MainActivity;
+import com.msushanth.tablesapp.PresentationLayer.FormClasses.Chat.SetWhenAndWhereToMeetForm;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Profile.CreatePersonalProfileForm;
 import com.msushanth.tablesapp.R;
 import com.msushanth.tablesapp.User;
@@ -135,6 +136,7 @@ public class LogInForm extends AppCompatActivity {
     // When the "forgot password" is clicked, this method will be called
     public void resetPassword(View view) {
         Intent resetPasswordIntent = new Intent(LogInForm.this, PasswordRecoveryForm.class);
+        //Intent resetPasswordIntent = new Intent(LogInForm.this, SetWhenAndWhereToMeetForm.class);
         startActivity(resetPasswordIntent);
     }
 }
