@@ -5,4 +5,5 @@ package com.msushanth.tablesapp.Interfaces.Chat;
  */
 
 interface QuitAndDeleteChatRoomInterface {
+    void deleteChatRoom(String userID, String roomID);
 }

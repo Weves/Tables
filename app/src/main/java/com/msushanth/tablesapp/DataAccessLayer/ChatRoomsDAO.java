@@ -40,4 +40,6 @@ public class ChatRoomsDAO implements ChatInterface {
     public void setMeetingLocation(String meetingLocation) {
 
     }
+
+
 }
