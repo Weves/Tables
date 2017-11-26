@@ -189,7 +189,7 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
         String str = coursesEditText.getText().toString();
         String strCheck = str.replaceAll(" ", "");
         if(!strCheck.equals("")) {
-            Tag tag = new Tag(str.substring(0,str.length()-1));
+            Tag tag = new Tag(str);
             tag.isDeletable = true;
             tag.layoutColor = getResources().getColor(R.color.colorSecondaryA200);
             coursesTags.addTag(tag);
@@ -206,7 +206,7 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
         String str = interestsEditText.getText().toString();
         String strCheck = str.replaceAll(" ", "");
         if(!strCheck.equals("")) {
-            Tag tag = new Tag(str.substring(0,str.length()-1));
+            Tag tag = new Tag(str);
             tag.isDeletable = true;
             tag.layoutColor = getResources().getColor(R.color.tagsColor);
             interestsTagView.addTag(tag);
