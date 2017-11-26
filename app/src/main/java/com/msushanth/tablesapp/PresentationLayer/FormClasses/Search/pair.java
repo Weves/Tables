@@ -18,8 +18,8 @@ public class pair<X, Y> {
 
 class SortbyDist implements Comparator<pair>
 {
-    // Used for sorting in ascending order of
-    // roll number
+    // Used for sorting in descending order of
+    // Euclidean Distance
     public int compare(pair a, pair b)
     {
         double sub = (double)b.dist - (double)a.dist;
