@@ -3,12 +3,12 @@
     <color name="colorPrimary500">#3f51b5</color>
     <color name="colorPrimary700">#303F9F</color>
     <color name="colorPrimary800">#283593</color>
-    <color name="colorPrimaryA300">#3D5AFE</color>
-    <color name="colorPrimaryA400">#304FFE</color>
+    <color name="colorPrimaryA300">#586de5</color>
+    <color name="colorPrimaryA400">#304ffe</color>
 
 
     <color name="colorSecondary800">#6a1b9a</color>
-    <color name="colorSecondaryA400">#aa00ff</color>
+    <color name="colorSecondaryA400">#3d1a8c</color>
 
 
 
@@ -28,7 +28,7 @@
     <color name="colorSecondaryA400">#0091EA</color>
     -->
 
-    <color name="black50">#FAFAFA</color>
+    <color name="black50">#fafafa</color>
     <color name="black100">#F5F5F5</color>
     <color name="black200">#EEEEEE</color>
     <color name="black300">#E0E0E0</color>
