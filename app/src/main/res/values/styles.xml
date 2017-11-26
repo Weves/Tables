@@ -42,6 +42,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:ems">10</item>
         <item name="android:textColor">@color/hintTextColor</item>
+        <item name="colorControlNormal">#FFFFFF</item>
     </style>
 
     <!-- Button layout for the buttons on any screen -->

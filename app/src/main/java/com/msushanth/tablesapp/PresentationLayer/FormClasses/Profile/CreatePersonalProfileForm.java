@@ -1,28 +1,32 @@
 package com.msushanth.tablesapp.PresentationLayer.FormClasses.Profile;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.MultiAutoCompleteTextView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cunoraz.tagview.Tag;
+import com.cunoraz.tagview.TagView;
 import com.msushanth.tablesapp.Interfaces.Profile.PersonalProfileInterface;
 import com.msushanth.tablesapp.MainActivity;
 import com.msushanth.tablesapp.PresentationLayer.ActionClasses.Profile.CreatePersonalProfileAction;
 import com.msushanth.tablesapp.R;
-import com.msushanth.tablesapp.Room;
 import com.msushanth.tablesapp.User;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,14 +40,20 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
     EditText usernameEditText;
     EditText firstNameEditText;
     EditText lastNameEditText;
-    EditText tagsEditText;
     EditText bioEditText;
 
     Spinner genderSpinner;
     ArrayAdapter<CharSequence> genderAdapter;
 
-    MultiAutoCompleteTextView macTextView;
-    ArrayAdapter<CharSequence> coursesAdapter;
+    EditText coursesEditText;
+    ArrayList<String> coursesArrayList;
+    TagView coursesTags;
+    Button addCourseButton;
+
+    EditText interestsEditText;
+    ArrayList<String> interestsArrayList;
+    TagView interestsTagView;
+    Button addInterestButton;
 
     SeekBar sportsSeekBar;
     SeekBar musicSeekBar;
@@ -104,22 +114,67 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         genderSpinner.setAdapter(genderAdapter);
 
-        // User types in classes. As he types, a list of auto complete suggestions pop up.
-        macTextView = (MultiAutoCompleteTextView) findViewById(R.id.coursesMultiAutoCompleteTextView);
-        coursesAdapter = ArrayAdapter.createFromResource(this, R.array.courses, R.layout.multi_auto_complete_item);
-        macTextView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
-        macTextView.setAdapter(coursesAdapter);
-        macTextView.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        macTextView.setRawInputType(InputType.TYPE_CLASS_TEXT);
+        // User types in classes. When he completes typing and presses "add" a tag should appear under the EditText
+        coursesEditText = (EditText) findViewById(R.id.coursesEditText);
+        coursesTags = (TagView) findViewById(R.id.CoursesTagView);
+        addCourseButton = (Button) findViewById(R.id.AddCourseButton);
+        coursesArrayList = new ArrayList<String>();
+        coursesTags.setOnTagDeleteListener(new TagView.OnTagDeleteListener() {
+
+            @Override
+            public void onTagDeleted(final TagView view, final Tag tag, final int position) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(CreatePersonalProfileForm.this);
+                builder.setMessage("\"" + tag.text + "\" will be delete. Are you sure?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        view.remove(position);
+                        Toast.makeText(CreatePersonalProfileForm.this, "\"" + tag.text + "\" deleted", Toast.LENGTH_SHORT).show();
+                        coursesArrayList.remove(tag.text);
+                    }
+                });
+                builder.setNegativeButton("No", null);
+                builder.show();
+            }
+        });
+
+
+        // User types in tags. When he completes typing and presses "add" a tag should appear under the EditText
+        interestsEditText = (EditText) findViewById(R.id.tagsEditText);
+        interestsTagView = (TagView) findViewById(R.id.InterestsTagView);
+        addInterestButton = (Button) findViewById(R.id.AddInterestButton);
+        interestsArrayList = new ArrayList<String>();
+        interestsTagView.setOnTagDeleteListener(new TagView.OnTagDeleteListener() {
+
+            @Override
+            public void onTagDeleted(final TagView view, final Tag tag, final int position) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(CreatePersonalProfileForm.this);
+                builder.setMessage("\"" + tag.text + "\" will be delete. Are you sure?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        view.remove(position);
+                        Toast.makeText(CreatePersonalProfileForm.this, "\"" + tag.text + "\" deleted", Toast.LENGTH_SHORT).show();
+                        interestsArrayList.remove(tag.text);
+                    }
+                });
+                builder.setNegativeButton("No", null);
+                builder.show();
+            }
+        });
+
+        coursesEditText.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        coursesEditText.setRawInputType(InputType.TYPE_CLASS_TEXT);
+
 
         bioEditText = (EditText) findViewById(R.id.bioEditText);
         bioEditText.setImeOptions(EditorInfo.IME_ACTION_DONE);
         bioEditText.setRawInputType(InputType.TYPE_CLASS_TEXT);
 
 
-        tagsEditText = (EditText) findViewById(R.id.tagsEditText);
-        tagsEditText.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        tagsEditText.setRawInputType(InputType.TYPE_CLASS_TEXT);
+        interestsEditText = (EditText) findViewById(R.id.tagsEditText);
+        interestsEditText.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        interestsEditText.setRawInputType(InputType.TYPE_CLASS_TEXT);
 
         // Initialize the interests Map so we can add the seek bar data to it
         initializeInterestsMap();
@@ -127,6 +182,41 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
         // Initialize the SeekBars and their corresponding TextViews
         initializeSeekBars();
     }
+
+
+    // When the add button is clicked. The one next to courses input
+    public void addCourse(View view) {
+        String str = coursesEditText.getText().toString();
+        String strCheck = str.replaceAll(" ", "");
+        if(!strCheck.equals("")) {
+            Tag tag = new Tag(str.substring(0,str.length()-1));
+            tag.isDeletable = true;
+            tag.layoutColor = getResources().getColor(R.color.colorSecondaryA200);
+            coursesTags.addTag(tag);
+
+            coursesArrayList.add(tag.text);
+
+            coursesEditText.setText("");
+        }
+    }
+
+
+    // When the add button is clicked. The one next to courses input
+    public void addInterest(View view) {
+        String str = interestsEditText.getText().toString();
+        String strCheck = str.replaceAll(" ", "");
+        if(!strCheck.equals("")) {
+            Tag tag = new Tag(str.substring(0,str.length()-1));
+            tag.isDeletable = true;
+            tag.layoutColor = getResources().getColor(R.color.tagsColor);
+            interestsTagView.addTag(tag);
+
+            interestsArrayList.add(tag.text);
+
+            interestsEditText.setText("");
+        }
+    }
+
 
 
     private void initializeInterestsMap() {
@@ -417,16 +507,16 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
         else if(lastNameEditText.getText().toString().equals("")) {
             Toast.makeText(this, "Enter a last name.", Toast.LENGTH_SHORT).show();
         }
-        else if(macTextView.getText().toString().equals("")) {
+        else if(coursesArrayList.size() == 0) {
             Toast.makeText(this, "Enter enrolled courses. (separated by commas)", Toast.LENGTH_SHORT).show();
         }
-        else if(tagsEditText.getText().toString().equals("")) {
+        else if(interestsArrayList.size() == 0) {
             Toast.makeText(this, "Enter topics of interest. (separated by commas)", Toast.LENGTH_SHORT).show();
         }
         else if(bioEditText.getText().toString().equals("")) {
             Toast.makeText(this, "Enter a short bio.", Toast.LENGTH_SHORT).show();
         }
-        else if(bioEditText.getText().toString().length() < 50) {
+        else if(bioEditText.getText().toString().length() < 30) {
             Toast.makeText(this, "Enter a longer bio.", Toast.LENGTH_SHORT).show();
         }
 
@@ -454,9 +544,14 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
             Toast.makeText(this, "Use the sliders to select how interested you are in the topics above.", Toast.LENGTH_SHORT).show();
         }
 
+        // True if there is a problem with the courses user input
+        else if(checkIfTagsAreIllegal(Arrays.toString(coursesArrayList.toArray()))) {
+            Toast.makeText(this, "There are invalid characters in the courses you entered.", Toast.LENGTH_SHORT).show();
+        }
+
         // True if there is a problem with the tags user input
-        else if(checkIfTagsAreIllegal(tagsEditText.getText().toString())) {
-            Toast.makeText(this, "There are invalid characters in the tags you entered.", Toast.LENGTH_SHORT).show();
+        else if(checkIfTagsAreIllegal(Arrays.toString(interestsArrayList.toArray()))) {
+            Toast.makeText(this, "There are invalid characters in the interests you entered.", Toast.LENGTH_SHORT).show();
         }
 
         // it has passed all the cases to check valid input
@@ -473,22 +568,12 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
             gender = genderSpinner.getSelectedItem().toString();
 
             // Initialize variable needed to create a User
-            courses  = new ArrayList<String>();
-            tags  = new ArrayList<String>();
+            courses  = coursesArrayList;
+            tags  = interestsArrayList;
             met_history  = new ArrayList<Integer>();
             room_ids = new ArrayList<String>();
 
             bio = bioEditText.getText().toString();
-
-            String[] coursesArray = macTextView.getText().toString().split(",");
-            for(int i=0; i<coursesArray.length; i++) {
-                courses.add(coursesArray[i]);
-            }
-
-            String[] tagArray = tagsEditText.getText().toString().split(",");
-            for(int i=0; i<tagArray.length; i++) {
-                tags.add(tagArray[i]);
-            }
 
             user = new User(username, first_name, last_name, gender, courses, interestsMap, tags, met_history, room_ids, bio);
             this.setProfile(user);
@@ -512,6 +597,8 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
     // True if there is a problem with the tags user input
     private boolean checkIfTagsAreIllegal(String str) {
         str = str.replaceAll(" ", "");
+        str = str.substring(1, str.length()-1);
+
         String[] tags = str.split(",");
         for(String tag : tags) {
             if(!containsLettersOrDigits(tag)) {

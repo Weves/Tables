@@ -1,15 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary500">#3f51b5</color>
+
+
+    <!-- DO NOT CHANGE THESE VALUES -->
+    <!-- CREATE NEW ONES IF YOU WANT -->
+
+
+    <color name="colorPrimary50">#E8EAF6</color>
+    <color name="colorPrimary100">#C5CAE9</color>
+    <color name="colorPrimary200">#9FA8DA</color>
+    <color name="colorPrimary300">#7986CB</color>
+    <color name="colorPrimary400">#5C6BC0</color>
+    <color name="colorPrimary500">#3F51B5</color>
+    <color name="colorPrimary600">#3949AB</color>
     <color name="colorPrimary700">#303F9F</color>
     <color name="colorPrimary800">#283593</color>
-    <color name="colorPrimaryA300">#586de5</color>
-    <color name="colorPrimaryA400">#304ffe</color>
+    <color name="colorPrimary900">#1A237E</color>
+    <color name="colorPrimaryA100">#8C9EFF</color>
+    <color name="colorPrimaryA200">#536DFE</color>
+    <color name="colorPrimaryA300">#3D5AFE</color>
+    <color name="colorPrimaryA400">#304FFE</color>
 
 
     <color name="colorSecondary800">#6a1b9a</color>
-    <color name="colorSecondaryA400">#3d1a8c</color>
+    <color name="colorSecondaryA100">#B388FF</color>
+    <color name="colorSecondaryA200">#7C4DFF</color>
+    <color name="colorSecondaryA300">#651FFF</color>
+    <color name="colorSecondaryA400">#6200EA</color>
 
+
+    <color name="tagsColor">#7C4DFF</color>
 
 
     <!--
