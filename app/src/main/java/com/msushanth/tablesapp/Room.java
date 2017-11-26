@@ -20,4 +20,6 @@ public class Room {
         this.location = location;
         this.users = users;
     }
+
+    public Room (User u1, User u2) {}
 }

@@ -23,8 +23,4 @@ public class ChatRoomsDAO implements ChatInterface {
     public void postMessage(String message) {
         // get data from database
     }
-
-    public void createRoom(User user1, User user2){
-        // set room for users
-    }
 }

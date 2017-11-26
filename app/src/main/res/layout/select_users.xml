@@ -2,8 +2,12 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black200">
 
+    <!-- android:layout_above="@+id/sendInvitations" -->
+    <!-- if you want all the cards to be above the send invitations button. but it looks weird... -->
     <LinearLayout
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -16,8 +20,10 @@
             android:layout_height="wrap_content"
             android:text="Select Users"
             android:textAlignment="center"
-            android:textSize="30sp"
-            android:fontFamily="monospace"
+            android:background="@color/colorPrimary700"
+            android:textColor="@color/black50"
+            android:padding="10dp"
+            android:textSize="35sp"
             android:textStyle="bold"
         />
 
@@ -32,11 +38,26 @@
 
     <Button
         android:id="@+id/sendInvitations"
-        android:layout_width="match_parent"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/black50"
         android:layout_alignParentBottom="true"
-        android:fontFamily="monospace"
+        android:layout_centerHorizontal="true"
         android:onClick="sendInvitationsButtonClicked"
         android:text="@string/send_invitations" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="5dp"
+        app:srcCompat="@drawable/ic_arrow_back_white_48px"
+        android:onClick="backButtonClicked" />
 
 </RelativeLayout>

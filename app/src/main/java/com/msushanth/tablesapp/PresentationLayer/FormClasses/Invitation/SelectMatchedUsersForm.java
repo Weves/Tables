@@ -66,18 +66,17 @@ public class SelectMatchedUsersForm extends AppCompatActivity implements SelectM
             }
         }
 
-
-        Toast.makeText(this, "Sending invites to: " +
-                selectedUsersNames.substring(0, selectedUsersNames.length() - 2), Toast.LENGTH_LONG).show();
-
+        if (!selectedUsers.isEmpty()) {
+            Toast.makeText(this, "Sending invites to: " +
+                    selectedUsersNames.substring(0, selectedUsersNames.length() - 2), Toast.LENGTH_LONG).show();
+        }
         // TODO send actual invites to the users in the selected users array
     }
 
-    public void viewProfile() {
-        action.viewProfile();
-        Intent selectMatchedUsersIntent = new Intent(SelectMatchedUsersForm.this, ProfileViewer.class);
-        startActivity(selectMatchedUsersIntent);
 
+
+
+    public void backButtonClicked(View view) {
+        finish();
     }
-
 }

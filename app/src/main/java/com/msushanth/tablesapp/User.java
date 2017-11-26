@@ -128,6 +128,8 @@ public class User {
         for(Integer ints : getMet_history()) {
             allData += "\t" + ints + "\n";
         }
+        allData += "Bio: " + getBio() + "\n";
+        allData += "Availability: " + getAvailability() + "\n";
 
         return allData;
     }

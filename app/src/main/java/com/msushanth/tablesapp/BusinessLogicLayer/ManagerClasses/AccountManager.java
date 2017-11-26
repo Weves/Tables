@@ -1,5 +1,6 @@
 package com.msushanth.tablesapp.BusinessLogicLayer.ManagerClasses;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,15 +24,8 @@ public class AccountManager {
         da.logout();
     }
 
-    public boolean passwordRecovery(String email){
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        Task exist =  auth.fetchProvidersForEmail(email);
-        if (exist.isSuccessful()){
-            AccountDAO da = new AccountDAO();
-            return da.passwordRecovery(email);
-        }
-        else{
-            return false;
-        }
+    public void passwordRecovery(String email, Context context){
+        AccountDAO da = new AccountDAO();
+        da.passwordRecovery(email, context);
     }
 }

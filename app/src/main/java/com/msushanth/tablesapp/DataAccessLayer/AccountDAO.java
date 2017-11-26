@@ -1,5 +1,6 @@
 package com.msushanth.tablesapp.DataAccessLayer;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 import java.lang.String;
@@ -23,19 +24,21 @@ public class AccountDAO {
         FirebaseAuth.getInstance().signOut();
     }
 
-    public boolean passwordRecovery(String email){
+    public void passwordRecovery(String email, final Context context){
+
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        auth.sendPasswordResetEmail(email)
+        String emailAddress = email;
+
+        auth.sendPasswordResetEmail(emailAddress)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            resetSuccess = true;
-                        }else{
-                            resetSuccess = false;
+                        if (task.isSuccessful()) {
+                            Toast.makeText(context, "Password reset email has been sent.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, "Email failed to send, please check the email address.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-        return resetSuccess;
     }
 }
