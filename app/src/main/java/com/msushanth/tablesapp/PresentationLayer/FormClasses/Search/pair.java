@@ -18,7 +18,7 @@ public class pair<X, Y> {
 
 class SortbyDist implements Comparator<pair>
 {
-    // Used for sorting in descending order of
+    // Used for sorting in ascending order of
     // Euclidean Distance
     public int compare(pair a, pair b)
     {
