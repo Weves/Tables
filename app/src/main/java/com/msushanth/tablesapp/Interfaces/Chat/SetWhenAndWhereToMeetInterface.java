@@ -1,11 +1,11 @@
 package com.msushanth.tablesapp.Interfaces.Chat;
 
+import com.msushanth.tablesapp.Room;
+
 /**
  * Created by Sushanth on 11/19/17.
  */
 
 public interface SetWhenAndWhereToMeetInterface {
-    void setMeetingDate(String meetingDate);
-    void setMeetingTime(String meetingTime);
-    void setMeetingLocation(String meetingLocation);
+    void setTimeDateLocation(Room room);
 }

@@ -7,16 +7,16 @@ import java.util.List;
  */
 
 public class Room {
-    String owner;
+    String roomID;
     String time;
-    String data;
+    String date;
     String location;
     List<String> users;
 
-    public Room(String owner, String time, String data, String location, List<String> users){
-        this.owner = owner;
+    public Room(String roomID, String time, String date, String location, List<String> users){
+        this.roomID = roomID;
         this.time = time;
-        this.data = data;
+        this.date = date;
         this.location = location;
         this.users = users;
     }

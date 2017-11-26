@@ -24,12 +24,8 @@ public class ChatRoomsDAO implements ChatInterface {
     public void postMessage(String message) {
         // get data from database
     }
-    public void setMeetingDate(String meetingDate) {
-
-    }
-    public void setMeetingTime(String meetingTime) {
-    }
-    public void setMeetingLocation(String meetingLocation) {
+    public void setTimeDateLocation(Room room) {
+        //push the room class to the database
     }
 
 }

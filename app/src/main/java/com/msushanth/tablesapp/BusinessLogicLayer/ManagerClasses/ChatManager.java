@@ -24,18 +24,8 @@ public class ChatManager implements ChatInterface {
         ChatRoomsDAO msgMan = new ChatRoomsDAO(thisRoom, sender);
         msgMan.postMessage(message);
     }
-    public void setMeetingDate(String meetingDate) {
+    public void setTimeDateLocation(Room room) {
         ChatRoomsDAO msgMan = new ChatRoomsDAO();
-        msgMan.setMeetingDate(meetingDate);
-    }
-
-    public void setMeetingTime(String meetingTime) {
-        ChatRoomsDAO msgMan = new ChatRoomsDAO();
-        msgMan.setMeetingTime(meetingTime);
-    }
-
-    public void setMeetingLocation(String meetingLocation) {
-        ChatRoomsDAO msgMan = new ChatRoomsDAO();
-        msgMan.setMeetingLocation(meetingLocation);
+        msgMan.setTimeDateLocation(room);
     }
 }

@@ -28,17 +28,8 @@ public class ChatDispatch implements ChatInterface {
         ChatManager msgMan = new ChatManager(thisRoom, sender);
         msgMan.postMessage(message);
     }
-    public void setMeetingDate(String meetingDate) {
+    public void setTimeDateLocation(Room room) {
         ChatManager ma = new ChatManager();
-        ma.setMeetingDate(meetingDate);
-    }
-    public void setMeetingTime(String meetingTime) {
-        ChatManager ma = new ChatManager();
-        ma.setMeetingDate(meetingTime);
-    }
-
-    public void setMeetingLocation(String meetingLocation) {
-        ChatManager ma = new ChatManager();
-        ma.setMeetingDate(meetingLocation);
+        ma.setTimeDateLocation(room);
     }
 }
