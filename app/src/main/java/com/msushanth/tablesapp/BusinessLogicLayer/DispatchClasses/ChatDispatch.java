@@ -43,6 +43,6 @@ public class ChatDispatch implements ChatInterface {
     }
     public void deleteChatRoom() {
         ChatManager ma = new ChatManager(thisRoom, sender);
-        ma.setMeetingDate(meetingLocation);
+        ma.deleteChatRoom();
     }
 }
