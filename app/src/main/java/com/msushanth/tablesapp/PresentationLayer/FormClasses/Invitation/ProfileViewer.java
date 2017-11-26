@@ -3,6 +3,7 @@ package com.msushanth.tablesapp.PresentationLayer.FormClasses.Invitation;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -12,6 +13,8 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.cunoraz.tagview.Tag;
+import com.cunoraz.tagview.TagView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.msushanth.tablesapp.R;
 import com.msushanth.tablesapp.User;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class ProfileViewer extends AppCompatActivity {
@@ -35,9 +40,12 @@ public class ProfileViewer extends AppCompatActivity {
     TextView usersName;
     //TextView usersEmail;
     TextView usersBio;
-    TextView usersCourses;
-    TextView usersTags;
     TextView usersGender;
+
+
+    TagView coursesTagView;
+    TagView interestsTagView;
+
 
     ProgressBar sportsProgressBar;
     ProgressBar musicProgressBar;
@@ -83,10 +91,10 @@ public class ProfileViewer extends AppCompatActivity {
         usersName = (TextView) findViewById(R.id.UsersName);
         //usersEmail = (TextView) findViewById(R.id.UsersEmail);
         usersBio = (TextView) findViewById(R.id.bioContent);
-        usersCourses = (TextView) findViewById(R.id.usersCourses);
-        usersTags = (TextView) findViewById(R.id.usersTags);
         usersGender = (TextView) findViewById(R.id.usersGender);
 
+        coursesTagView = (TagView) findViewById(R.id.CoursesTagView);
+        interestsTagView = (TagView) findViewById(R.id.InterestsTagView);
 
         // Create seekbars and prevent them from being changed
         sportsProgressBar = (ProgressBar) findViewById(R.id.sportsProgressBar); sportsProgressBar.setMax(10); sportsProgressBar.setProgress(0);
@@ -153,28 +161,75 @@ public class ProfileViewer extends AppCompatActivity {
                 //usersEmail.setText(fireBaseUser.getEmail());
                 usersBio.setText(currentUserProfile.getBio());
 
-                // set users courses textview
-                usersCourses.setText(TextUtils.join(", ", currentUserProfile.getCourses()));
+                List<String> coursesArrayList = currentUserProfile.getCourses();
+                for(int i=0; i<coursesArrayList.size(); i++) {
+                    Tag tag = new Tag(coursesArrayList.get(i));
+                    tag.layoutColor = Color.parseColor("#7C4DFF");
+                    tag.layoutColorPress = Color.parseColor("#7C4DFF");
+                    coursesTagView.addTag(tag);
+                }
+
+                List<String> tagsArrayList = currentUserProfile.getTags();
+                for(int i=0; i<tagsArrayList.size(); i++) {
+                    Tag tag = new Tag(tagsArrayList.get(i));
+                    tag.layoutColor = Color.parseColor("#7C4DFF");
+                    tag.layoutColorPress = Color.parseColor("#7C4DFF");
+                    interestsTagView.addTag(tag);
+                }
+
 
                 // set users interest levels textview
                 Resources res = getResources();
                 interestsArray = res.getStringArray(R.array.interests);
                 Map<String,Integer> interestsMap = currentUserProfile.getInterests();
-                sportsProgressBar.setProgress(interestsMap.get(interestsArray[0]));
-                musicProgressBar.setProgress(interestsMap.get(interestsArray[1]));
-                gamesProgressBar.setProgress(interestsMap.get(interestsArray[2]));
-                moviesProgressBar.setProgress(interestsMap.get(interestsArray[3]));
-                technologyProgressBar.setProgress(interestsMap.get(interestsArray[4]));
-                scienceProgressBar.setProgress(interestsMap.get(interestsArray[5]));
-                politicsProgressBar.setProgress(interestsMap.get(interestsArray[6]));
-                historyProgressBar.setProgress(interestsMap.get(interestsArray[7]));
-                engineeringProgressBar.setProgress(interestsMap.get(interestsArray[8]));
-                economicsProgressBar.setProgress(interestsMap.get(interestsArray[9]));
-                literatureProgressBar.setProgress(interestsMap.get(interestsArray[10]));
-                comicsProgressBar.setProgress(interestsMap.get(interestsArray[11]));
-                religionProgressBar.setProgress(interestsMap.get(interestsArray[12]));
-                artsProgressBar.setProgress(interestsMap.get(interestsArray[13]));
-                travelProgressBar.setProgress(interestsMap.get(interestsArray[14]));
+
+                if(interestsMap.get(interestsArray[0]) != 0) {
+                    sportsProgressBar.setProgress(interestsMap.get(interestsArray[0]));
+                }
+                if(interestsMap.get(interestsArray[1]) != 0) {
+                    musicProgressBar.setProgress(interestsMap.get(interestsArray[1]));
+                }
+                if(interestsMap.get(interestsArray[2]) != 0) {
+                    gamesProgressBar.setProgress(interestsMap.get(interestsArray[2]));
+                }
+                if(interestsMap.get(interestsArray[3]) != 0) {
+                    moviesProgressBar.setProgress(interestsMap.get(interestsArray[3]));
+                }
+                if(interestsMap.get(interestsArray[4]) != 0) {
+                    technologyProgressBar.setProgress(interestsMap.get(interestsArray[4]));
+                }
+                if(interestsMap.get(interestsArray[5]) != 0) {
+                    scienceProgressBar.setProgress(interestsMap.get(interestsArray[5]));
+                }
+                if(interestsMap.get(interestsArray[6]) != 0) {
+                    politicsProgressBar.setProgress(interestsMap.get(interestsArray[6]));
+                }
+                if(interestsMap.get(interestsArray[7]) != 0) {
+                    historyProgressBar.setProgress(interestsMap.get(interestsArray[7]));
+                }
+                if(interestsMap.get(interestsArray[8]) != 0) {
+                    engineeringProgressBar.setProgress(interestsMap.get(interestsArray[8]));
+                }
+                if(interestsMap.get(interestsArray[9]) != 0) {
+                    economicsProgressBar.setProgress(interestsMap.get(interestsArray[9]));
+                }
+                if(interestsMap.get(interestsArray[10]) != 0) {
+                    literatureProgressBar.setProgress(interestsMap.get(interestsArray[10]));
+                }
+                if(interestsMap.get(interestsArray[11]) != 0) {
+                    comicsProgressBar.setProgress(interestsMap.get(interestsArray[11]));
+                }
+                if(interestsMap.get(interestsArray[12]) != 0) {
+                    religionProgressBar.setProgress(interestsMap.get(interestsArray[12]));
+                }
+                if(interestsMap.get(interestsArray[13]) != 0) {
+                    artsProgressBar.setProgress(interestsMap.get(interestsArray[13]));
+                }
+                if(interestsMap.get(interestsArray[14]) != 0) {
+                    travelProgressBar.setProgress(interestsMap.get(interestsArray[14]));
+                }
+
+
 
                 sportsTextView.setText("Sports (" + interestsMap.get(interestsArray[0]) + ")");
                 musicTextView.setText("Music (" + interestsMap.get(interestsArray[1]) + ")");
@@ -192,8 +247,6 @@ public class ProfileViewer extends AppCompatActivity {
                 artsTextView.setText("Arts (" + interestsMap.get(interestsArray[13]) + ")");
                 travelTextView.setText("Travel (" + interestsMap.get(interestsArray[14]) + ")");
 
-                // set users tags textview
-                usersTags.setText(TextUtils.join(", ", currentUserProfile.getTags()));
 
                 // set users gender textview
                 usersGender.setText(currentUserProfile.getGender());

@@ -98,13 +98,20 @@
                             android:textColor="@color/black800"
                             android:textSize="22dp" />
 
-                        <TextView
-                            android:id="@+id/usersCourses"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black700"
-                            android:textSize="22dp"
-                            android:layout_marginLeft="@dimen/profile_padding" />
+                        <ScrollView
+                            android:id="@+id/CoursesTagsScrollView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="visible"
+                            android:layout_marginLeft="@dimen/profile_padding" >
+
+                            <com.cunoraz.tagview.TagView
+                                android:id="@+id/CoursesTagView"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp" />
+
+                        </ScrollView>
                     </LinearLayout>
 
                 <LinearLayout
@@ -121,13 +128,20 @@
                         android:textColor="@color/black800"
                         android:textSize="22dp" />
 
-                    <TextView
-                        android:id="@+id/usersTags"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black700"
-                        android:textSize="22dp"
-                        android:layout_marginLeft="@dimen/profile_padding" />
+                    <ScrollView
+                        android:id="@+id/InterestsTagsScrollView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="visible"
+                        android:layout_marginLeft="@dimen/profile_padding" >
+
+                        <com.cunoraz.tagview.TagView
+                            android:id="@+id/InterestsTagView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp" />
+
+                    </ScrollView>
                 </LinearLayout>
 
                 <LinearLayout

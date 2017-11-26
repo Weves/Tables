@@ -71,7 +71,7 @@ public class CreateAccountForm extends AppCompatActivity {
             String ucsdEduCheck = "ucsd.edu";
             if(ucsdCheck.equals(ucsdEduCheck)==false) {
                 Toast.makeText(this, "Enter a valid UCSD email.", Toast.LENGTH_SHORT).show();
-                //return;
+                return;
             }
         }
 

@@ -7,7 +7,7 @@
             <size android:height="40dp" />
             <gradient
                 android:startColor="@color/colorPrimaryA400"
-                android:endColor="@color/colorSecondaryA400"
+                android:endColor="@color/colorSecondaryA200"
                 android:angle="90"
                 />
         </shape>
