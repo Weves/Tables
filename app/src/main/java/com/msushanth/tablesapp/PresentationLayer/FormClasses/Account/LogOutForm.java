@@ -13,6 +13,5 @@ public class LogOutForm  extends AppCompatActivity {
     public void logout(){
         LogOutAction act = new LogOutAction();
         act.logout();
-        Toast.makeText(this,"Account logout!", Toast.LENGTH_SHORT).show();
     }
 }

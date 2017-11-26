@@ -1,5 +1,6 @@
 package com.msushanth.tablesapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -15,6 +16,9 @@ import android.view.MenuItem;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.msushanth.tablesapp.PresentationLayer.FormClasses.Account.LogInForm;
+import com.msushanth.tablesapp.PresentationLayer.FormClasses.Account.LogOutForm;
+import com.msushanth.tablesapp.PresentationLayer.FormClasses.Account.PasswordRecoveryForm;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Chat.ChatFormXML;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Search.SearchFormXML;
 
@@ -101,6 +105,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 System.out.println("@@##$$##@@: Position clicked: " + item.toString() + '\t' + item.getItemId());
+
+                if(item.toString().equals("Log Out")) {
+                    LogOutForm logout = new LogOutForm();
+                    logout.logout();
+
+                    // Send user back to login page when he clicks "Log Out"
+                    Intent logInIntent = new Intent(MainActivity.this, LogInForm.class);
+                    startActivity(logInIntent);
+                    finish();
+                }
                 return false;
             }
         });
