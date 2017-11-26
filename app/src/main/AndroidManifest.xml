@@ -50,6 +50,10 @@
             android:name=".PresentationLayer.FormClasses.Invitation.ProfileViewer"
             android:label="@string/title_activity_profile_viewer"
             android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".PresentationLayer.FormClasses.Chat.SetWhenAndWhereToMeetForm"
+            android:label="WhenAndWhereToMeet"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
