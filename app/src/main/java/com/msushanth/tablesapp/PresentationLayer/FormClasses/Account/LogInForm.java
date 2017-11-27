@@ -139,4 +139,9 @@ public class LogInForm extends AppCompatActivity {
         //Intent resetPasswordIntent = new Intent(LogInForm.this, SetWhenAndWhereToMeetForm.class);
         startActivity(resetPasswordIntent);
     }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 }

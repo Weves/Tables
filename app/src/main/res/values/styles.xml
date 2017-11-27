@@ -57,9 +57,14 @@
         <item name="android:textSize">20sp</item>
     </style>
 
-    <!-- Spinner layout -->
+    <!-- Spinner layout light -->
     <style name="SpinnerTheme">
         <item name="colorControlNormal">#FFFFFF</item>
+    </style>
+
+    <!-- Spinner layout dark -->
+    <style name="SpinnerThemeDark">
+        <item name="colorControlNormal">#000000</item>
     </style>
 
     <!-- MultiAutoCompleteTextView layout -->

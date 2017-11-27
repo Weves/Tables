@@ -46,7 +46,6 @@ public class CreateAccountForm extends AppCompatActivity {
     public void signIn(View v) {
         Intent mainActivityIntent = new Intent(CreateAccountForm.this, LogInForm.class);
         startActivity(mainActivityIntent);
-        finish();
     }
 
 

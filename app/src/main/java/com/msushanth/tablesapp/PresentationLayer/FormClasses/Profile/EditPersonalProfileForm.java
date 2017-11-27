@@ -23,7 +23,7 @@ public class EditPersonalProfileForm extends AppCompatActivity implements EditPe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_personal_profile_form); // TODO: change this
+        setContentView(R.layout.edit_personal_profile_form); // TODO: change this
     }
 
     @Override
