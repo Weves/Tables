@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_scrollFlags="scroll|enterAlways"
-                app:tabIndicatorColor="@color/colorSecondaryA400"
+                app:tabIndicatorColor="@color/tabSelectedColor"
                 app:tabSelectedTextColor="@color/textColor"
                 app:tabTextColor="@color/textColor"
                 app:tabMode="fixed"

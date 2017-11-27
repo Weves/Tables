@@ -32,6 +32,9 @@
     <color name="tagsColor">#7C4DFF</color>
 
 
+    <color name="tabSelectedColor">#00B0FF</color>
+
+
     <!--
     <color name="colorSecondary100">#B3E5FC</color>
     <color name="colorSecondary200">#81D4FA</color>

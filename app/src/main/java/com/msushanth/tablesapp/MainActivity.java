@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                             User currentUserProfile = dataSnapshot.child(fireBaseUser.getUid()).getValue(User.class);
-                            Intent selectMatchedUsersIntent = new Intent(MainActivity.this, ProfileViewer.class);
+                            Intent selectMatchedUsersIntent = new Intent(MainActivity.this, EditPersonalProfileForm.class);
                             selectMatchedUsersIntent.putExtra("matchedUsersID", currentUserProfile.getIdForFirebase());
                             startActivity(selectMatchedUsersIntent);
                         }
