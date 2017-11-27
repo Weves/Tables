@@ -129,7 +129,7 @@ public class LogInForm extends AppCompatActivity {
     public void createAccount(View v) {
         Intent createAccountIntent = new Intent(LogInForm.this, CreateAccountForm.class);
         startActivity(createAccountIntent);
-        finish();
+        //finish();
     }
 
     // Use this method to handle resetting password
