@@ -15,6 +15,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.cunoraz.tagview.Tag;
 import com.google.firebase.auth.FirebaseAuth;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     DatabaseReference dbReference;
     FirebaseUser fireBaseUser;
+    User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
 
         // Create the navigation drawer
+        navigationView = (NavigationView) findViewById(R.id.navigationView);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         mDrawerLayout.addDrawerListener(mToggle);
@@ -86,6 +89,25 @@ public class MainActivity extends AppCompatActivity {
         setupViewPager(mViewPager);
         createTabs();
         createNavigationDrawerListener();
+
+        dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This is the current users profile
+                currentUser = dataSnapshot.child(fireBaseUser.getUid()).getValue(User.class);
+
+                TextView usernameNavigationDrawer = navigationView.findViewById(R.id.usernameNavigationDrawer);
+                usernameNavigationDrawer.setText(currentUser.getFirst_name() + " " + currentUser.getLast_name());
+
+                TextView emailNavigationDrawer = navigationView.findViewById(R.id.emailNavigationDrawer);
+                emailNavigationDrawer.setText(fireBaseUser.getEmail());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+
+        });
     }
 
 
@@ -119,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
 
     // Add a listener for the items in the navigation menu, so we can select what happens when each item is clicked.
     private void createNavigationDrawerListener() {
-        navigationView = (NavigationView) findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -147,10 +168,12 @@ public class MainActivity extends AppCompatActivity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             System.out.println("##$$%%$$##: Edit Profile Clicked");
 
+
+
                             User currentUserProfile = dataSnapshot.child(fireBaseUser.getUid()).getValue(User.class);
-                            Intent editProfileIntent = new Intent(MainActivity.this, EditPersonalProfileForm.class);
-                            editProfileIntent.putExtra("UserID", currentUserProfile.getIdForFirebase());
-                            startActivity(editProfileIntent);
+                            Intent selectMatchedUsersIntent = new Intent(MainActivity.this, ProfileViewer.class);
+                            selectMatchedUsersIntent.putExtra("matchedUsersID", currentUserProfile.getIdForFirebase());
+                            startActivity(selectMatchedUsersIntent);
                         }
 
                         @Override

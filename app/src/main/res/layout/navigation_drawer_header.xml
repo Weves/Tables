@@ -15,7 +15,7 @@
         app:srcCompat="@drawable/default_profile_pic_one" />
 
     <TextView
-        android:id="@+id/username"
+        android:id="@+id/usernameNavigationDrawer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/profilePicture"
@@ -27,10 +27,10 @@
         android:singleLine="true" />
 
     <TextView
-        android:id="@+id/email"
+        android:id="@+id/emailNavigationDrawer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/username"
+        android:layout_below="@+id/usernameNavigationDrawer"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:text="E-mail"
