@@ -2,14 +2,12 @@ package com.msushanth.tablesapp.PresentationLayer.FormClasses.Search;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,8 +21,6 @@ import com.msushanth.tablesapp.User;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Sushanth on 10/26/17.
@@ -47,6 +43,8 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
     ViewGroup container;
     Bundle savedInstanceState;
 
+    private RandomSearchForm randomSearchForm;
+
 
     protected FirebaseAuth firebaseAuth;
     protected DatabaseReference dbReference;
@@ -58,6 +56,7 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
     protected ArrayList<String> names;
     protected ArrayList<String> tags;
     protected ArrayList<String> IDs;
+    private ArrayList<String> IDsForRandom;
     protected ArrayList<pair<Double,Integer>> allLevels;
 
     TextView label;
@@ -85,6 +84,7 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
         names = new ArrayList<String>();
         tags = new ArrayList<String>();
         IDs = new ArrayList<String>();
+        IDsForRandom = new ArrayList<String>();
         allLevels = new ArrayList<pair<Double,Integer>>();
 
         dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -121,6 +121,7 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
                         tagsString = tagsString.substring(0, tagsString.length()-2);
                         tags.add(tagsString);
                         IDs.add(user.getIdForFirebase());
+                        IDsForRandom.add(user.getIdForFirebase());
 
 
                         ArrayList<Integer> currLevels = new ArrayList<Integer>(user.getInterests().values());
@@ -174,7 +175,7 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
             }
         });
 
-        RandomSearchForm randomSearchForm = new RandomSearchForm();
+        randomSearchForm = new RandomSearchForm();
         usersT = randomSearchForm.randomSearch();
 
         searchForRandomUsersButton.setOnClickListener(new View.OnClickListener() {
@@ -187,6 +188,8 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
                 selectMatchedUsersIntent.putStringArrayListExtra("matchedUsersTags", usersT.get(TAGS));
                 selectMatchedUsersIntent.putStringArrayListExtra("matchedUsersIDs", usersT.get(IDS));
                 startActivity(selectMatchedUsersIntent);
+
+                usersT = randomSearchForm.randomSearch();
 
             }
         });
