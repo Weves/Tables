@@ -493,8 +493,7 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
     }
 
 
-    /* TODO add check to make sure all inputs are valid */
-    // TODO: remove all user inputs that are not part of the auto complete suggestions
+
     public void continueCreateProfileButtonClicked(View view) {
 
         // check if input is empty
@@ -508,10 +507,10 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
             Toast.makeText(this, "Enter a last name.", Toast.LENGTH_SHORT).show();
         }
         else if(coursesArrayList.size() == 0) {
-            Toast.makeText(this, "Enter enrolled courses. (separated by commas)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Enter enrolled courses.", Toast.LENGTH_SHORT).show();
         }
         else if(interestsArrayList.size() == 0) {
-            Toast.makeText(this, "Enter topics of interest. (separated by commas)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Enter topics of interest.", Toast.LENGTH_SHORT).show();
         }
         else if(bioEditText.getText().toString().equals("")) {
             Toast.makeText(this, "Enter a short bio.", Toast.LENGTH_SHORT).show();

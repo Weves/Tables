@@ -21,5 +21,8 @@ public class ProfileDispatch implements ProfileInterface {
 
 
     @Override
-    public void editProfile(User user) {}
+    public void editProfile(User user) {
+        ProfileManager editProfileManager = new ProfileManager();
+        editProfileManager.editProfile(user);
+    }
 }

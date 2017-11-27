@@ -1,5 +1,6 @@
 package com.msushanth.tablesapp.PresentationLayer.ActionClasses.Profile;
 
+import com.msushanth.tablesapp.BusinessLogicLayer.DispatchClasses.ProfileDispatch;
 import com.msushanth.tablesapp.Interfaces.Profile.EditPersonalProfileInterface;
 import com.msushanth.tablesapp.User;
 
@@ -13,6 +14,7 @@ public class EditPersonalProfileAction implements EditPersonalProfileInterface {
 
     @Override
     public void editProfile(User user) {
-
+        ProfileDispatch editProfileDispatch = new ProfileDispatch();
+        editProfileDispatch.editProfile(user);
     }
 }

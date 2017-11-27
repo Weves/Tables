@@ -24,11 +24,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.msushanth.tablesapp.PresentationLayer.ActionClasses.Profile.EditPersonalProfileAction;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Account.LogInForm;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Account.LogOutForm;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Account.PasswordRecoveryForm;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Chat.ChatFormXML;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Invitation.ProfileViewer;
+import com.msushanth.tablesapp.PresentationLayer.FormClasses.Profile.EditPersonalProfileForm;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Search.SearchFormXML;
 
 import java.util.List;
@@ -140,7 +142,20 @@ public class MainActivity extends AppCompatActivity {
                     });
                 }
                 else if(item.toString().equals("Edit Profile")) {
-                    System.out.println("##$$%%$$##: Edit Profile Clicked");
+                    dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            System.out.println("##$$%%$$##: Edit Profile Clicked");
+
+                            User currentUserProfile = dataSnapshot.child(fireBaseUser.getUid()).getValue(User.class);
+                            Intent editProfileIntent = new Intent(MainActivity.this, EditPersonalProfileForm.class);
+                            editProfileIntent.putExtra("UserID", currentUserProfile.getIdForFirebase());
+                            startActivity(editProfileIntent);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {}
+                    });
                 }
                 else if(item.toString().equals("Availability")) {
                     System.out.println("##$$%%$$##: Availability clicked");

@@ -23,7 +23,7 @@
             android:text="Edit Profile"
             android:textAlignment="center"
             android:background="@color/colorPrimary700"
-            android:textColor="@color/black50"
+            android:textColor="@color/textColor"
             android:padding="10dp"
             android:textSize="35sp"
             android:textStyle="bold"
@@ -33,7 +33,10 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/createProfileTextView">
+            android:layout_below="@+id/createProfileTextView"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,13 +50,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Username:"
-                    android:textColor="@color/black900"
-                    android:textSize="20sp" />
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="25sp" />
                 <EditText
                     android:id="@+id/usernameEditText"
                     android:singleLine="true"
-                    android:text="Change Username"
-                    android:textColor="@color/black900"
+                    android:textColor="@color/textColorBlack"
                     style="@style/sign_on_edit_text_style" />
 
                 <TextView
@@ -61,14 +63,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="First Name:"
-                    android:textColor="@color/black900"
-                    android:textSize="20sp"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="25sp"
                     android:layout_marginTop="@dimen/separate_categories_margin" />
                 <EditText
                     android:id="@+id/firstNameEditText"
                     android:singleLine="true"
-                    android:textColor="@color/black900"
-                    android:text="Change FirstName"
+                    android:textColor="@color/textColorBlack"
                     style="@style/sign_on_edit_text_style" />
 
                 <TextView
@@ -76,14 +77,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Last Name:"
-                    android:textColor="@color/black900"
-                    android:textSize="20sp"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="25sp"
                     android:layout_marginTop="@dimen/separate_categories_margin" />
                 <EditText
                     android:id="@+id/lastNameEditText"
                     android:singleLine="true"
-                    android:text="Change LastName"
-                    android:textColor="@color/black900"
+                    android:textColor="@color/textColorBlack"
                     style="@style/sign_on_edit_text_style" />
 
                 <TextView
@@ -91,8 +91,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gender:"
-                    android:textColor="@color/black900"
-                    android:textSize="20sp"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="25sp"
                     android:layout_marginTop="@dimen/separate_categories_margin" />
                 <Spinner
                     android:id="@+id/genderSpinner"
@@ -106,8 +106,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Courses:"
-                    android:textColor="@color/black900"
-                    android:textSize="20sp"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="25sp"
                     android:layout_marginTop="@dimen/separate_categories_margin" />
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -122,7 +122,8 @@
                         android:layout_weight="1"
                         android:singleLine="true"
                         android:textAlignment="center"
-                        android:textColorHint="@color/black600"
+                        android:textColor="@color/textColorBlack"
+                        android:textColorHint="@color/hintTextColor"
                         android:theme="@style/normal_edit_text_style"/>
                     <Button
                         android:id="@+id/AddCourseButton"
@@ -153,23 +154,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Interest Levels:"
-                    android:textColor="@color/textColor"
-                    android:textSize="20sp"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="25sp"
                     android:layout_marginTop="@dimen/separate_categories_margin" />
                 <TextView
                     android:id="@+id/InterestLevelsTextViewDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="(Select how interested you are in the topics below.)"
-                    android:textColor="@color/textColor"
-                    android:textSize="12sp" />
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/sportsInterestTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sports (0)"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="18sp"
                     android:layout_marginTop="@dimen/seekbar_margin"
                     android:focusable="true"
@@ -184,7 +185,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Music (0)"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="18sp"
                     android:layout_marginTop="@dimen/seekbar_margin"
                     android:focusable="true"
@@ -199,7 +200,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Games (0)"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="18sp"
                     android:layout_marginTop="@dimen/seekbar_margin"
                     android:focusable="true"
@@ -214,7 +215,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Movies (0)"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="18sp"
                     android:layout_marginTop="@dimen/seekbar_margin"
                     android:focusable="true"
@@ -229,7 +230,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Technology (0)"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="18sp"
                     android:layout_marginTop="@dimen/seekbar_margin"
                     android:focusable="true"
@@ -244,7 +245,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Science (0)"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="18sp"
                     android:layout_marginTop="@dimen/seekbar_margin"
                     android:focusable="true"
@@ -259,7 +260,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Politics (0)"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="18sp"
                     android:layout_marginTop="@dimen/seekbar_margin"
                     android:focusable="true"
@@ -274,7 +275,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="History (0)"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="18sp"
                     android:layout_marginTop="@dimen/seekbar_margin"
                     android:focusable="true"
@@ -289,7 +290,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Engineering (0)"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="18sp"
                     android:layout_marginTop="@dimen/seekbar_margin"
                     android:focusable="true"
@@ -304,7 +305,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Economics (0)"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="18sp"
                     android:layout_marginTop="@dimen/seekbar_margin"
                     android:focusable="true"
@@ -319,7 +320,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Literature (0)"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="18sp"
                     android:layout_marginTop="@dimen/seekbar_margin"
                     android:focusable="true"
@@ -334,7 +335,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Comics (0)"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="18sp"
                     android:layout_marginTop="@dimen/seekbar_margin"
                     android:focusable="true"
@@ -349,7 +350,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Religion (0)"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="18sp"
                     android:layout_marginTop="@dimen/seekbar_margin"
                     android:focusable="true"
@@ -364,7 +365,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Arts (0)"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="18sp"
                     android:layout_marginTop="@dimen/seekbar_margin"
                     android:focusable="true"
@@ -379,7 +380,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Travel (0)"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/textColorBlack"
                     android:textSize="18sp"
                     android:layout_marginTop="@dimen/seekbar_margin"
                     android:focusable="true"
@@ -395,12 +396,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Enter a short bio:"
-                    android:textColor="@color/textColor"
-                    android:textSize="20sp"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="25sp"
                     android:layout_marginTop="@dimen/separate_categories_margin" />
                 <EditText
                     android:id="@+id/bioEditText"
                     style="@style/sign_on_edit_text_style"
+                    android:textColor="@color/textColorBlack"
                     android:inputType="textMultiLine" />
 
                 <TextView
@@ -408,16 +410,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Enter some topics of interest:"
-                    android:textColor="@color/textColor"
-                    android:textSize="20sp"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="25sp"
                     android:layout_marginTop="@dimen/separate_categories_margin" />
                 <TextView
                     android:id="@+id/tagsTextViewDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="(ex: Lakers, cooking, baseball, Gary Gillespie)"
-                    android:textColor="@color/textColor"
-                    android:textSize="12sp" />
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="15sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -432,7 +434,8 @@
                         android:layout_weight="1"
                         android:singleLine="true"
                         android:textAlignment="center"
-                        android:textColorHint="@color/grey300"
+                        android:textColor="@color/textColorBlack"
+                        android:textColorHint="@color/hintTextColor"
                         android:theme="@style/normal_edit_text_style"/>
                     <Button
                         android:id="@+id/AddInterestButton"
@@ -462,10 +465,11 @@
 
                 <Button
                     style="@style/normal_button_style"
-                    android:id="@+id/continueCreateProfileButton"
+                    android:id="@+id/continueEditProfileButton"
                     android:text="Continue"
-                    android:onClick="continueCreateProfileButtonClicked"
-                    android:layout_marginTop="30dp" />
+                    android:onClick="continueEditProfileButtonClicked"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="10dp" />
             </LinearLayout>
 
         </ScrollView>
@@ -478,7 +482,8 @@
         android:layout_height="35dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_margin="5dp"
+        android:layout_marginTop="@dimen/back_button_margin_top"
+        android:layout_marginLeft="5dp"
         app:srcCompat="@drawable/ic_arrow_back_white_48px"
         android:onClick="backButtonClicked" />
 

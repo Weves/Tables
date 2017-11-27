@@ -66,5 +66,6 @@
 
 
     <color name="textColor">#fefefe</color>
-    <color name="hintTextColor">#454545</color>
+    <color name="textColorBlack">#212121</color>
+    <color name="hintTextColor">#616161</color>
 </resources>

@@ -26,23 +26,14 @@ public class ChatRoomsDAO implements ChatInterface {
         // get data from database
     }
 
-    @Override
-    public void setMeetingDate(String meetingDate) {
-
-    }
-
-    @Override
-    public void setMeetingTime(String meetingTime) {
-
-    }
-
-    @Override
-    public void setMeetingLocation(String meetingLocation) {
-
-    }
 
     @Override
     public void deleteChatRoom() {
+
+    }
+
+    @Override
+    public void setTimeDateLocation(Room room) {
 
     }
 }

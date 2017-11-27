@@ -48,5 +48,7 @@ public class ProfileDAO implements ProfileInterface {
 
 
     @Override
-    public void editProfile(User user) {}
+    public void editProfile(User user) {
+        databaseReference.child(user.getIdForFirebase()).setValue(this.user);
+    }
 }

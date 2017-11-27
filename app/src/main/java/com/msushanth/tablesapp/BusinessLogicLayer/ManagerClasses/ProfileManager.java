@@ -22,5 +22,8 @@ public class ProfileManager implements ProfileInterface {
 
 
     @Override
-    public void editProfile(User user) {}
+    public void editProfile(User user) {
+        ProfileDAO editProfileDAO = new ProfileDAO(user);
+        editProfileDAO.editProfile(user);
+    }
 }
