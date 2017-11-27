@@ -52,6 +52,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         //holder.tagsItem.setText(listUser.getTags());
 
         String [] tags = listUser.getTags().split(", ");
+        holder.interestsTagView.removeAll();
         for(int i=0; i<tags.length; i++) {
             Tag tag = new Tag(tags[i]);
             tag.layoutColor = Color.parseColor("#7C4DFF");

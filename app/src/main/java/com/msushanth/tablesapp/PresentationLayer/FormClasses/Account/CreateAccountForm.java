@@ -82,7 +82,7 @@ public class CreateAccountForm extends AppCompatActivity {
         }
 
         // Check if password length is above 8 and under 14
-        if( !(password.length()<14 && password.length()>8) ) {
+        if( !(password.length()<=14 && password.length()>=8) ) {
             Toast.makeText(this, "Error: Enter a password 8-14 characters long.", Toast.LENGTH_SHORT).show();
             return;
         }
