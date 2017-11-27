@@ -71,6 +71,8 @@ public class SelectMatchedUsersForm extends AppCompatActivity implements SelectM
                     selectedUsersNames.substring(0, selectedUsersNames.length() - 2), Toast.LENGTH_LONG).show();
         }
         // TODO send actual invites to the users in the selected users array
+
+        finish();
     }
 
 

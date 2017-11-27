@@ -28,4 +28,10 @@ public class ChatManager implements ChatInterface {
         ChatRoomsDAO msgMan = new ChatRoomsDAO();
         msgMan.setTimeDateLocation(room);
     }
+
+    @Override
+    public void deleteChatRoom() {
+        ChatRoomsDAO msgMan = new ChatRoomsDAO(thisRoom, sender);
+        msgMan.deleteChatRoom();
+    }
 }

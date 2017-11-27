@@ -1,6 +1,8 @@
 package com.msushanth.tablesapp;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -14,13 +16,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.cunoraz.tagview.Tag;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Account.LogInForm;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Account.LogOutForm;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Account.PasswordRecoveryForm;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Chat.ChatFormXML;
+import com.msushanth.tablesapp.PresentationLayer.FormClasses.Invitation.ProfileViewer;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Search.SearchFormXML;
+
+import java.util.List;
+import java.util.Map;
 
 
 /*
@@ -40,14 +52,19 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private NavigationView navigationView;
 
-    DatabaseReference databaseUsers;
+
+    FirebaseAuth firebaseAuth;
+    DatabaseReference dbReference;
+    FirebaseUser fireBaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        databaseUsers = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        dbReference = FirebaseDatabase.getInstance().getReference();
+        fireBaseUser = firebaseAuth.getCurrentUser();
 
         // Set up the toolbar, which contains the navigation icon, tabs, and app name
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
@@ -83,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
     // Define what is displayed in the tabs
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new ChatFormXML(), "Chat");
         adapter.addFragment(new SearchFormXML(), "Search");
+        adapter.addFragment(new ChatFormXML(), "Chat");
         viewPager.setAdapter(adapter);
     }
 
@@ -93,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
     private void createTabs() {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(mViewPager);
-        TabLayout.Tab tab = tabLayout.getTabAt(1);
+        TabLayout.Tab tab = tabLayout.getTabAt(0);
         tab.select();
     }
 
@@ -106,7 +123,29 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 System.out.println("@@##$$##@@: Position clicked: " + item.toString() + '\t' + item.getItemId());
 
-                if(item.toString().equals("Log Out")) {
+                if(item.toString().equals("My Account")) {
+                    dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // This is the current users profile
+                            System.out.println("##$$%%$$##: My Account clicked");
+                            User currentUserProfile = dataSnapshot.child(fireBaseUser.getUid()).getValue(User.class);
+                            Intent selectMatchedUsersIntent = new Intent(MainActivity.this, ProfileViewer.class);
+                            selectMatchedUsersIntent.putExtra("matchedUsersID", currentUserProfile.getIdForFirebase());
+                            startActivity(selectMatchedUsersIntent);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {}
+                    });
+                }
+                else if(item.toString().equals("Edit Profile")) {
+                    System.out.println("##$$%%$$##: Edit Profile Clicked");
+                }
+                else if(item.toString().equals("Availability")) {
+                    System.out.println("##$$%%$$##: Availability clicked");
+                }
+                else if(item.toString().equals("Log Out")) {
                     LogOutForm logout = new LogOutForm();
                     logout.logout();
 
@@ -118,6 +157,11 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 
 }

@@ -129,7 +129,7 @@ public class LogInForm extends AppCompatActivity {
     public void createAccount(View v) {
         Intent createAccountIntent = new Intent(LogInForm.this, CreateAccountForm.class);
         startActivity(createAccountIntent);
-        finish();
+        //finish();
     }
 
     // Use this method to handle resetting password
@@ -138,5 +138,10 @@ public class LogInForm extends AppCompatActivity {
         Intent resetPasswordIntent = new Intent(LogInForm.this, PasswordRecoveryForm.class);
         //Intent resetPasswordIntent = new Intent(LogInForm.this, SetWhenAndWhereToMeetForm.class);
         startActivity(resetPasswordIntent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 }
