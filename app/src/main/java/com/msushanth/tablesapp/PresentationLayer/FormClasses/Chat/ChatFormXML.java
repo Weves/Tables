@@ -41,8 +41,6 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
 
     View rootView;
 
-    String [] chatRoomNames = {"One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight" };
-    String [] chatRoomDescriptions = {"OneDesc", "TwoDesc", "ThreeDesc", "FourDesc", "FiveDesc", "SixDesc", "SevenDesc", "EightDesc" };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -137,11 +135,13 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
         public View getView(int position, View convertView, ViewGroup parent) {
             convertView = getLayoutInflater().inflate(R.layout.chat_item_layout, null);
             TextView chatRoomName = (TextView) convertView.findViewById(R.id.ChatNameTextView);
-            TextView chatDescriptionName = (TextView) convertView.findViewById(R.id.ChatDescriptionTextView);
+            //TextView chatDescriptionName = (TextView) convertView.findViewById(R.id.ChatDescriptionTextView);
+            TextView whereToMeet = (TextView) convertView.findViewById(R.id.WhereToMeetTextView);
+            TextView whenToMeet = (TextView) convertView.findViewById(R.id.WhenToMeetTextView);
 
 
             // Display the chat room id and the other users first and last name
-            chatDescriptionName.setText(chatRoomsList.get(position).getRoomID());
+            //chatDescriptionName.setText(chatRoomsList.get(position).getRoomID());
             if(!chatRoomsList.get(position).getUser2Name().equals(currentUsername)) {
                 chatRoomName.setText(chatRoomsList.get(position).getUser2Name());
 
@@ -149,6 +149,10 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
             else {
                 chatRoomName.setText(chatRoomsList.get(position).getUser1Name());
             }
+
+
+            whereToMeet.setText("Where: " + chatRoomsList.get(position).getLocation());
+            whenToMeet.setText("When: " + chatRoomsList.get(position).getLocation());
 
             return convertView;
         }

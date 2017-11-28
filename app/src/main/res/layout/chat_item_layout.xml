@@ -19,7 +19,8 @@ android:layout_height="wrap_content">
     <LinearLayout
         android:id="@+id/usersList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
 
         <ImageView
@@ -47,17 +48,33 @@ android:layout_height="wrap_content">
                 android:layout_weight="1"
                 android:singleLine="true"/>
 
-
-
-            <TextView
-                android:id="@+id/ChatDescriptionTextView"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/WhenAndWhereLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chat Description"
-                android:textSize="15dp"
-                android:textColor="@color/black700"
-                android:layout_marginLeft="@dimen/profile_padding"
-                android:singleLine="true"/>
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/profile_padding" >
+                <TextView
+                    android:id="@+id/WhereToMeetTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Where: "
+                    android:textSize="15dp"
+                    android:textColor="@color/black700"
+                    android:singleLine="true"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/WhenToMeetTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="When:"
+                    android:textSize="15dp"
+                    android:textColor="@color/black700"
+                    android:layout_marginLeft="@dimen/profile_padding"
+                    android:singleLine="true"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
 
 
         </LinearLayout>
