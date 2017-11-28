@@ -131,6 +131,10 @@ public class SelectMatchedUsersForm extends AppCompatActivity implements SelectM
             Room room = new Room(currentUserID, selectedUsers.get(i).getID());
             String roomID = databaseReference.push().getKey();
             roomIDs.add(roomID);
+            room.setUser1SentInvite(true);
+            room.setUser2SentInvite(false);
+            room.setUser1Accepted("YES");
+            room.setUser2Accepted("NOT_YET");
             createChatDAO.createChatRoom(room, roomID);
         }
 

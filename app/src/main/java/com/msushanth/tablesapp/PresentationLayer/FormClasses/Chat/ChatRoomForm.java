@@ -82,10 +82,12 @@ public class ChatRoomForm extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                databaseReference.push().setValue(new ChatMessage(messageEditText.getText().toString(),
-                        FirebaseAuth.getInstance().getCurrentUser().getEmail()));
-                messageEditText.setText("");
-                messageEditText.requestFocus();
+                if(!messageEditText.getText().toString().equals("")) {
+                    databaseReference.push().setValue(new ChatMessage(messageEditText.getText().toString(),
+                            FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+                    messageEditText.setText("");
+                    messageEditText.requestFocus();
+                }
             }
         });
 
@@ -107,13 +109,13 @@ public class ChatRoomForm extends AppCompatActivity {
                 //Get references to the views of list_item.xml
                 RelativeLayout user1Layout, user2Layout;
                 TextView message_text1, message_text2;
-                ImageView imageView1, imageView2;
+                //ImageView imageView1, imageView2;
 
                 user1Layout = (RelativeLayout) v.findViewById(R.id.User1Layout);
                 user2Layout = (RelativeLayout) v.findViewById(R.id.User2Layout);
 
-                imageView1 = (ImageView) v.findViewById(R.id.imageView1);
-                imageView2 = (ImageView) v.findViewById(R.id.imageView2);
+                //imageView1 = (ImageView) v.findViewById(R.id.imageView1);
+                //imageView2 = (ImageView) v.findViewById(R.id.imageView2);
 
                 message_text1 = (TextView) v.findViewById(R.id.message_text1);
                 message_text2 = (TextView) v.findViewById(R.id.message_text2);
@@ -128,13 +130,6 @@ public class ChatRoomForm extends AppCompatActivity {
                     message_text2.setText(model.getMessageText());
                     user1Layout.setVisibility(View.GONE);
                 }
-
-                //messageText = (TextView) v.findViewById(R.id.message_text2);
-                //messageUser = (TextView) v.findViewById(R.id.message_user2);
-                //messageTime = (TextView) v.findViewById(R.id.message_time2);
-                //messageText.setText(model.getMessageText());
-                //messageUser.setText(model.getMessageUser());
-                //messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
 
             }
         };

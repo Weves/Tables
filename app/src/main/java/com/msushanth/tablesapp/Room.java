@@ -21,6 +21,67 @@ public class Room {
     private String user2Name;
     private String user2ID;
 
+    private boolean user1SentInvite;
+    private boolean user2SentInvite;
+    private String user1Accepted;
+    private String user2Accepted;
+
+
+
+    public String printRoomData() {
+        String returnStr = "";
+
+        returnStr += "**** RoomID: ";
+        returnStr += this.getRoomID();
+        returnStr += "\n";
+
+        returnStr += "**** Time: ";
+        returnStr += this.getTime();
+        returnStr += "\n";
+
+        returnStr += "**** Date: ";
+        returnStr += this.getDate();
+        returnStr += "\n";
+
+        returnStr += "**** Location: ";
+        returnStr += this.getLocation();
+        returnStr += "\n";
+
+        returnStr += "**** User 1 Name: ";
+        returnStr += this.getUser1Name();
+        returnStr += "\n";
+
+        returnStr += "**** User 1 ID: ";
+        returnStr += this.getUser1ID();
+        returnStr += "\n";
+
+        returnStr += "**** User 2 Name: ";
+        returnStr += this.getUser2Name();
+        returnStr += "\n";
+
+        returnStr += "**** User 2 ID: ";
+        returnStr += this.getUser2ID();
+        returnStr += "\n";
+
+        returnStr += "**** User 1 Sent Invite: ";
+        returnStr += this.isUser1SentInvite();
+        returnStr += "\n";
+
+        returnStr += "**** User 2 Sent Invite: ";
+        returnStr += this.isUser2SentInvite();
+        returnStr += "\n";
+
+        returnStr += "**** User 1 Accepted: ";
+        returnStr += this.getUser1Accepted();
+        returnStr += "\n";
+
+        returnStr += "**** User 2 Accepted: ";
+        returnStr += this.getUser2Accepted();
+        returnStr += "\n";
+
+        return returnStr;
+    }
+
 
 
 
@@ -34,6 +95,10 @@ public class Room {
         this.setUser1ID("");
         this.setUser2Name("");
         this.setUser2ID("");
+        this.setUser1SentInvite(false);
+        this.setUser2SentInvite(false);
+        this.setUser1Accepted("NOT_YET");
+        this.setUser2Accepted("NOT_YET");
     }
 
 
@@ -144,5 +209,33 @@ public class Room {
     }
     public void setUser2ID(String user2ID) {
         this.user2ID = user2ID;
+    }
+
+    public boolean isUser1SentInvite() {
+        return user1SentInvite;
+    }
+    public void setUser1SentInvite(boolean user1SentInvite) {
+        this.user1SentInvite = user1SentInvite;
+    }
+
+    public boolean isUser2SentInvite() {
+        return user2SentInvite;
+    }
+    public void setUser2SentInvite(boolean user2SentInvite) {
+        this.user2SentInvite = user2SentInvite;
+    }
+
+    public String getUser1Accepted() {
+        return user1Accepted;
+    }
+    public void setUser1Accepted(String user1Accepted) {
+        this.user1Accepted = user1Accepted;
+    }
+
+    public String getUser2Accepted() {
+        return user2Accepted;
+    }
+    public void setUser2Accepted(String user2Accepted) {
+        this.user2Accepted = user2Accepted;
     }
 }

@@ -80,32 +80,33 @@ public class RandomSearchForm implements FindRandomUsersInterface {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        for (int i = 0; i < NUM_USERS_TO_SHOW; i++) {
-                            Random random = new Random();
+                        if(posIDs.size() > 0) {
+                            for (int i = 0; i < NUM_USERS_TO_SHOW; i++) {
+                                Random random = new Random();
 
-                            int randomNum = random.nextInt(numUsers);
+                                int randomNum = random.nextInt(numUsers);
 
-                            String id = posIDs.get(randomNum);
-                            posIDs.remove(id);
+                                String id = posIDs.get(randomNum);
+                                posIDs.remove(id);
 
 
-                            user = dataSnapshot.child(id).getValue(User.class);
-                            names.add(user.getFirst_name() + " " + user.getLast_name());
-                            String tagsString = "";
-                            for (int j=0; j < MAX_TAGS && j < user.getTags().size(); j++) {
-                                tagsString += user.getTags().get(j) + ", ";
+                                user = dataSnapshot.child(id).getValue(User.class);
+                                names.add(user.getFirst_name() + " " + user.getLast_name());
+                                String tagsString = "";
+                                for (int j = 0; j < MAX_TAGS && j < user.getTags().size(); j++) {
+                                    tagsString += user.getTags().get(j) + ", ";
 
-                            }
-                            tagsString = tagsString.substring(0, tagsString.length()-2);
-                            tags.add(tagsString);
+                                }
+                                tagsString = tagsString.substring(0, tagsString.length() - 2);
+                                tags.add(tagsString);
 
-                            finalIDs.add(user.getIdForFirebase());
+                                finalIDs.add(user.getIdForFirebase());
 
-                            if (numUsers == 1) {
-                                break;
-                            }
-                            else {
-                                numUsers--;
+                                if (numUsers == 1) {
+                                    break;
+                                } else {
+                                    numUsers--;
+                                }
                             }
                         }
 

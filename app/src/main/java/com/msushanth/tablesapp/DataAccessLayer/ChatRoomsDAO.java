@@ -23,6 +23,8 @@ public class ChatRoomsDAO implements ChatInterface {
     User sender;
     Room thisRoom;
 
+    Room roomToUpload;
+
 
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
@@ -45,22 +47,21 @@ public class ChatRoomsDAO implements ChatInterface {
         roomParam.setRoomID(roomID);
 
         // This is not final. we just need to declare it as final in order to access it in the listener
-        final Room roomFinal = roomParam;
+        this.roomToUpload = roomParam;
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Room room = new Room(roomFinal.getRoomID(), roomFinal.getUser1ID(), roomFinal.getUser2ID());
 
-                User user1 = dataSnapshot.child(room.getUser1ID()).getValue(User.class);
-                User user2 = dataSnapshot.child(room.getUser2ID()).getValue(User.class);
+                User user1 = dataSnapshot.child(roomToUpload.getUser1ID()).getValue(User.class);
+                User user2 = dataSnapshot.child(roomToUpload.getUser2ID()).getValue(User.class);
 
                 // Check if the two users have already added each other.
 
 
                 // Add the users names to the Room Object
-                room.setUser1Name(user1.getFirst_name() + " " + user1.getLast_name());
-                room.setUser2Name(user2.getFirst_name() + " " + user2.getLast_name());
+                roomToUpload.setUser1Name(user1.getFirst_name() + " " + user1.getLast_name());
+                roomToUpload.setUser2Name(user2.getFirst_name() + " " + user2.getLast_name());
 
                 // Edit the users rooms list and add the edit to the database
                 /*List<String> chatRoomsUser1 = user1.getRoom_ids();
@@ -68,10 +69,10 @@ public class ChatRoomsDAO implements ChatInterface {
                 user1.setRoom_ids(chatRoomsUser1);*/
 
                 List<String> chatRoomsUser2 = user2.getRoom_ids();
-                chatRoomsUser2.add(room.getRoomID());
+                chatRoomsUser2.add(roomToUpload.getRoomID());
                 user2.setRoom_ids(chatRoomsUser2);
 
-                databaseReference.child(room.getRoomID()).setValue(room);
+                databaseReference.child(roomToUpload.getRoomID()).setValue(roomToUpload);
                 //databaseReference.child(user1.getIdForFirebase()).setValue(user1);
                 databaseReference.child(user2.getIdForFirebase()).setValue(user2);
             }
