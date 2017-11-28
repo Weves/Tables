@@ -154,7 +154,7 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
                     TextView changeResponse = (TextView) convertViewOut.findViewById(R.id.WaitingForResponseTextView);
 
                     chatRoomName.setText(chatRoomsList.get(position).getUser2Name());
-                    changeResponse.setText("This user has not responded to your request yet.");
+                    changeResponse.setText(chatRoomsList.get(position).getUser2Name() + " has not responded to your invitation.");
                 }
 
                 // If you are User 1 in the chat room, you have sent the invite, and User 2 has declined your invitation
@@ -164,7 +164,7 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
                     TextView changeResponse = (TextView) convertViewOut.findViewById(R.id.WaitingForResponseTextView);
 
                     chatRoomName.setText(chatRoomsList.get(position).getUser2Name());
-                    changeResponse.setText("This user has declined your invitation.");
+                    changeResponse.setText(chatRoomsList.get(position).getUser2Name() + " has declined your invitation.");
                 }
 
                 // If you are User 1 in the chat room, you have sent the invite, and User 2 has accepted your invitation
@@ -175,8 +175,10 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
                     TextView whenToMeet = (TextView) convertViewOut.findViewById(R.id.WhenToMeetTextView);
 
                     chatRoomName.setText(chatRoomsList.get(position).getUser2Name());
-                    whereToMeet.setText("Where: " + chatRoomsList.get(position).getLocation());
-                    whenToMeet.setText("When: " + chatRoomsList.get(position).getLocation());
+                    if(!chatRoomsList.get(position).getLocation().equals("") || !chatRoomsList.get(position).getTime().equals("")) {
+                        whereToMeet.setText("Location: " + chatRoomsList.get(position).getLocation());
+                        whenToMeet.setText("Time: " + chatRoomsList.get(position).getTime());
+                    }
                 }
             }
             else {
@@ -251,8 +253,10 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
                     TextView whenToMeet = (TextView) convertViewOut.findViewById(R.id.WhenToMeetTextView);
 
                     chatRoomName.setText(chatRoomsList.get(position).getUser1Name());
-                    whereToMeet.setText("Where: " + chatRoomsList.get(position).getLocation());
-                    whenToMeet.setText("When: " + chatRoomsList.get(position).getLocation());
+                    if(!chatRoomsList.get(position).getLocation().equals("") || !chatRoomsList.get(position).getTime().equals("")) {
+                        whereToMeet.setText("Location: " + chatRoomsList.get(position).getLocation());
+                        whenToMeet.setText("Time: " + chatRoomsList.get(position).getTime());
+                    }
                 }
             }
 

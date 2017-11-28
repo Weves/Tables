@@ -63,7 +63,6 @@
                     android:text="Waiting for a response."
                     android:textSize="15dp"
                     android:textColor="@color/black700"
-                    android:singleLine="true"
                     android:layout_weight="1"/>
 
 
