@@ -1,9 +1,11 @@
 package com.msushanth.tablesapp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by allenqian on 11/19/17.
+ * Updated by Sushanth Mukkamalla on 11/27/17.
  */
 
 public class Room {
@@ -22,6 +24,38 @@ public class Room {
 
 
 
+    public Room() {
+        this.setRoomID("");
+        this.setTime("");
+        this.setDate("");
+        this.setLocation("");
+        this.setUsers(new ArrayList<String>());
+        this.setUser1Name("");
+        this.setUser1ID("");
+        this.setUser2Name("");
+        this.setUser2ID("");
+    }
+
+
+
+
+    public Room(String user1ID, String user2ID) {
+        this.setUser1ID(user1ID);
+        this.setUser2ID(user2ID);
+    }
+
+
+
+
+    public Room(String roomID, String user1ID, String user2ID) {
+        this.roomID = roomID;
+        this.setUser1ID(user1ID);
+        this.setUser2ID(user2ID);
+    }
+
+
+
+
     public Room(String roomID, String user1Name, String user1ID, String user2Name, String user2ID) {
         this.setRoomID(roomID);
         this.setUser1Name(user1Name);
@@ -30,6 +64,9 @@ public class Room {
         this.setUser2ID(user2ID);
     }
 
+
+
+
     public Room(String roomID, String time, String date, String location, List<String> users){
         this.setRoomID(roomID);
         this.setTime(time);
@@ -37,6 +74,9 @@ public class Room {
         this.setLocation(location);
         this.setUsers(users);
     }
+
+
+
 
     public Room (User u1, User u2) {}
 
