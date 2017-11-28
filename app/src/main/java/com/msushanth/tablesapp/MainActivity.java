@@ -133,7 +133,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                viewPager.getAdapter().notifyDataSetChanged();
+                if(position ==1 ) {
+                    viewPager.getAdapter().notifyDataSetChanged();
+                }
             }
 
             @Override

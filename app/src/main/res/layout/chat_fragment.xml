@@ -8,8 +8,18 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ListOfChats">
-
+        android:id="@+id/ListOfChats"
+        android:visibility="gone">
     </ListView>
+
+    <TextView
+        android:id="@+id/AddUsersTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="No active chats.\nSearch for other user to start a chat."
+        android:textSize="35dp"
+        android:gravity="center"
+        android:textColor="@color/black900"
+        android:visibility="gone" />
 
 </LinearLayout>

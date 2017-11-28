@@ -34,6 +34,7 @@ import java.util.List;
 public class ChatFormXML extends android.support.v4.app.Fragment {
 
     ListView listOfChatsListView;
+    TextView addUsersTextView;
 
     List<Room> chatRoomsList;
     String currentUsername;
@@ -67,6 +68,16 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
                 }
 
                 listOfChatsListView = (ListView) rootView.findViewById(R.id.ListOfChats);
+                addUsersTextView = (TextView) rootView.findViewById(R.id.AddUsersTextView);
+
+
+                // If there are no chats the user is in , then display that there are no chats and he should search for other users
+                // If there are chats, then display the chats
+                if(chatRoomsList.size() == 0) {
+                    addUsersTextView.setVisibility(View.VISIBLE);
+                } else {
+                    listOfChatsListView.setVisibility(View.VISIBLE);
+                }
 
                 CustomAdapter customAdapter = new CustomAdapter();
                 listOfChatsListView.setAdapter(customAdapter);
