@@ -86,7 +86,6 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String roomID = chatRoomsList.get(position).getRoomID();
-                        Toast.makeText(getActivity(), roomID, Toast.LENGTH_SHORT).show();
 
                         Intent chatRoomIntent = new Intent(getActivity(), ChatRoomForm.class);
                         chatRoomIntent.putExtra("chatRoomID", roomID);
@@ -95,18 +94,11 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
                         chatRoomIntent.putExtra("user2name", chatRoomsList.get(position).getUser2Name());
                         chatRoomIntent.putExtra("user2ID", chatRoomsList.get(position).getUser2ID());
 
+                        // Open the chat only if both users have accepted the invitation
                         if(chatRoomsList.get(position).getUser1Accepted().equals("YES") &&
                                 chatRoomsList.get(position).getUser2Accepted().equals("YES")) {
                             startActivity(chatRoomIntent);
                         }
-
-
-                        System.out.println(chatRoomsList.get(position).printRoomData());
-                        boolean isUser1 = false;
-                        if(chatRoomsList.get(position).getUser1Name().equals(currentUsername)) {
-                            isUser1 = true;
-                        }
-                        System.out.println("**** Is user 1?: " + isUser1);
                     }
                 });
             }
@@ -115,12 +107,6 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
             public void onCancelled(DatabaseError databaseError) {}
         });
 
-
-
-
-
-
-
         return rootView;
     }
 
@@ -128,7 +114,6 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
 
 
     class CustomAdapter extends BaseAdapter {
-
 
         @Override
         public int getCount() {
@@ -152,15 +137,9 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
         public View getView(final int position, View convertView, ViewGroup parent) {
 
             this.convertViewOut = getLayoutInflater().inflate(R.layout.chat_item_layout, null);
-            //TextView chatRoomName = (TextView) convertViewOut.findViewById(R.id.ChatNameTextView);
-            //TextView chatDescriptionName = (TextView) convertViewOut.findViewById(R.id.ChatDescriptionTextView);
-            //TextView whereToMeet = (TextView) convertViewOut.findViewById(R.id.WhereToMeetTextView);
-            //TextView whenToMeet = (TextView) convertViewOut.findViewById(R.id.WhenToMeetTextView);*/
-
-
-
 
             Room room = chatRoomsList.get(position);
+
             // Determine which user you are
             boolean isUser1 = false;
             if(room.getUser1Name().equals(currentUsername)) {
@@ -211,14 +190,9 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
                     Button declineButton = (Button) convertViewOut.findViewById(R.id.DeclineButton);
 
 
-                    // TODO implement the button functionality here
-                    // use this
-                    // databaseReference.child(firebaseUser.getUid()).setValue(this.user);
                     viewProfileButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Toast.makeText(getContext(), "view profile clicked", Toast.LENGTH_SHORT).show();
-
                             Room room = chatRoomsList.get(position);
                             Intent intent = new Intent(getContext(), ProfileViewer.class);
                             intent.putExtra("matchedUsersID", room.getUser1ID());
@@ -226,27 +200,33 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
                         }
                     });
 
+                    // TODO Refesh the fragment after accepting the invitation.
                     acceptButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Toast.makeText(getContext(), "accept clicked", Toast.LENGTH_SHORT).show();
-
+                            Toast.makeText(getContext(), "Invite Accepted", Toast.LENGTH_SHORT).show();
                             Room room = chatRoomsList.get(position);
                             room.setUser2Accepted("YES");
                             DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference();
                             dbReference.child(chatRoomsList.get(position).getRoomID()).setValue(room);
+
+                            // Update the listview with the changes
+                            customAdapter.notifyDataSetChanged();
                         }
                     });
 
+                    // TODO Refesh the fragment after declining the invitation.
                     declineButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Toast.makeText(getContext(), "decline clicked", Toast.LENGTH_SHORT).show();
-
+                            Toast.makeText(getContext(), "Invite Declined", Toast.LENGTH_SHORT).show();
                             Room room = chatRoomsList.get(position);
                             room.setUser2Accepted("NO");
                             DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference();
                             dbReference.child(chatRoomsList.get(position).getRoomID()).setValue(room);
+
+                            // Update the listview with the changes
+                            customAdapter.notifyDataSetChanged();
                         }
                     });
 

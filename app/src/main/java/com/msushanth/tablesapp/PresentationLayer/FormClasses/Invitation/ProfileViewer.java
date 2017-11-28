@@ -132,15 +132,7 @@ public class ProfileViewer extends AppCompatActivity {
 
 
 
-        // TODO: pass in the Users unique id of the profile you want to view as part of the intent (from SelectMatchedUser).
-        // Theres a way to do this.
-        // Look it up
-        // The passed in variable should be in the form of a string.
-        // After you have figured this out, replace this line:
-        //currentUserProfile = dataSnapshot.child(fireBaseUser.getUid()).getValue(User.class);
-        // with:
-        // userProfile = dataSnapshot.child(*passed in variable*).getValue(User.class);
-        // and you will get the users profile you clicked on displayed on the screen.
+        // Pass in the Users unique id of the profile you want to view as part of the intent (from SelectMatchedUser).
         firebaseAuth = FirebaseAuth.getInstance();
         dbReference = FirebaseDatabase.getInstance().getReference();
         fireBaseUser = firebaseAuth.getCurrentUser();
@@ -228,7 +220,6 @@ public class ProfileViewer extends AppCompatActivity {
                 if(interestsMap.get(interestsArray[14]) != 0) {
                     travelProgressBar.setProgress(interestsMap.get(interestsArray[14]));
                 }
-
 
 
                 sportsTextView.setText("Sports (" + interestsMap.get(interestsArray[0]) + ")");

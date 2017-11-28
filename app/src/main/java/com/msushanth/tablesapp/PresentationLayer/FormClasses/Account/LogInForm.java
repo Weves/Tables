@@ -84,7 +84,7 @@ public class LogInForm extends AppCompatActivity {
                         // Check if the user has created a profile.
                         // If he hasn't, take him to the CreateAccountForm
                         // If he has, take him to the main activity
-                        Toast.makeText(LogInForm.this, "Your unique ID: " + fireBaseUser.getUid(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LogInForm.this, "Sign In Successful", Toast.LENGTH_SHORT).show();
 
                         dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
@@ -109,7 +109,7 @@ public class LogInForm extends AppCompatActivity {
                         Toast.makeText(LogInForm.this, "Your email has not yet been verified. Check your email.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(LogInForm.this, "Login Failed.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LogInForm.this, "Sign In Failed.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
