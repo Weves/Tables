@@ -109,8 +109,9 @@ public class SelectMatchedUsersForm extends AppCompatActivity implements SelectM
 
     }
 
+    ArrayList<ListUser> selectedUsers;
     public void sendInvitationsButtonClicked(View v) {
-        ArrayList<ListUser> selectedUsers = new ArrayList<ListUser>();
+        selectedUsers = new ArrayList<ListUser>();
         String selectedUsersNames = "";
         for (int i=0; i< users.size(); i++) {
             if (users.get(i).getSelected()) {
@@ -124,25 +125,46 @@ public class SelectMatchedUsersForm extends AppCompatActivity implements SelectM
                     selectedUsersNames.substring(0, selectedUsersNames.length() - 2), Toast.LENGTH_LONG).show();
         }
 
-        // send actual invites to the users in the selected users array
-        ChatRoomsDAO createChatDAO = new ChatRoomsDAO();
-        roomIDs = new ArrayList<String>();
-        for(int i=0; i<selectedUsers.size(); i++) {
-            Room room = new Room(currentUserID, selectedUsers.get(i).getID());
-            String roomID = databaseReference.push().getKey();
-            roomIDs.add(roomID);
-            room.setUser1SentInvite(true);
-            room.setUser2SentInvite(false);
-            room.setUser1Accepted("YES");
-            room.setUser2Accepted("NOT_YET");
-            createChatDAO.createChatRoom(room, roomID);
-        }
-
         // Add all the rooms the user created by selecting and adding people to the list of room_ids he has
         // I couldnt do this in the method in DAO because it was only adding one of the rooms when user selects more than one
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                // send actual invites to the users in the selected users array
+                roomIDs = new ArrayList<String>();
+                for(int i=0; i<selectedUsers.size(); i++) {
+                    Room room = new Room(currentUserID, selectedUsers.get(i).getID());
+                    String roomID = databaseReference.push().getKey();
+                    roomIDs.add(roomID);
+                    room.setRoomID(roomID);
+                    room.setUser1SentInvite(true);
+                    room.setUser2SentInvite(false);
+                    room.setUser1Accepted("YES");
+                    room.setUser2Accepted("NOT_YET");
+                    //createChatDAO.createChatRoom(room, roomID);
+
+                    User user1 = dataSnapshot.child(room.getUser1ID()).getValue(User.class);
+                    User user2 = dataSnapshot.child(room.getUser2ID()).getValue(User.class);
+
+                    // Add the users names to the Room Object
+                    room.setUser1Name(user1.getFirst_name() + " " + user1.getLast_name());
+                    room.setUser2Name(user2.getFirst_name() + " " + user2.getLast_name());
+
+                    // Edit the users rooms list and add the edit to the database
+                    /*List<String> chatRoomsUser1 = user1.getRoom_ids();
+                    chatRoomsUser1.add(room.getRoomID());
+                    user1.setRoom_ids(chatRoomsUser1);*/
+
+                    List<String> chatRoomsUser2 = user2.getRoom_ids();
+                    chatRoomsUser2.add(room.getRoomID());
+                    user2.setRoom_ids(chatRoomsUser2);
+
+                    databaseReference.child(room.getRoomID()).setValue(room);
+                    //databaseReference.child(user1.getIdForFirebase()).setValue(user1);
+                    databaseReference.child(user2.getIdForFirebase()).setValue(user2);
+                }
+
+
                 User user1 = dataSnapshot.child(currentUserID).getValue(User.class);
 
                 List<String> chatRoomsUser1 = user1.getRoom_ids();

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.msushanth.tablesapp.PresentationLayer.FormClasses.Invitation.ProfileViewer;
 import com.msushanth.tablesapp.R;
 import com.msushanth.tablesapp.Room;
 import com.msushanth.tablesapp.User;
@@ -33,6 +35,8 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
 
     ListView listOfChatsListView;
     TextView addUsersTextView;
+    CustomAdapter customAdapter;
+
 
     List<Room> chatRoomsList;
     String currentUsername;
@@ -75,7 +79,7 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
                     listOfChatsListView.setVisibility(View.VISIBLE);
                 }
 
-                CustomAdapter customAdapter = new CustomAdapter();
+                customAdapter = new CustomAdapter();
                 listOfChatsListView.setAdapter(customAdapter);
 
                 listOfChatsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -90,9 +94,11 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
                         chatRoomIntent.putExtra("user1ID", chatRoomsList.get(position).getUser1ID());
                         chatRoomIntent.putExtra("user2name", chatRoomsList.get(position).getUser2Name());
                         chatRoomIntent.putExtra("user2ID", chatRoomsList.get(position).getUser2ID());
-                        //startActivity(chatRoomIntent);
 
-
+                        if(chatRoomsList.get(position).getUser1Accepted().equals("YES") &&
+                                chatRoomsList.get(position).getUser2Accepted().equals("YES")) {
+                            startActivity(chatRoomIntent);
+                        }
 
 
                         System.out.println(chatRoomsList.get(position).printRoomData());
@@ -123,6 +129,7 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
 
     class CustomAdapter extends BaseAdapter {
 
+
         @Override
         public int getCount() {
             return chatRoomsList.size();
@@ -139,14 +146,16 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
             return 0;
         }
 
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
 
-            /*convertView = getLayoutInflater().inflate(R.layout.chat_item_layout, null);
-            TextView chatRoomName = (TextView) convertView.findViewById(R.id.ChatNameTextView);
-            //TextView chatDescriptionName = (TextView) convertView.findViewById(R.id.ChatDescriptionTextView);
-            TextView whereToMeet = (TextView) convertView.findViewById(R.id.WhereToMeetTextView);
-            TextView whenToMeet = (TextView) convertView.findViewById(R.id.WhenToMeetTextView);*/
+        View convertViewOut;
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+
+            this.convertViewOut = getLayoutInflater().inflate(R.layout.chat_item_layout, null);
+            //TextView chatRoomName = (TextView) convertViewOut.findViewById(R.id.ChatNameTextView);
+            //TextView chatDescriptionName = (TextView) convertViewOut.findViewById(R.id.ChatDescriptionTextView);
+            //TextView whereToMeet = (TextView) convertViewOut.findViewById(R.id.WhereToMeetTextView);
+            //TextView whenToMeet = (TextView) convertViewOut.findViewById(R.id.WhenToMeetTextView);*/
 
 
 
@@ -161,9 +170,9 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
             if(isUser1) {
                 // If you are User 1 in the chat room, you have sent the invite, and User 2 has not yet responded to your invitation
                 if(room.getUser2Accepted().equals("NOT_YET")) {
-                    convertView = getLayoutInflater().inflate(R.layout.chat_item_invite_pending, null);
-                    TextView chatRoomName = (TextView) convertView.findViewById(R.id.ChatNameTextView);
-                    TextView changeResponse = (TextView) convertView.findViewById(R.id.WaitingForResponseTextView);
+                    convertViewOut = getLayoutInflater().inflate(R.layout.chat_item_invite_pending, null);
+                    TextView chatRoomName = (TextView) convertViewOut.findViewById(R.id.ChatNameTextView);
+                    TextView changeResponse = (TextView) convertViewOut.findViewById(R.id.WaitingForResponseTextView);
 
                     chatRoomName.setText(chatRoomsList.get(position).getUser2Name());
                     changeResponse.setText("This user has not responded to your request yet.");
@@ -171,9 +180,9 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
 
                 // If you are User 1 in the chat room, you have sent the invite, and User 2 has declined your invitation
                 else if(room.getUser2Accepted().equals("NO")) {
-                    convertView = getLayoutInflater().inflate(R.layout.chat_item_invite_pending, null);
-                    TextView chatRoomName = (TextView) convertView.findViewById(R.id.ChatNameTextView);
-                    TextView changeResponse = (TextView) convertView.findViewById(R.id.WaitingForResponseTextView);
+                    convertViewOut = getLayoutInflater().inflate(R.layout.chat_item_invite_pending, null);
+                    TextView chatRoomName = (TextView) convertViewOut.findViewById(R.id.ChatNameTextView);
+                    TextView changeResponse = (TextView) convertViewOut.findViewById(R.id.WaitingForResponseTextView);
 
                     chatRoomName.setText(chatRoomsList.get(position).getUser2Name());
                     changeResponse.setText("This user has declined your invitation.");
@@ -181,10 +190,10 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
 
                 // If you are User 1 in the chat room, you have sent the invite, and User 2 has accepted your invitation
                 else {
-                    convertView = getLayoutInflater().inflate(R.layout.chat_item_layout, null);
-                    TextView chatRoomName = (TextView) convertView.findViewById(R.id.ChatNameTextView);
-                    TextView whereToMeet = (TextView) convertView.findViewById(R.id.WhereToMeetTextView);
-                    TextView whenToMeet = (TextView) convertView.findViewById(R.id.WhenToMeetTextView);
+                    convertViewOut = getLayoutInflater().inflate(R.layout.chat_item_layout, null);
+                    TextView chatRoomName = (TextView) convertViewOut.findViewById(R.id.ChatNameTextView);
+                    TextView whereToMeet = (TextView) convertViewOut.findViewById(R.id.WhereToMeetTextView);
+                    TextView whenToMeet = (TextView) convertViewOut.findViewById(R.id.WhenToMeetTextView);
 
                     chatRoomName.setText(chatRoomsList.get(position).getUser2Name());
                     whereToMeet.setText("Where: " + chatRoomsList.get(position).getLocation());
@@ -195,20 +204,60 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
 
                 // If you are User 2 in the chat room, you have received the invite, and you have not yet accepted the invitation
                 if(room.getUser2Accepted().equals("NOT_YET")) {
-                    convertView = getLayoutInflater().inflate(R.layout.chat_accept_declilne_layout, null);
-                    TextView chatRoomName = (TextView) convertView.findViewById(R.id.ChatNameTextView);
+                    convertViewOut = getLayoutInflater().inflate(R.layout.chat_accept_declilne_layout, null);
+                    TextView chatRoomName = (TextView) convertViewOut.findViewById(R.id.ChatNameTextView);
+                    Button viewProfileButton = (Button) convertViewOut.findViewById(R.id.ViewProfileButton);
+                    Button acceptButton = (Button) convertViewOut.findViewById(R.id.AcceptButton);
+                    Button declineButton = (Button) convertViewOut.findViewById(R.id.DeclineButton);
 
-//TODO implement the button functionality here
-//use this
-//databaseReference.child(firebaseUser.getUid()).setValue(this.user);
+
+                    // TODO implement the button functionality here
+                    // use this
+                    // databaseReference.child(firebaseUser.getUid()).setValue(this.user);
+                    viewProfileButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(getContext(), "view profile clicked", Toast.LENGTH_SHORT).show();
+
+                            Room room = chatRoomsList.get(position);
+                            Intent intent = new Intent(getContext(), ProfileViewer.class);
+                            intent.putExtra("matchedUsersID", room.getUser1ID());
+                            startActivity(intent);
+                        }
+                    });
+
+                    acceptButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(getContext(), "accept clicked", Toast.LENGTH_SHORT).show();
+
+                            Room room = chatRoomsList.get(position);
+                            room.setUser2Accepted("YES");
+                            DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference();
+                            dbReference.child(chatRoomsList.get(position).getRoomID()).setValue(room);
+                        }
+                    });
+
+                    declineButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(getContext(), "decline clicked", Toast.LENGTH_SHORT).show();
+
+                            Room room = chatRoomsList.get(position);
+                            room.setUser2Accepted("NO");
+                            DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference();
+                            dbReference.child(chatRoomsList.get(position).getRoomID()).setValue(room);
+                        }
+                    });
+
                     chatRoomName.setText(chatRoomsList.get(position).getUser1Name());
                 }
 
                 // If you are User 2 in the chat room, you have received the invite, and you have declined the invitation
                 else if(room.getUser2Accepted().equals("NO")) {
-                    convertView = getLayoutInflater().inflate(R.layout.chat_item_invite_pending, null);
-                    TextView chatRoomName = (TextView) convertView.findViewById(R.id.ChatNameTextView);
-                    TextView changeResponse = (TextView) convertView.findViewById(R.id.WaitingForResponseTextView);
+                    convertViewOut = getLayoutInflater().inflate(R.layout.chat_item_invite_pending, null);
+                    TextView chatRoomName = (TextView) convertViewOut.findViewById(R.id.ChatNameTextView);
+                    TextView changeResponse = (TextView) convertViewOut.findViewById(R.id.WaitingForResponseTextView);
 
                     chatRoomName.setText(chatRoomsList.get(position).getUser1Name());
                     changeResponse.setText("You have declined this invitation.");
@@ -216,10 +265,10 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
 
                 // If you are User 2 in the chat room, you have received the invite, and you have accepted the invitation
                 else {
-                    convertView = getLayoutInflater().inflate(R.layout.chat_item_layout, null);
-                    TextView chatRoomName = (TextView) convertView.findViewById(R.id.ChatNameTextView);
-                    TextView whereToMeet = (TextView) convertView.findViewById(R.id.WhereToMeetTextView);
-                    TextView whenToMeet = (TextView) convertView.findViewById(R.id.WhenToMeetTextView);
+                    convertViewOut = getLayoutInflater().inflate(R.layout.chat_item_layout, null);
+                    TextView chatRoomName = (TextView) convertViewOut.findViewById(R.id.ChatNameTextView);
+                    TextView whereToMeet = (TextView) convertViewOut.findViewById(R.id.WhereToMeetTextView);
+                    TextView whenToMeet = (TextView) convertViewOut.findViewById(R.id.WhenToMeetTextView);
 
                     chatRoomName.setText(chatRoomsList.get(position).getUser1Name());
                     whereToMeet.setText("Where: " + chatRoomsList.get(position).getLocation());
@@ -229,7 +278,7 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
 
 
 
-            return convertView;
+            return convertViewOut;
         }
     }
 }
