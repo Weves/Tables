@@ -90,6 +90,10 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
 
                         Intent chatRoomIntent = new Intent(getActivity(), ChatRoomForm.class);
                         chatRoomIntent.putExtra("chatRoomID", roomID);
+                        chatRoomIntent.putExtra("user1name", chatRoomsList.get(position).getUser1Name());
+                        chatRoomIntent.putExtra("user1ID", chatRoomsList.get(position).getUser1ID());
+                        chatRoomIntent.putExtra("user2name", chatRoomsList.get(position).getUser2Name());
+                        chatRoomIntent.putExtra("user2ID", chatRoomsList.get(position).getUser2ID());
                         startActivity(chatRoomIntent);
                     }
                 });

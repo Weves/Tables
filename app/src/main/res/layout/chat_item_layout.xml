@@ -28,7 +28,7 @@ android:layout_height="wrap_content">
             android:layout_height="55dp"
             android:layout_gravity="center"
             android:layout_marginRight="5dp"
-            app:srcCompat="@drawable/default_profile_pic_one" />
+            app:srcCompat="@mipmap/ic_person_black_24dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
