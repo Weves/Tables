@@ -84,19 +84,12 @@ public class RandomSearchForm implements FindRandomUsersInterface {
                             Random random = new Random();
 
                             int randomNum = random.nextInt(numUsers);
-                            if (numUsers == 1) {
-                                break;
-                            }
-                            else {
-                                numUsers--;
-                            }
 
                             String id = posIDs.get(randomNum);
                             posIDs.remove(id);
 
 
                             user = dataSnapshot.child(id).getValue(User.class);
-                            System.out.println(user.getFirst_name() + " " + user.getLast_name());
                             names.add(user.getFirst_name() + " " + user.getLast_name());
                             String tagsString = "";
                             for (int j=0; j < MAX_TAGS && j < user.getTags().size(); j++) {
@@ -107,6 +100,13 @@ public class RandomSearchForm implements FindRandomUsersInterface {
                             tags.add(tagsString);
 
                             finalIDs.add(user.getIdForFirebase());
+
+                            if (numUsers == 1) {
+                                break;
+                            }
+                            else {
+                                numUsers--;
+                            }
                         }
 
                     }
