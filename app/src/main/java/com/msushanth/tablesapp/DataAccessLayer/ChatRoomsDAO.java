@@ -55,6 +55,9 @@ public class ChatRoomsDAO implements ChatInterface {
                 User user1 = dataSnapshot.child(room.getUser1ID()).getValue(User.class);
                 User user2 = dataSnapshot.child(room.getUser2ID()).getValue(User.class);
 
+                // Check if the two users have already added each other.
+
+
                 // Add the users names to the Room Object
                 room.setUser1Name(user1.getFirst_name() + " " + user1.getLast_name());
                 room.setUser2Name(user2.getFirst_name() + " " + user2.getLast_name());

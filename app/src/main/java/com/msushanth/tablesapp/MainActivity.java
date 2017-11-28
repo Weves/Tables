@@ -122,11 +122,23 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Define what is displayed in the tabs
-    private void setupViewPager(ViewPager viewPager) {
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
+    private void setupViewPager(final ViewPager viewPager) {
+        final SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new SearchFormXML(), "Search");
         adapter.addFragment(new ChatFormXML(), "Chat");
         viewPager.setAdapter(adapter);
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {}
+
+            @Override
+            public void onPageSelected(int position) {
+                viewPager.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {}
+        });
     }
 
 
