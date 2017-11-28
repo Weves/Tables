@@ -86,20 +86,78 @@
                     android:textColor="@color/textColorBlack"
                     style="@style/sign_on_edit_text_style" />
 
+
                 <TextView
-                    android:id="@+id/genderTextView"
+                    android:id="@+id/bioTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gender:"
+                    android:text="Enter a short bio:"
                     android:textColor="@color/textColorBlack"
                     android:textSize="25sp"
                     android:layout_marginTop="@dimen/separate_categories_margin" />
-                <Spinner
-                    android:id="@+id/genderSpinner"
-                    android:theme="@style/SpinnerThemeDark"
+                <EditText
+                    android:id="@+id/bioEditText"
+                    style="@style/sign_on_edit_text_style"
+                    android:textColor="@color/textColorBlack"
+                    android:inputType="textMultiLine" />
+
+
+                <TextView
+                    android:id="@+id/tagsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enter some topics of interest:"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="25sp"
+                    android:layout_marginTop="@dimen/separate_categories_margin" />
+                <TextView
+                    android:id="@+id/tagsTextViewDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(ex: Lakers, cooking, baseball, Gary Gillespie)"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="15sp" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center" />
+                    android:orientation="horizontal">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tagsEditText"
+                        style="@style/sign_on_edit_text_style"
+                        android:hint="Enter an interest"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        android:textAlignment="center"
+                        android:textColor="@color/textColorBlack"
+                        android:textColorHint="@color/hintTextColor"
+                        android:theme="@style/normal_edit_text_style"/>
+                    <Button
+                        android:id="@+id/AddInterestButton"
+                        android:layout_margin="5dp"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        style="@style/custom_button_style"
+                        android:textColor="@color/black50"
+                        android:onClick="addInterest"
+                        android:text="Add" />
+                </LinearLayout>
+                <ScrollView
+                    android:id="@+id/InterestsTagsScrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible">
+
+                    <com.cunoraz.tagview.TagView
+                        android:id="@+id/InterestsTagView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp" />
+
+                </ScrollView>
+
 
                 <TextView
                     android:id="@+id/coursesTextView"
@@ -390,77 +448,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-
                 <TextView
-                    android:id="@+id/bioTextView"
+                    android:id="@+id/genderTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Enter a short bio:"
+                    android:text="Gender:"
                     android:textColor="@color/textColorBlack"
                     android:textSize="25sp"
                     android:layout_marginTop="@dimen/separate_categories_margin" />
-                <EditText
-                    android:id="@+id/bioEditText"
-                    style="@style/sign_on_edit_text_style"
-                    android:textColor="@color/textColorBlack"
-                    android:inputType="textMultiLine" />
-
-                <TextView
-                    android:id="@+id/tagsTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Enter some topics of interest:"
-                    android:textColor="@color/textColorBlack"
-                    android:textSize="25sp"
-                    android:layout_marginTop="@dimen/separate_categories_margin" />
-                <TextView
-                    android:id="@+id/tagsTextViewDescription"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="(ex: Lakers, cooking, baseball, Gary Gillespie)"
-                    android:textColor="@color/textColorBlack"
-                    android:textSize="15sp" />
-
-                <LinearLayout
+                <Spinner
+                    android:id="@+id/genderSpinner"
+                    android:theme="@style/SpinnerThemeDark"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/tagsEditText"
-                        style="@style/sign_on_edit_text_style"
-                        android:hint="Enter an interest"
-                        android:layout_weight="1"
-                        android:singleLine="true"
-                        android:textAlignment="center"
-                        android:textColor="@color/textColorBlack"
-                        android:textColorHint="@color/hintTextColor"
-                        android:theme="@style/normal_edit_text_style"/>
-                    <Button
-                        android:id="@+id/AddInterestButton"
-                        android:layout_margin="5dp"
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        style="@style/custom_button_style"
-                        android:textColor="@color/black50"
-                        android:onClick="addInterest"
-                        android:text="Add" />
-                </LinearLayout>
-                <ScrollView
-                    android:id="@+id/InterestsTagsScrollView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="visible">
-
-                    <com.cunoraz.tagview.TagView
-                        android:id="@+id/InterestsTagView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="10dp" />
-
-                </ScrollView>
-
+                    android:layout_gravity="center" />
 
 
                 <Button
