@@ -130,10 +130,10 @@
                         android:layout_margin="5dp"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/rounded_button"
+                        style="@style/custom_button_style"
                         android:textColor="@color/black50"
                         android:onClick="addCourse"
-                        android:text="add" />
+                        android:text="Add" />
                 </LinearLayout>
                 <ScrollView
                     android:id="@+id/CoursesTagsScrollView"
@@ -442,10 +442,10 @@
                         android:layout_margin="5dp"
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/rounded_button"
+                        style="@style/custom_button_style"
                         android:textColor="@color/black50"
                         android:onClick="addInterest"
-                        android:text="add" />
+                        android:text="Add" />
                 </LinearLayout>
                 <ScrollView
                     android:id="@+id/InterestsTagsScrollView"
