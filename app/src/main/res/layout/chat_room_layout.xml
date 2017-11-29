@@ -8,7 +8,7 @@
     android:background="@color/black200">
 
     <include layout="@layout/navigation_actionbar"
-        android:id="@+id/nav_action"
+        android:id="@+id/navigationActionbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -48,7 +48,7 @@
 
     <ListView
         android:id="@+id/messagesListView"
-        android:layout_below="@+id/nav_action"
+        android:layout_below="@+id/navigationActionbar"
         android:layout_above="@+id/messageEditText"
         android:paddingLeft="@dimen/profile_padding"
         android:paddingRight="@dimen/profile_padding"

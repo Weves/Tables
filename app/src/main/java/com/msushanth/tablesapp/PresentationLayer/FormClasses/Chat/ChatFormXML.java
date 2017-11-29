@@ -87,12 +87,20 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String roomID = chatRoomsList.get(position).getRoomID();
 
+                        // Pass in the entire chat
                         Intent chatRoomIntent = new Intent(getActivity(), ChatRoomForm.class);
                         chatRoomIntent.putExtra("chatRoomID", roomID);
                         chatRoomIntent.putExtra("user1name", chatRoomsList.get(position).getUser1Name());
                         chatRoomIntent.putExtra("user1ID", chatRoomsList.get(position).getUser1ID());
                         chatRoomIntent.putExtra("user2name", chatRoomsList.get(position).getUser2Name());
                         chatRoomIntent.putExtra("user2ID", chatRoomsList.get(position).getUser2ID());
+                        chatRoomIntent.putExtra("time", chatRoomsList.get(position).getTime());
+                        chatRoomIntent.putExtra("date", chatRoomsList.get(position).getDate());
+                        chatRoomIntent.putExtra("location", chatRoomsList.get(position).getLocation());
+                        chatRoomIntent.putExtra("user1SentInvite", chatRoomsList.get(position).isUser1SentInvite());
+                        chatRoomIntent.putExtra("user2SentInvite", chatRoomsList.get(position).isUser2SentInvite());
+                        chatRoomIntent.putExtra("user1Accepted", chatRoomsList.get(position).getUser1Accepted());
+                        chatRoomIntent.putExtra("user2Accepted", chatRoomsList.get(position).getUser2Accepted());
 
                         // Open the chat only if both users have accepted the invitation
                         if(chatRoomsList.get(position).getUser1Accepted().equals("YES") &&
@@ -167,6 +175,26 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
                     changeResponse.setText(chatRoomsList.get(position).getUser2Name() + " has declined your invitation.");
                 }
 
+                // If you are User 1 in the chat room, and you have left the chat
+                else if(room.getUser1Accepted().equals("LEFT")) {
+                    convertViewOut = getLayoutInflater().inflate(R.layout.chat_item_invite_pending, null);
+                    TextView chatRoomName = (TextView) convertViewOut.findViewById(R.id.ChatNameTextView);
+                    TextView changeResponse = (TextView) convertViewOut.findViewById(R.id.WaitingForResponseTextView);
+
+                    chatRoomName.setText(chatRoomsList.get(position).getUser2Name());
+                    changeResponse.setText("You have left this chat.");
+                }
+
+                // If you are User 1 in the chat room, and the other user has left the chat
+                else if(room.getUser2Accepted().equals("LEFT")) {
+                    convertViewOut = getLayoutInflater().inflate(R.layout.chat_item_invite_pending, null);
+                    TextView chatRoomName = (TextView) convertViewOut.findViewById(R.id.ChatNameTextView);
+                    TextView changeResponse = (TextView) convertViewOut.findViewById(R.id.WaitingForResponseTextView);
+
+                    chatRoomName.setText(chatRoomsList.get(position).getUser2Name());
+                    changeResponse.setText(chatRoomsList.get(position).getUser2Name() + " has left the chat.");
+                }
+
                 // If you are User 1 in the chat room, you have sent the invite, and User 2 has accepted your invitation
                 else {
                     convertViewOut = getLayoutInflater().inflate(R.layout.chat_item_layout, null);
@@ -177,7 +205,7 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
                     chatRoomName.setText(chatRoomsList.get(position).getUser2Name());
                     if(!chatRoomsList.get(position).getLocation().equals("") || !chatRoomsList.get(position).getTime().equals("")) {
                         whereToMeet.setText("Location: " + chatRoomsList.get(position).getLocation());
-                        whenToMeet.setText("Time: " + chatRoomsList.get(position).getTime());
+                        whenToMeet.setText("Time: " + chatRoomsList.get(position).getDate() + " " + chatRoomsList.get(position).getTime());
                     }
                 }
             }
@@ -202,7 +230,7 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
                         }
                     });
 
-                    // TODO Refesh the fragment after accepting the invitation.
+                    // Refesh the fragment after accepting the invitation.
                     acceptButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -217,7 +245,7 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
                         }
                     });
 
-                    // TODO Refesh the fragment after declining the invitation.
+                    // Refesh the fragment after declining the invitation.
                     declineButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -245,6 +273,26 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
                     changeResponse.setText("You have declined this invitation.");
                 }
 
+                // If you are User 2 in the chat room, and you have left the chat
+                else if(room.getUser2Accepted().equals("LEFT")) {
+                    convertViewOut = getLayoutInflater().inflate(R.layout.chat_item_invite_pending, null);
+                    TextView chatRoomName = (TextView) convertViewOut.findViewById(R.id.ChatNameTextView);
+                    TextView changeResponse = (TextView) convertViewOut.findViewById(R.id.WaitingForResponseTextView);
+
+                    chatRoomName.setText(chatRoomsList.get(position).getUser1Name());
+                    changeResponse.setText("You have left this chat.");
+                }
+
+                // If you are User 2 in the chat room, and the other user has left the chat
+                else if(room.getUser1Accepted().equals("LEFT")) {
+                    convertViewOut = getLayoutInflater().inflate(R.layout.chat_item_invite_pending, null);
+                    TextView chatRoomName = (TextView) convertViewOut.findViewById(R.id.ChatNameTextView);
+                    TextView changeResponse = (TextView) convertViewOut.findViewById(R.id.WaitingForResponseTextView);
+
+                    chatRoomName.setText(chatRoomsList.get(position).getUser1Name());
+                    changeResponse.setText(chatRoomsList.get(position).getUser1Name() + " has left the chat.");
+                }
+
                 // If you are User 2 in the chat room, you have received the invite, and you have accepted the invitation
                 else {
                     convertViewOut = getLayoutInflater().inflate(R.layout.chat_item_layout, null);
@@ -255,7 +303,7 @@ public class ChatFormXML extends android.support.v4.app.Fragment {
                     chatRoomName.setText(chatRoomsList.get(position).getUser1Name());
                     if(!chatRoomsList.get(position).getLocation().equals("") || !chatRoomsList.get(position).getTime().equals("")) {
                         whereToMeet.setText("Location: " + chatRoomsList.get(position).getLocation());
-                        whenToMeet.setText("Time: " + chatRoomsList.get(position).getTime());
+                        whenToMeet.setText("Time: " + chatRoomsList.get(position).getDate() + " " + chatRoomsList.get(position).getTime());
                     }
                 }
             }

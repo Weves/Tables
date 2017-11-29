@@ -1,50 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/sign_on_gradient"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    tools:context="com.msushanth.tablesapp.PresentationLayer.FormClasses.Chat.SetWhenAndWhereToMeetForm">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black200">
 
-    <TextView
-        android:id="@+id/WhenAndWhereText"
+    <include layout="@layout/navigation_actionbar"
+        android:id="@+id/nav_action"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_weight="1"
-        android:gravity="center_horizontal"
-        android:text="When and Where"
-        android:textColor="@color/black50"
-        android:textSize="30sp" />
+        android:layout_height="wrap_content" />
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/WhenAndWhereText">
+        android:layout_below="@+id/nav_action">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/TimeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="10sp"
-                android:paddingTop="10sp"
-                android:text="Time"
-                android:textColor="@color/black50"
+                android:text="Select Time"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/black800"
                 android:textSize="24sp" />
 
             <TimePicker
                 android:id="@+id/timePicker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:background="@color/cardview_light_background"
                 android:clickable="false"
                 android:headerBackground="@color/colorPrimaryA400"
@@ -53,48 +47,46 @@
 
             <TextView
                 android:id="@+id/dateText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="10sp"
-                android:paddingTop="10sp"
-                android:text="Date"
-                android:textColor="@color/black50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="Select Date"
+                android:textColor="@color/black800"
                 android:textSize="24sp" />
 
             <DatePicker
                 android:id="@+id/datePicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="11dp"
-                android:background="@android:color/white"
-                android:calendarTextColor="@drawable/app_logo"
-                android:datePickerMode="calendar"
-                android:headerBackground="@android:color/holo_purple" />
-
+                android:datePickerMode="calendar" />
             <TextView
                 android:id="@+id/LocationText"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="10sp"
-                android:paddingTop="10sp"
-                android:text="Location"
-                android:textColor="@color/black50"
+                android:layout_marginTop="15dp"
+                android:text="Enter Location"
+                android:textColor="@color/black800"
                 android:textSize="24sp" />
 
             <EditText
                 android:id="@+id/LocationInputText"
                 style="@style/sign_on_edit_text_style"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="10sp"
-                android:layout_marginTop="10sp"
                 android:inputType="textPostalAddress"
                 android:singleLine="true" />
+
             <Button
-                style="@style/normal_button_style"
                 android:id="@+id/sumbitTimeLocationButton"
-                android:text="Submit"
-                android:layout_marginTop="30dp" />
+                style="@style/normal_button_style"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="55dp"
+                android:layout_marginRight="55dp"
+                android:layout_marginTop="15dp"
+                android:onClick="submitButtonClicked"
+                android:text="Submit" />
         </LinearLayout>
     </ScrollView>
+
 
 </RelativeLayout>
