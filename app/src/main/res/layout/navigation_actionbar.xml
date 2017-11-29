@@ -9,4 +9,16 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:id="@+id/nav_action">
 
+    <TextView
+        android:id="@+id/pageTitle"
+        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="32dp"
+        android:layout_marginRight="6dp"
+        android:singleLine="true"
+        />
+
 </android.support.v7.widget.Toolbar>

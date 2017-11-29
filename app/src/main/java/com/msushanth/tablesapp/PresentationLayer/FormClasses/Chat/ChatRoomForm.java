@@ -3,7 +3,9 @@ package com.msushanth.tablesapp.PresentationLayer.FormClasses.Chat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,6 +27,8 @@ import com.msushanth.tablesapp.R;
  */
 
 public class ChatRoomForm extends AppCompatActivity {
+
+    private Toolbar mToolbar;
 
     private FirebaseListAdapter<ChatMessage> adapter;
 
@@ -52,6 +56,17 @@ public class ChatRoomForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_room_layout);
 
+        mToolbar = (Toolbar) findViewById(R.id.nav_action);
+        TextView pageTitle = (TextView) mToolbar.findViewById(R.id.pageTitle);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        // add the back button to the toolbar
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
         Intent intent = getIntent();
         chatRoomID = intent.getStringExtra("chatRoomID");
         user1name = intent.getStringExtra("user1name");
@@ -68,12 +83,12 @@ public class ChatRoomForm extends AppCompatActivity {
         currentUsersEmail = firebaseUser.getEmail();
 
         // Set the chat title to the other users name
-        TextView otherUsersNameTextView = findViewById(R.id.otherUsersNameTextView);
+        //TextView otherUsersNameTextView = findViewById(R.id.otherUsersNameTextView);
         if(firebaseAuth.getUid().equals(user1id)) {
-            otherUsersNameTextView.setText(user2name);
+            pageTitle.setText(user2name);
         }
         else {
-            otherUsersNameTextView.setText(user1name);
+            pageTitle.setText(user1name);
         }
 
         messageEditText = (EditText) findViewById(R.id.messageEditText);
@@ -93,6 +108,15 @@ public class ChatRoomForm extends AppCompatActivity {
 
         // Display the messages
         displayChatMessage();
+    }
+
+    // implement the back button to the toolbar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void displayChatMessage() {
@@ -137,7 +161,9 @@ public class ChatRoomForm extends AppCompatActivity {
     }
 
 
+    /*
     public void backButtonClicked(View view) {
         finish();
     }
+    */
 }

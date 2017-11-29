@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,6 +36,8 @@ import java.util.List;
 
 public class SelectMatchedUsersForm extends AppCompatActivity implements SelectMatchedUsersInterface {
 
+    private Toolbar mToolbar;
+
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<ListUser> users = new ArrayList<ListUser>();
@@ -54,6 +59,18 @@ public class SelectMatchedUsersForm extends AppCompatActivity implements SelectM
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_users);
+
+        mToolbar = (Toolbar) findViewById(R.id.nav_action);
+        TextView pageTitle = (TextView) mToolbar.findViewById(R.id.pageTitle);
+        setSupportActionBar(mToolbar);
+        pageTitle.setText("Select Users");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        // add the back button to the toolbar
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -107,6 +124,16 @@ public class SelectMatchedUsersForm extends AppCompatActivity implements SelectM
             public void onCancelled(DatabaseError databaseError) {}
         });
 
+    }
+
+
+    // implement the back button to the toolbar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     ArrayList<ListUser> selectedUsers;
@@ -187,7 +214,7 @@ public class SelectMatchedUsersForm extends AppCompatActivity implements SelectM
 
 
 
-    public void backButtonClicked(View view) {
+    /*public void backButtonClicked(View view) {
         finish();
-    }
+    }*/
 }

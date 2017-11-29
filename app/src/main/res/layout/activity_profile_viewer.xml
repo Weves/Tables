@@ -12,44 +12,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <include layout="@layout/navigation_actionbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:background="@color/colorPrimary700">
-            <ImageView
-                android:id="@+id/profilePicture"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerHorizontal="true"
-                android:paddingTop="10dp"
-                app:srcCompat="@drawable/default_profile_pic_one" />
-
-            <TextView
-                android:id="@+id/UsersName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/profilePicture"
-                android:layout_centerHorizontal="true"
-                android:paddingTop="5dp"
-                android:text="Your Name"
-                android:textColor="@color/textColor"
-                android:textSize="30sp" />
-
-            <!--
-            <TextView
-                android:id="@+id/UsersEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/UsersName"
-                android:layout_centerHorizontal="true"
-                android:paddingTop="5dp"
-                android:text="Users E-mail"
-                android:textColor="@color/textColor"
-                android:textSize="15sp" />
-                -->
-        </RelativeLayout>
-
+            android:layout_height="wrap_content" />
 
 
         <ScrollView
@@ -60,6 +25,46 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:background="@color/colorPrimary500">
+                    <ImageView
+                        android:id="@+id/profilePicture"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:paddingTop="10dp"
+                        android:layout_centerHorizontal="true"
+                        app:srcCompat="@drawable/default_profile_pic_one" />
+
+                    <!--
+                    <TextView
+                        android:id="@+id/UsersName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/profilePicture"
+                        android:layout_centerHorizontal="true"
+                        android:paddingTop="5dp"
+                        android:text="Your Name"
+                        android:textColor="@color/textColor"
+                        android:textSize="30sp" />
+                        -->
+
+                    <!--
+                    <TextView
+                        android:id="@+id/UsersEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/UsersName"
+                        android:layout_centerHorizontal="true"
+                        android:paddingTop="5dp"
+                        android:text="Users E-mail"
+                        android:textColor="@color/textColor"
+                        android:textSize="15sp" />
+                        -->
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -436,6 +441,7 @@
 
     </LinearLayout>
 
+    <!--
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="35dp"
@@ -445,6 +451,7 @@
         android:layout_margin="5dp"
         app:srcCompat="@drawable/ic_arrow_back_white_48px"
         android:onClick="backButtonClicked" />
+        -->
 
 
 </RelativeLayout>

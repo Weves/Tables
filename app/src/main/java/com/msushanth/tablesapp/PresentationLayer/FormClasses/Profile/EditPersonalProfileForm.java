@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
@@ -46,6 +48,9 @@ import java.util.Map;
  */
 
 public class EditPersonalProfileForm extends AppCompatActivity implements EditPersonalProfileInterface {
+
+    private Toolbar mToolbar;
+
 
     EditText usernameEditText;
     EditText firstNameEditText;
@@ -120,6 +125,18 @@ public class EditPersonalProfileForm extends AppCompatActivity implements EditPe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_personal_profile_form);
+
+        mToolbar = (Toolbar) findViewById(R.id.nav_action);
+        TextView pageTitle = (TextView) mToolbar.findViewById(R.id.pageTitle);
+        setSupportActionBar(mToolbar);
+        pageTitle.setText("Edit Profile");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        // add the back button to the toolbar
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         // Create progress dialog and dismiss it once all the data is written to the screen
         final ProgressDialog progressDialog = ProgressDialog.show(EditPersonalProfileForm.this, "Please wait...", "Processing", true);
@@ -238,6 +255,16 @@ public class EditPersonalProfileForm extends AppCompatActivity implements EditPe
         interestsEditText = (EditText) findViewById(R.id.tagsEditText);
         interestsEditText.setImeOptions(EditorInfo.IME_ACTION_DONE);
         interestsEditText.setRawInputType(InputType.TYPE_CLASS_TEXT);
+    }
+
+
+    // implement the back button to the toolbar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -455,10 +482,11 @@ public class EditPersonalProfileForm extends AppCompatActivity implements EditPe
 
 
 
+    /*
     public void backButtonClicked(View view) {
         finish();
     }
-
+    */
 
 
 

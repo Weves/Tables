@@ -6,7 +6,9 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -31,13 +33,17 @@ import java.util.Map;
 
 public class ProfileViewer extends AppCompatActivity {
 
+    private Toolbar mToolbar;
+    private TextView pageTitle;
+
+
     FirebaseAuth firebaseAuth;
     DatabaseReference dbReference;
     FirebaseUser fireBaseUser;
     User currentUserProfile;
     String ID;
 
-    TextView usersName;
+    //TextView usersName;
     //TextView usersEmail;
     TextView usersBio;
     TextView usersGender;
@@ -85,10 +91,21 @@ public class ProfileViewer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_viewer);
 
+        mToolbar = (Toolbar) findViewById(R.id.nav_action);
+        pageTitle = (TextView) mToolbar.findViewById(R.id.pageTitle);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        // add the back button to the toolbar
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
         // Create progress dialog and dismiss it once all the data is written to the screen
         final ProgressDialog progressDialog = ProgressDialog.show(ProfileViewer.this, "Please wait...", "Processing", true);
 
-        usersName = (TextView) findViewById(R.id.UsersName);
+        //usersName = (TextView) findViewById(R.id.UsersName);
         //usersEmail = (TextView) findViewById(R.id.UsersEmail);
         usersBio = (TextView) findViewById(R.id.bioContent);
         usersGender = (TextView) findViewById(R.id.usersGender);
@@ -147,7 +164,9 @@ public class ProfileViewer extends AppCompatActivity {
 
                 // Set the text for the TextViews using the appropriate User data.
                 // set users name text view
-                usersName.setText(currentUserProfile.getFirst_name() + " " + currentUserProfile.getLast_name());
+                //usersName.setText(currentUserProfile.getFirst_name() + " " + currentUserProfile.getLast_name());
+                pageTitle.setText(currentUserProfile.getFirst_name() + " " + currentUserProfile.getLast_name());
+
 
                 //set users email text view
                 //usersEmail.setText(fireBaseUser.getEmail());
@@ -251,8 +270,19 @@ public class ProfileViewer extends AppCompatActivity {
     }
 
 
+    // implement the back button to the toolbar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    /*
     public void backButtonClicked(View v) {
         finish();
     }
-
+    */
 }

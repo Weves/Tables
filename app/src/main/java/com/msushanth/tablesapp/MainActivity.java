@@ -72,7 +72,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Set up the toolbar, which contains the navigation icon, tabs, and app name
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
+        TextView pageTitle = (TextView) mToolbar.findViewById(R.id.pageTitle);
         setSupportActionBar(mToolbar);
+        pageTitle.setText("Tables");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         // Create the navigation drawer
         navigationView = (NavigationView) findViewById(R.id.navigationView);

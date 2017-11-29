@@ -1,14 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
+
+
+
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black200">
 
+    <include layout="@layout/navigation_actionbar"
+        android:id="@+id/nav_action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/nav_action"
+        android:layout_above="@+id/sendInvitations">
+    </android.support.v7.widget.RecyclerView>
+
+    <Button
+        style="@style/custom_button_style"
+        android:id="@+id/sendInvitations"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black50"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="sendInvitationsButtonClicked"
+        android:text="@string/send_invitations" />
+
+
+</RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black200">
+-->
     <!-- android:layout_above="@+id/sendInvitations" -->
     <!-- if you want all the cards to be above the send invitations button. but it looks weird... -->
-    <LinearLayout
+    <!--<LinearLayout
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -66,4 +131,4 @@
         app:srcCompat="@drawable/ic_arrow_back_white_48px"
         android:onClick="backButtonClicked" />
 
-</RelativeLayout>
+</RelativeLayout>-->
