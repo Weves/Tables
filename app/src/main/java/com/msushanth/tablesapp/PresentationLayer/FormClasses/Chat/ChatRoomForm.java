@@ -38,6 +38,8 @@ public class ChatRoomForm extends AppCompatActivity {
     EditText messageEditText;
     ImageView submitButton;
 
+    TextView locationTextView, dateTextView, timeTextView;
+
 
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
@@ -62,6 +64,7 @@ public class ChatRoomForm extends AppCompatActivity {
     String user2Accepted;
 
     Room thisChatRoom;
+
 
 
 
@@ -97,6 +100,20 @@ public class ChatRoomForm extends AppCompatActivity {
         thisChatRoom.setUser2SentInvite(user2SentInvite);
         thisChatRoom.setUser1Accepted(user1Accepted);
         thisChatRoom.setUser2Accepted(user2Accepted);
+
+        locationTextView = (TextView) findViewById(R.id.locationTextView);
+        dateTextView = (TextView) findViewById(R.id.dateTextView);
+        timeTextView = (TextView) findViewById(R.id.timeTextView);
+
+        if(!location.equals("")) {
+            locationTextView.setText("Location: " + location);
+        }
+        if(!date.equals("")) {
+            dateTextView.setText("Date: " + date);
+        }
+        if(!time.equals("")) {
+            timeTextView.setText("Time: " + time);
+        }
 
 
         mToolbar = (Toolbar) findViewById(R.id.navigationActionbar);
@@ -164,7 +181,9 @@ public class ChatRoomForm extends AppCompatActivity {
 
         switch(item.getItemId()) {
             case android.R.id.home:
-                finish();
+                Intent backChatIntent = new Intent(this, MainActivity.class);
+                backChatIntent.putExtra("goToChatTab", true);
+                startActivity(backChatIntent);
                 break;
             case R.id.menu_set_time_location_chat:
                 //Toast.makeText(getApplicationContext(), "Set Time and Location Selected", Toast.LENGTH_SHORT).show();
@@ -192,6 +211,7 @@ public class ChatRoomForm extends AppCompatActivity {
                 // Set the chat title to the other users name
                 //TextView otherUsersNameTextView = findViewById(R.id.otherUsersNameTextView);
                 Intent leaveChatIntent = new Intent(this, MainActivity.class);
+                leaveChatIntent.putExtra("goToChatTab", true);
                 if(firebaseAuth.getUid().equals(user1id)) {
                     thisChatRoom.setUser1Accepted("LEFT");
                     databaseReference.getParent().child(thisChatRoom.getRoomID()).setValue(thisChatRoom);
@@ -248,6 +268,15 @@ public class ChatRoomForm extends AppCompatActivity {
             }
         };
         listOfMessage.setAdapter(adapter);
+    }
+
+
+    // If the user presses the back button (on the bottom)
+    @Override
+    public void onBackPressed() {
+        Intent backChatIntent = new Intent(this, MainActivity.class);
+        backChatIntent.putExtra("goToChatTab", true);
+        startActivity(backChatIntent);
     }
 
 

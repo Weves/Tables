@@ -18,6 +18,7 @@ import com.msushanth.tablesapp.Interfaces.Chat.SetWhenAndWhereToMeetInterface;
 import com.msushanth.tablesapp.MainActivity;
 import com.msushanth.tablesapp.PresentationLayer.ActionClasses.Chat.SetWhenAndWheretoMeetAction;
 import com.msushanth.tablesapp.PresentationLayer.FormClasses.Account.LogInForm;
+import com.msushanth.tablesapp.PresentationLayer.FormClasses.Invitation.ProfileViewer;
 import com.msushanth.tablesapp.R;
 import com.msushanth.tablesapp.Room;
 import com.msushanth.tablesapp.User;
@@ -147,6 +148,8 @@ public class SetWhenAndWhereToMeetForm extends AppCompatActivity implements SetW
 
         String date = (meetingDatePicker.getMonth()+1) + "/" + meetingDatePicker.getDayOfMonth();
 
+        String location = meetingLocationText.getText().toString();
+
         if(hour <= 12) {
             time += hour;
             time += ":";
@@ -170,7 +173,6 @@ public class SetWhenAndWhereToMeetForm extends AppCompatActivity implements SetW
             time += " PM";
         }
 
-        String location = meetingLocationText.getText().toString();
 
         System.out.println("**** Time:" + time + "****");
         System.out.println("**** Date:" + date + "****");
@@ -183,7 +185,28 @@ public class SetWhenAndWhereToMeetForm extends AppCompatActivity implements SetW
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(chatRoomID+"CHAT");
         databaseReference.getParent().child(thisChatRoom.getRoomID()).setValue(thisChatRoom);
 
+        if(location.equals("")) {
+            Toast.makeText(getApplicationContext(), "Enter a location.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
+        Toast.makeText(getApplicationContext(), "Time and Location set", Toast.LENGTH_SHORT).show();
+
+        Intent chatRoomIntent = new Intent(getApplicationContext(), ChatRoomForm.class);
+        chatRoomIntent.putExtra("chatRoomID", thisChatRoom.getRoomID());
+        chatRoomIntent.putExtra("user1name", thisChatRoom.getUser1Name());
+        chatRoomIntent.putExtra("user1ID", thisChatRoom.getUser1ID());
+        chatRoomIntent.putExtra("user2name", thisChatRoom.getUser2Name());
+        chatRoomIntent.putExtra("user2ID", thisChatRoom.getUser2ID());
+        chatRoomIntent.putExtra("time", thisChatRoom.getTime());
+        chatRoomIntent.putExtra("date", thisChatRoom.getDate());
+        chatRoomIntent.putExtra("location", thisChatRoom.getLocation());
+        chatRoomIntent.putExtra("user1SentInvite", thisChatRoom.isUser1SentInvite());
+        chatRoomIntent.putExtra("user2SentInvite", thisChatRoom.isUser2SentInvite());
+        chatRoomIntent.putExtra("user1Accepted", thisChatRoom.getUser1Accepted());
+        chatRoomIntent.putExtra("user2Accepted", thisChatRoom.getUser2Accepted());
+        startActivity(chatRoomIntent);
+        finish();
         //setTimeDateLocation(room);
         /*Intent logInIntent = new Intent();
         startActivity(logInIntent);

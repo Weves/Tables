@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private NavigationView navigationView;
 
+    boolean goToChatTab;
+
 
     FirebaseAuth firebaseAuth;
     DatabaseReference dbReference;
@@ -65,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        goToChatTab = intent.getBooleanExtra("goToChatTab", false);
 
         firebaseAuth = FirebaseAuth.getInstance();
         dbReference = FirebaseDatabase.getInstance().getReference();
@@ -151,8 +156,13 @@ public class MainActivity extends AppCompatActivity {
     private void createTabs() {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(mViewPager);
-        TabLayout.Tab tab = tabLayout.getTabAt(0);
-        tab.select();
+        if(goToChatTab) {
+            TabLayout.Tab tab = tabLayout.getTabAt(1);
+            tab.select();
+        } else {
+            TabLayout.Tab tab = tabLayout.getTabAt(0);
+            tab.select();
+        }
     }
 
 
