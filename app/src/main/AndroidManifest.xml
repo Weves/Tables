@@ -13,7 +13,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".PresentationLayer.FormClasses.Account.LogInForm"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:configChanges = "orientation"
+            android:screenOrientation = "portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
@@ -25,45 +27,63 @@
             android:name=".PresentationLayer.FormClasses.Account.CreateAccountForm"
             android:label="@string/title_activity_create_account"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:configChanges = "orientation"
+            android:screenOrientation = "portrait"/>
         <activity
             android:name=".PresentationLayer.FormClasses.Invitation.SelectMatchedUsersForm"
             android:label="SelectMatchedUsersForm"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:configChanges = "orientation"
+            android:screenOrientation = "portrait"/>
         <activity
             android:name=".PresentationLayer.FormClasses.Chat.ChatRoomForm"
             android:label="ChatRoomForm"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:configChanges = "orientation"
+            android:screenOrientation = "portrait"/>
         <activity
             android:name=".MainActivity"
             android:label="Tables"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:configChanges = "orientation"
+            android:screenOrientation = "portrait"/>
         <activity
             android:name=".PresentationLayer.FormClasses.Profile.CreatePersonalProfileForm"
             android:label="CreatePersonalProfileForm"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:configChanges = "orientation"
+            android:screenOrientation = "portrait"/>
         <activity
             android:name=".PresentationLayer.FormClasses.Profile.EditPersonalProfileForm"
             android:label="EditPersonalProfileForm"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:configChanges = "orientation"
+            android:screenOrientation = "portrait"/>
         <activity
             android:name=".PresentationLayer.FormClasses.Account.PasswordRecoveryForm"
             android:label="PasswordResetForm"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:configChanges = "orientation"
+            android:screenOrientation = "portrait"/>
         <activity
             android:name=".PresentationLayer.FormClasses.Invitation.ProfileViewer"
             android:label="@string/title_activity_profile_viewer"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme"
+            android:configChanges = "orientation"
+            android:screenOrientation = "portrait"/>
         <activity
             android:name=".PresentationLayer.FormClasses.Chat.SetWhenAndWhereToMeetForm"
             android:label="WhenAndWhereToMeet"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme"
+            android:configChanges = "orientation"
+            android:screenOrientation = "portrait"/>
     </application>
 
 </manifest>
