@@ -1,6 +1,6 @@
 package com.msushanth.tablesapp.BusinessLogicLayer.DispatchClasses;
 
-import com.msushanth.tablesapp.BusinessLogicLayer.ManagerClasses.ProfileManager;
+import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.ProfileManager;
 import com.msushanth.tablesapp.Interfaces.Profile.ProfileInterface;
 import com.msushanth.tablesapp.User;
 

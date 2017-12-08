@@ -9,7 +9,7 @@
     android:paddingBottom="70dp"
     android:paddingLeft="48dp"
     android:paddingRight="48dp"
-    tools:context="com.msushanth.tablesapp.PresentationLayer.FormClasses.Account.CreateAccountForm">
+    tools:context="com.msushanth.tablesapp.PresentationLayer.ViewClasses.Account.CreateAccountForm">
 
     <LinearLayout
         android:layout_width="match_parent"

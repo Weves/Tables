@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".PresentationLayer.FormClasses.Account.LogInForm"
+            android:name=".PresentationLayer.ViewClasses.Account.LogInForm"
             android:windowSoftInputMode="adjustPan"
             android:configChanges = "orientation"
             android:screenOrientation = "portrait">
@@ -24,21 +24,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PresentationLayer.FormClasses.Account.CreateAccountForm"
+            android:name=".PresentationLayer.ViewClasses.Account.CreateAccountForm"
             android:label="@string/title_activity_create_account"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"
             android:configChanges = "orientation"
             android:screenOrientation = "portrait"/>
         <activity
-            android:name=".PresentationLayer.FormClasses.Invitation.SelectMatchedUsersForm"
+            android:name=".PresentationLayer.ViewClasses.Invitation.SelectMatchedUsersView"
             android:label="SelectMatchedUsersForm"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"
             android:configChanges = "orientation"
             android:screenOrientation = "portrait"/>
         <activity
-            android:name=".PresentationLayer.FormClasses.Chat.ChatRoomForm"
+            android:name=".PresentationLayer.ViewClasses.Chat.ChatRoomForm"
             android:label="ChatRoomForm"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"
@@ -52,34 +52,34 @@
             android:configChanges = "orientation"
             android:screenOrientation = "portrait"/>
         <activity
-            android:name=".PresentationLayer.FormClasses.Profile.CreatePersonalProfileForm"
+            android:name=".PresentationLayer.ViewClasses.Profile.CreatePersonalProfileForm"
             android:label="CreatePersonalProfileForm"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"
             android:configChanges = "orientation"
             android:screenOrientation = "portrait"/>
         <activity
-            android:name=".PresentationLayer.FormClasses.Profile.EditPersonalProfileForm"
+            android:name=".PresentationLayer.ViewClasses.Profile.EditPersonalProfileForm"
             android:label="EditPersonalProfileForm"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"
             android:configChanges = "orientation"
             android:screenOrientation = "portrait"/>
         <activity
-            android:name=".PresentationLayer.FormClasses.Account.PasswordRecoveryForm"
+            android:name=".PresentationLayer.ViewClasses.Account.PasswordRecoveryForm"
             android:label="PasswordResetForm"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"
             android:configChanges = "orientation"
             android:screenOrientation = "portrait"/>
         <activity
-            android:name=".PresentationLayer.FormClasses.Invitation.ProfileViewer"
+            android:name=".PresentationLayer.ViewClasses.Invitation.ProfileViewer"
             android:label="@string/title_activity_profile_viewer"
             android:theme="@style/AppTheme"
             android:configChanges = "orientation"
             android:screenOrientation = "portrait"/>
         <activity
-            android:name=".PresentationLayer.FormClasses.Chat.SetWhenAndWhereToMeetForm"
+            android:name=".PresentationLayer.ViewClasses.Chat.SetWhenAndWhereToMeetForm"
             android:label="WhenAndWhereToMeet"
             android:theme="@style/AppTheme"
             android:configChanges = "orientation"

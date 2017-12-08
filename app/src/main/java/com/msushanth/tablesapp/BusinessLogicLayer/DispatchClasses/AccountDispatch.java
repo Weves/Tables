@@ -2,7 +2,7 @@ package com.msushanth.tablesapp.BusinessLogicLayer.DispatchClasses;
 
 import android.content.Context;
 
-import com.msushanth.tablesapp.BusinessLogicLayer.ManagerClasses.AccountManager;
+import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.AccountManager;
 
 /**
  * Created by Sushanth on 11/10/17.

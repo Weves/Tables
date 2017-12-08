@@ -8,7 +8,7 @@
     android:paddingBottom="30dp"
     android:paddingLeft="48dp"
     android:paddingRight="48dp"
-    tools:context="com.msushanth.tablesapp.PresentationLayer.FormClasses.Profile.CreatePersonalProfileForm">
+    tools:context="com.msushanth.tablesapp.PresentationLayer.ViewClasses.Profile.CreatePersonalProfileForm">
 
     <TextView
         android:id="@+id/createProfileTextView"

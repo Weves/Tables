@@ -7,7 +7,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.msushanth.tablesapp.BusinessLogicLayer.ManagerClasses.ChatManager;
 import com.msushanth.tablesapp.Interfaces.Chat.ChatInterface;
 import com.msushanth.tablesapp.Room;
 import com.msushanth.tablesapp.User;

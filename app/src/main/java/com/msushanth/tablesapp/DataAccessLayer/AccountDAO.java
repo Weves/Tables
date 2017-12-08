@@ -9,9 +9,7 @@ import java.lang.String;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.msushanth.tablesapp.MainActivity;
-import com.msushanth.tablesapp.PresentationLayer.FormClasses.Account.CreateAccountForm;
-import com.msushanth.tablesapp.PresentationLayer.FormClasses.Account.LogInForm;
+import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Account.LogInForm;
 
 /**
  * Created by Sushanth on 11/10/17.

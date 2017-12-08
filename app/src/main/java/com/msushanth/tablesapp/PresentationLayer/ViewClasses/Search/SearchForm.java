@@ -1,47 +1,47 @@
-package com.msushanth.tablesapp.BusinessLogicLayer.DispatchClasses;
+package com.msushanth.tablesapp.PresentationLayer.ViewClasses.Search;
 
-import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.SearchController;
 import com.msushanth.tablesapp.Interfaces.Search.SearchInterface;
+import com.msushanth.tablesapp.PresentationLayer.ActionClasses.Search.SearchAction;
 
 /**
- * Created by Sushanth on 11/10/17.
+ * Created by Sushanth on 11/9/17.
  * Implemented by YinlongQian on 11/19/17
  */
 
-public class SearchDispatch implements SearchInterface{
+public class SearchForm implements SearchInterface {
     private String[] idList;
     private String[] lastNameList;
     private String[] firstNameList;
     private String[][] tagMatrix;
 
-    public SearchDispatch(int inputNum){
+    public SearchForm(int inputNum){
         this.idList = new String[inputNum];
         this.lastNameList = new String[inputNum];
         this.firstNameList = new String[inputNum];
         this.tagMatrix = new String[inputNum][5];
     }
 
-    @Override
     public void searchEngine(int num){
-
+        SearchAction nextLayer = new SearchAction(num);
+        nextLayer.searchEngine(num);
+        this.idList = nextLayer.getIdList();
+        this.lastNameList = nextLayer.getLastNameList();
+        this.firstNameList = nextLayer.getFirstNameList();
+        this.tagMatrix = nextLayer.getTagMatrix();
     }
 
-    @Override
     public String[] getIdList(){
         return this.idList;
     }
 
-    @Override
     public String[] getLastNameList(){
         return this.lastNameList;
     }
 
-    @Override
     public String[] getFirstNameList(){
         return this.firstNameList;
     }
 
-    @Override
     public String[][] getTagMatrix(){
         return this.tagMatrix;
     }
