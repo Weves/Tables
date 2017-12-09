@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.AccountController;
 import com.msushanth.tablesapp.MainActivity;
 import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Profile.CreatePersonalProfileView;
 import com.msushanth.tablesapp.R;
@@ -33,6 +34,10 @@ public class LogInForm extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     DatabaseReference dbReference;
     FirebaseUser fireBaseUser;
+
+    ProgressDialog progressDialog;
+
+    AccountController accountController = new AccountController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,7 @@ public class LogInForm extends AppCompatActivity {
         }*/
     }
 
+    // handles user input of clicking on the sign in button
     public void signInButtonClicked(View v) {
 
         String email = emailET.getText().toString();
@@ -62,10 +68,12 @@ public class LogInForm extends AppCompatActivity {
             return;
         }
 
+        progressDialog = ProgressDialog.show(LogInForm.this, "Please wait...", "Processing", true);
 
-        final ProgressDialog progressDialog = ProgressDialog.show(LogInForm.this, "Please wait...", "Processing", true);
+        // try to login
+        accountController.login(email, password, this);
 
-        (firebaseAuth.signInWithEmailAndPassword(email, password))
+        /*(firebaseAuth.signInWithEmailAndPassword(email, password))
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -111,7 +119,7 @@ public class LogInForm extends AppCompatActivity {
                     Toast.makeText(LogInForm.this, "Sign In Failed.", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
 
     }
 
@@ -148,4 +156,34 @@ public class LogInForm extends AppCompatActivity {
         PasswordRecoveryForm passwordRecoveryForm = new PasswordRecoveryForm();
         passwordRecoveryForm.resetPassword();
     }
+
+    // succesful login with a new account
+    public void successfulLoginNew() {
+        progressDialog.dismiss();
+        Intent mainActivity = new Intent(LogInForm.this, CreatePersonalProfileView.class);
+        startActivity(mainActivity);
+        finish();
+
+    }
+
+    // succesful login with an already created account
+    public void successfulLoginOld() {
+        progressDialog.dismiss();
+        Intent mainActivity = new Intent(LogInForm.this, MainActivity.class);
+        startActivity(mainActivity);
+        finish();
+    }
+
+    // account unverified
+    public void loginUnverified() {
+        progressDialog.dismiss();
+        Toast.makeText(LogInForm.this, "Your email has not yet been verified. Check your email.", Toast.LENGTH_SHORT).show();
+    }
+
+    // incorrect username/pw
+    public void incorrectCredentials() {
+        progressDialog.dismiss();
+        Toast.makeText(LogInForm.this, "Sign In Failed.", Toast.LENGTH_SHORT).show();
+    }
+
 }

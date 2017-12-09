@@ -14,6 +14,7 @@ import com.msushanth.tablesapp.R;
  * Created by Sushanth on 11/9/17.
  */
 
+// view that handles showing the user the passowrd recovery screen and handling their input
 public class PasswordRecoveryForm extends AppCompatActivity {
 
     EditText emailEditText;

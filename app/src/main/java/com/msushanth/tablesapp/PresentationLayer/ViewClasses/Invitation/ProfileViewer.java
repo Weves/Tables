@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.ProfileController;
 import com.msushanth.tablesapp.R;
 import com.msushanth.tablesapp.User;
 
@@ -31,11 +32,6 @@ public class ProfileViewer extends AppCompatActivity {
     private Toolbar mToolbar;
     private TextView pageTitle;
 
-
-    FirebaseAuth firebaseAuth;
-    DatabaseReference dbReference;
-    FirebaseUser fireBaseUser;
-    User currentUserProfile;
     String ID;
 
     //TextView usersName;
@@ -81,8 +77,10 @@ public class ProfileViewer extends AppCompatActivity {
 
     String [] interestsArray;
 
+    // create the screen to display a users profile
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_viewer);
 
@@ -100,8 +98,6 @@ public class ProfileViewer extends AppCompatActivity {
         // Create progress dialog and dismiss it once all the data is written to the screen
         final ProgressDialog progressDialog = ProgressDialog.show(ProfileViewer.this, "Please wait...", "Processing", true);
 
-        //usersName = (TextView) findViewById(R.id.UsersName);
-        //usersEmail = (TextView) findViewById(R.id.UsersEmail);
         usersBio = (TextView) findViewById(R.id.bioContent);
         usersGender = (TextView) findViewById(R.id.usersGender);
 
@@ -141,127 +137,13 @@ public class ProfileViewer extends AppCompatActivity {
         artsTextView = (TextView) findViewById(R.id.artsInterestTextView);
         travelTextView = (TextView) findViewById(R.id.travelInterestTextView);
 
+        Intent intent = getIntent();
+        ID = intent.getStringExtra("matchedUsersID");
+
+        getUser(ID);
 
 
-
-        // Pass in the Users unique id of the profile you want to view as part of the intent (from SelectMatchedUser).
-        firebaseAuth = FirebaseAuth.getInstance();
-        dbReference = FirebaseDatabase.getInstance().getReference();
-        fireBaseUser = firebaseAuth.getCurrentUser();
-        // Get user data from database and display it
-        dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This is the current users profile
-                Intent intent = getIntent();
-                ID = intent.getStringExtra("matchedUsersID");
-                currentUserProfile = dataSnapshot.child(ID).getValue(User.class);
-
-                // Set the text for the TextViews using the appropriate User data.
-                // set users name text view
-                //usersName.setText(currentUserProfile.getFirst_name() + " " + currentUserProfile.getLast_name());
-                pageTitle.setText(currentUserProfile.getFirst_name() + " " + currentUserProfile.getLast_name());
-
-
-                //set users email text view
-                //usersEmail.setText(fireBaseUser.getEmail());
-                usersBio.setText(currentUserProfile.getBio());
-
-                List<String> coursesArrayList = currentUserProfile.getCourses();
-                for(int i=0; i<coursesArrayList.size(); i++) {
-                    Tag tag = new Tag(coursesArrayList.get(i));
-                    tag.layoutColor = Color.parseColor("#7C4DFF");
-                    tag.layoutColorPress = Color.parseColor("#7C4DFF");
-                    coursesTagView.addTag(tag);
-                }
-
-                List<String> tagsArrayList = currentUserProfile.getTags();
-                for(int i=0; i<tagsArrayList.size(); i++) {
-                    Tag tag = new Tag(tagsArrayList.get(i));
-                    tag.layoutColor = Color.parseColor("#7C4DFF");
-                    tag.layoutColorPress = Color.parseColor("#7C4DFF");
-                    interestsTagView.addTag(tag);
-                }
-
-
-                // set users interest levels textview
-                Resources res = getResources();
-                interestsArray = res.getStringArray(R.array.interests);
-                Map<String,Integer> interestsMap = currentUserProfile.getInterests();
-
-                if(interestsMap.get(interestsArray[0]) != 0) {
-                    sportsProgressBar.setProgress(interestsMap.get(interestsArray[0]));
-                }
-                if(interestsMap.get(interestsArray[1]) != 0) {
-                    musicProgressBar.setProgress(interestsMap.get(interestsArray[1]));
-                }
-                if(interestsMap.get(interestsArray[2]) != 0) {
-                    gamesProgressBar.setProgress(interestsMap.get(interestsArray[2]));
-                }
-                if(interestsMap.get(interestsArray[3]) != 0) {
-                    moviesProgressBar.setProgress(interestsMap.get(interestsArray[3]));
-                }
-                if(interestsMap.get(interestsArray[4]) != 0) {
-                    technologyProgressBar.setProgress(interestsMap.get(interestsArray[4]));
-                }
-                if(interestsMap.get(interestsArray[5]) != 0) {
-                    scienceProgressBar.setProgress(interestsMap.get(interestsArray[5]));
-                }
-                if(interestsMap.get(interestsArray[6]) != 0) {
-                    politicsProgressBar.setProgress(interestsMap.get(interestsArray[6]));
-                }
-                if(interestsMap.get(interestsArray[7]) != 0) {
-                    historyProgressBar.setProgress(interestsMap.get(interestsArray[7]));
-                }
-                if(interestsMap.get(interestsArray[8]) != 0) {
-                    engineeringProgressBar.setProgress(interestsMap.get(interestsArray[8]));
-                }
-                if(interestsMap.get(interestsArray[9]) != 0) {
-                    economicsProgressBar.setProgress(interestsMap.get(interestsArray[9]));
-                }
-                if(interestsMap.get(interestsArray[10]) != 0) {
-                    literatureProgressBar.setProgress(interestsMap.get(interestsArray[10]));
-                }
-                if(interestsMap.get(interestsArray[11]) != 0) {
-                    comicsProgressBar.setProgress(interestsMap.get(interestsArray[11]));
-                }
-                if(interestsMap.get(interestsArray[12]) != 0) {
-                    religionProgressBar.setProgress(interestsMap.get(interestsArray[12]));
-                }
-                if(interestsMap.get(interestsArray[13]) != 0) {
-                    artsProgressBar.setProgress(interestsMap.get(interestsArray[13]));
-                }
-                if(interestsMap.get(interestsArray[14]) != 0) {
-                    travelProgressBar.setProgress(interestsMap.get(interestsArray[14]));
-                }
-
-
-                sportsTextView.setText("Sports (" + interestsMap.get(interestsArray[0]) + ")");
-                musicTextView.setText("Music (" + interestsMap.get(interestsArray[1]) + ")");
-                gamesTextView.setText("Games (" + interestsMap.get(interestsArray[2]) + ")");
-                moviesTextView.setText("Movies (" + interestsMap.get(interestsArray[3]) + ")");
-                technologyTextView.setText("Technology (" + interestsMap.get(interestsArray[4]) + ")");
-                scienceTextView.setText("Science (" + interestsMap.get(interestsArray[5]) + ")");
-                politicsTextView.setText("Politics (" + interestsMap.get(interestsArray[6]) + ")");
-                historyTextView.setText("History (" + interestsMap.get(interestsArray[7]) + ")");
-                engineeringTextView.setText("Engineering (" + interestsMap.get(interestsArray[8]) + ")");
-                economicsTextView.setText("Economics (" + interestsMap.get(interestsArray[9]) + ")");
-                literatureTextView.setText("Literature (" + interestsMap.get(interestsArray[10]) + ")");
-                comicsTextView.setText("Comics (" + interestsMap.get(interestsArray[11]) + ")");
-                religionTextView.setText("Religion (" + interestsMap.get(interestsArray[12]) + ")");
-                artsTextView.setText("Arts (" + interestsMap.get(interestsArray[13]) + ")");
-                travelTextView.setText("Travel (" + interestsMap.get(interestsArray[14]) + ")");
-
-
-                // set users gender textview
-                usersGender.setText(currentUserProfile.getGender());
-
-                progressDialog.dismiss();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        });
+        progressDialog.dismiss();
     }
 
 
@@ -275,9 +157,115 @@ public class ProfileViewer extends AppCompatActivity {
     }
 
 
-    /*
-    public void backButtonClicked(View v) {
-        finish();
+    // get a users info and set the display elemements for this class
+    private void getUser(String ID) {
+        ProfileController profileController = new ProfileController();
+        profileController.getUser(ID, this);
     }
-    */
+
+    // set the display elements on the screen
+    public void setDisplayElements(User currentUserProfile) {
+
+        // Set the text for the TextViews using the appropriate User data.
+        // set users name text view
+        //usersName.setText(currentUserProfile.getFirst_name() + " " + currentUserProfile.getLast_name());
+        pageTitle.setText(currentUserProfile.getFirst_name() + " " + currentUserProfile.getLast_name());
+
+
+        //set users email text view
+        //usersEmail.setText(fireBaseUser.getEmail());
+        usersBio.setText(currentUserProfile.getBio());
+
+        List<String> coursesArrayList = currentUserProfile.getCourses();
+        for(int i=0; i<coursesArrayList.size(); i++) {
+            Tag tag = new Tag(coursesArrayList.get(i));
+            tag.layoutColor = Color.parseColor("#7C4DFF");
+            tag.layoutColorPress = Color.parseColor("#7C4DFF");
+            coursesTagView.addTag(tag);
+        }
+
+        List<String> tagsArrayList = currentUserProfile.getTags();
+        for(int i=0; i<tagsArrayList.size(); i++) {
+            Tag tag = new Tag(tagsArrayList.get(i));
+            tag.layoutColor = Color.parseColor("#7C4DFF");
+            tag.layoutColorPress = Color.parseColor("#7C4DFF");
+            interestsTagView.addTag(tag);
+        }
+
+
+        // set users interest levels textview
+        Resources res = getResources();
+        interestsArray = res.getStringArray(R.array.interests);
+        Map<String,Integer> interestsMap = currentUserProfile.getInterests();
+
+        if(interestsMap.get(interestsArray[0]) != 0) {
+            sportsProgressBar.setProgress(interestsMap.get(interestsArray[0]));
+        }
+        if(interestsMap.get(interestsArray[1]) != 0) {
+            musicProgressBar.setProgress(interestsMap.get(interestsArray[1]));
+        }
+        if(interestsMap.get(interestsArray[2]) != 0) {
+            gamesProgressBar.setProgress(interestsMap.get(interestsArray[2]));
+        }
+        if(interestsMap.get(interestsArray[3]) != 0) {
+            moviesProgressBar.setProgress(interestsMap.get(interestsArray[3]));
+        }
+        if(interestsMap.get(interestsArray[4]) != 0) {
+            technologyProgressBar.setProgress(interestsMap.get(interestsArray[4]));
+        }
+        if(interestsMap.get(interestsArray[5]) != 0) {
+            scienceProgressBar.setProgress(interestsMap.get(interestsArray[5]));
+        }
+        if(interestsMap.get(interestsArray[6]) != 0) {
+            politicsProgressBar.setProgress(interestsMap.get(interestsArray[6]));
+        }
+        if(interestsMap.get(interestsArray[7]) != 0) {
+            historyProgressBar.setProgress(interestsMap.get(interestsArray[7]));
+        }
+        if(interestsMap.get(interestsArray[8]) != 0) {
+            engineeringProgressBar.setProgress(interestsMap.get(interestsArray[8]));
+        }
+        if(interestsMap.get(interestsArray[9]) != 0) {
+            economicsProgressBar.setProgress(interestsMap.get(interestsArray[9]));
+        }
+        if(interestsMap.get(interestsArray[10]) != 0) {
+            literatureProgressBar.setProgress(interestsMap.get(interestsArray[10]));
+        }
+        if(interestsMap.get(interestsArray[11]) != 0) {
+            comicsProgressBar.setProgress(interestsMap.get(interestsArray[11]));
+        }
+        if(interestsMap.get(interestsArray[12]) != 0) {
+            religionProgressBar.setProgress(interestsMap.get(interestsArray[12]));
+        }
+        if(interestsMap.get(interestsArray[13]) != 0) {
+            artsProgressBar.setProgress(interestsMap.get(interestsArray[13]));
+        }
+        if(interestsMap.get(interestsArray[14]) != 0) {
+            travelProgressBar.setProgress(interestsMap.get(interestsArray[14]));
+        }
+
+
+        sportsTextView.setText("Sports (" + interestsMap.get(interestsArray[0]) + ")");
+        musicTextView.setText("Music (" + interestsMap.get(interestsArray[1]) + ")");
+        gamesTextView.setText("Games (" + interestsMap.get(interestsArray[2]) + ")");
+        moviesTextView.setText("Movies (" + interestsMap.get(interestsArray[3]) + ")");
+        technologyTextView.setText("Technology (" + interestsMap.get(interestsArray[4]) + ")");
+        scienceTextView.setText("Science (" + interestsMap.get(interestsArray[5]) + ")");
+        politicsTextView.setText("Politics (" + interestsMap.get(interestsArray[6]) + ")");
+        historyTextView.setText("History (" + interestsMap.get(interestsArray[7]) + ")");
+        engineeringTextView.setText("Engineering (" + interestsMap.get(interestsArray[8]) + ")");
+        economicsTextView.setText("Economics (" + interestsMap.get(interestsArray[9]) + ")");
+        literatureTextView.setText("Literature (" + interestsMap.get(interestsArray[10]) + ")");
+        comicsTextView.setText("Comics (" + interestsMap.get(interestsArray[11]) + ")");
+        religionTextView.setText("Religion (" + interestsMap.get(interestsArray[12]) + ")");
+        artsTextView.setText("Arts (" + interestsMap.get(interestsArray[13]) + ")");
+        travelTextView.setText("Travel (" + interestsMap.get(interestsArray[14]) + ")");
+
+
+        // set users gender textview
+        usersGender.setText(currentUserProfile.getGender());
+
+    }
+
+
 }

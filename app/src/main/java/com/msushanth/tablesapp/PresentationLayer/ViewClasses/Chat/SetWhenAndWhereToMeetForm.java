@@ -169,10 +169,6 @@ public class SetWhenAndWhereToMeetForm extends AppCompatActivity implements SetW
         }
 
 
-        System.out.println("**** Time:" + time + "****");
-        System.out.println("**** Date:" + date + "****");
-        System.out.println("**** Location:" + location + "****");
-
         thisChatRoom.setTime(time);
         thisChatRoom.setDate(date);
         thisChatRoom.setLocation(location);

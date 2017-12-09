@@ -2,6 +2,8 @@ package com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses;
 
 import com.msushanth.tablesapp.DataAccessLayer.ProfileDAO;
 import com.msushanth.tablesapp.Interfaces.Profile.ProfileInterface;
+import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Account.LogInForm;
+import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Invitation.ProfileViewer;
 import com.msushanth.tablesapp.User;
 
 /**
@@ -20,7 +22,6 @@ public class ProfileController implements ProfileInterface {
         profileDAO.setProfile(user);
     }
 
-
     // edit existing users profile information in the database
     @Override
     public void editProfile(User user) {
@@ -36,4 +37,11 @@ public class ProfileController implements ProfileInterface {
     public void setFields() {
         profileDAO.setFields();
     }
+
+    // get a specific users info and set the display elements on the screen with that users info
+    public void getUser(String ID, ProfileViewer viewClass) {
+        profileDAO.getUser(ID, viewClass);
+    }
+
+
 }

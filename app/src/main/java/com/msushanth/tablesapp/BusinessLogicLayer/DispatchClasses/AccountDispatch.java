@@ -2,7 +2,7 @@ package com.msushanth.tablesapp.BusinessLogicLayer.DispatchClasses;
 
 import android.content.Context;
 
-import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.AccountManager;
+import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.AccountController;
 
 /**
  * Created by Sushanth on 11/10/17.
@@ -10,12 +10,12 @@ import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.AccountManag
 
 public class AccountDispatch {
     public void logout(){
-        AccountManager ma = new AccountManager();
+        AccountController ma = new AccountController();
         ma.logout();
     }
 
     public void passwordRecovery(String email, Context context){
-        AccountManager ma = new AccountManager();
+        AccountController ma = new AccountController();
         ma.passwordRecovery(email, context);
     }
 }
