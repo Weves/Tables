@@ -29,7 +29,7 @@ import java.util.Collections;
 
 
 // class to handle
-public class SearchFormXML extends android.support.v4.app.Fragment {
+public class SearchView extends android.support.v4.app.Fragment {
 
     final private int NAMES = 0;
     final private int TAGS = 1;
@@ -77,88 +77,7 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
         this.container = container;
         this.savedInstanceState = savedInstanceState;
 
-
-        /*firebaseAuth = FirebaseAuth.getInstance();
-        dbReference = FirebaseDatabase.getInstance().getReference();
-        fireBaseUser = firebaseAuth.getCurrentUser();
-
-
-        allUsers = new ArrayList<User>();
-        names = new ArrayList<String>();
-        tags = new ArrayList<String>();
-        IDs = new ArrayList<String>();
-        IDsForRandom = new ArrayList<String>();
-        allLevels = new ArrayList<pair<Double,Integer>>();
-
-
-        dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-                // This is the current users profile
-                currentUserProfile = dataSnapshot.child(fireBaseUser.getUid()).getValue(User.class);
-                ArrayList<Integer> userLevels = new ArrayList<Integer>(currentUserProfile.getInterests().values());
-
-
-
-                // This will get the profile of everyone in the database
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    User user = snapshot.getValue(User.class);
-
-                    //textToDisplay += "\n\n\n****************\n*** ANOTHER USER ***\n";
-                    //textToDisplay += user.userDataToPrint();
-                    if (user.isProfileCreated()) {
-                        allUsers.add(user);
-
-
-                        names.add(user.getFirst_name() + " " + user.getLast_name());
-                        String tagsString = "";
-                        for (int i=0; i < MAX_TAGS && i < user.getTags().size(); i++) {
-                            tagsString += user.getTags().get(i) + ", ";
-                        }
-                        tagsString = tagsString.substring(0, tagsString.length()-2);
-                        tags.add(tagsString);
-                        IDs.add(user.getIdForFirebase());
-                        IDsForRandom.add(user.getIdForFirebase());
-
-
-                        ArrayList<Integer> currLevels = new ArrayList<Integer>(user.getInterests().values());
-                        Double distance = euclideanDist(userLevels, currLevels);
-                        allLevels.add(new pair(distance, IDs.size() - 1));
-                    }
-                }
-
-                Collections.sort(allLevels, new SortByDist());
-
-                names = new ArrayList<String>();
-                tags = new ArrayList<String>();
-                IDs = new ArrayList<String>();
-                for(int i = 0; i < allLevels.size(); i++){
-
-                    int index = allLevels.get(i).index;
-                    User user1 = allUsers.get(index);
-
-                    if(!user1.getIdForFirebase().equals(currentUserProfile.getIdForFirebase())) {
-
-
-                        names.add(user1.getFirst_name() + " " + user1.getLast_name());
-                        String tagsString = "";
-                        for (int x = 0; x < MAX_TAGS && x < user1.getTags().size(); x++) {
-                            tagsString += user1.getTags().get(x) + ", ";
-                        }
-                        tagsString = tagsString.substring(0, tagsString.length() - 2);
-                        tags.add(tagsString);
-                        IDs.add(user1.getIdForFirebase());
-                    }
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        }); */
-
+        // use algorithm to find similar users
         usersS = searchController.searchEngine();
 
         searchForUsersButton.setOnClickListener(new View.OnClickListener() {
@@ -167,7 +86,6 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
 
                 //send arraylist of possible users (found by the algorithm) as part of this intent
                 Intent selectMatchedUsersIntent = new Intent(getActivity(), SelectMatchedUsersView.class);
-                System.out.println("*************" +  usersS.get(NAMES));
                 selectMatchedUsersIntent.putStringArrayListExtra("matchedUsersNames", usersS.get(NAMES));
                 selectMatchedUsersIntent.putStringArrayListExtra("matchedUsersTags", usersS.get(TAGS));
                 selectMatchedUsersIntent.putStringArrayListExtra("matchedUsersIDs", usersS.get(IDS));
@@ -177,7 +95,7 @@ public class SearchFormXML extends android.support.v4.app.Fragment {
             }
         });
 
-
+        // find random users
         usersR = searchController.randomSearch();
 
         searchForRandomUsersButton.setOnClickListener(new View.OnClickListener() {

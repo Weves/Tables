@@ -22,11 +22,9 @@ import android.widget.Toast;
 
 import com.cunoraz.tagview.Tag;
 import com.cunoraz.tagview.TagView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.ProfileController;
 import com.msushanth.tablesapp.Interfaces.Profile.EditPersonalProfileInterface;
 import com.msushanth.tablesapp.PresentationLayer.ActionClasses.Profile.EditPersonalProfileAction;
 import com.msushanth.tablesapp.R;
@@ -42,7 +40,8 @@ import java.util.Map;
  * Created by Sushanth on 11/9/17.
  */
 
-public class EditPersonalProfileForm extends AppCompatActivity implements EditPersonalProfileInterface {
+// handles displaying and taking in user input from the edit personal profile screen
+public class EditPersonalProfileView extends AppCompatActivity implements EditPersonalProfileInterface {
 
     private Toolbar mToolbar;
 
@@ -116,6 +115,9 @@ public class EditPersonalProfileForm extends AppCompatActivity implements EditPe
     List<String> room_ids;
 
 
+    ProfileController profileController = new ProfileController();
+
+    // create the edit profile screen and assign variables to different display elements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,10 +136,9 @@ public class EditPersonalProfileForm extends AppCompatActivity implements EditPe
         }
 
         // Create progress dialog and dismiss it once all the data is written to the screen
-        final ProgressDialog progressDialog = ProgressDialog.show(EditPersonalProfileForm.this, "Please wait...", "Processing", true);
+        final ProgressDialog progressDialog = ProgressDialog.show(EditPersonalProfileView.this, "Please wait...", "Processing", true);
 
 
-        dbReference = FirebaseDatabase.getInstance().getReference();
         currentUserID = getIntent().getStringExtra("UserID");
 
 
@@ -159,7 +160,10 @@ public class EditPersonalProfileForm extends AppCompatActivity implements EditPe
         interestsTagView = (TagView) findViewById(R.id.InterestsTagView);
         addInterestButton = (Button) findViewById(R.id.AddInterestButton);
 
-        dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        // set fields on the screen that rely on database values
+        setFields();
+
+        /*dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 System.out.println("******* EDITING USER *******");
@@ -184,13 +188,13 @@ public class EditPersonalProfileForm extends AppCompatActivity implements EditPe
 
                     @Override
                     public void onTagDeleted(final TagView view, final Tag tag, final int position) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(EditPersonalProfileForm.this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(EditPersonalProfileView.this);
                         builder.setMessage("\"" + tag.text + "\" will be delete. Are you sure?");
                         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 view.remove(position);
-                                Toast.makeText(EditPersonalProfileForm.this, "\"" + tag.text + "\" deleted", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EditPersonalProfileView.this, "\"" + tag.text + "\" deleted", Toast.LENGTH_SHORT).show();
                                 coursesArrayList.remove(tag.text);
                             }
                         });
@@ -211,13 +215,13 @@ public class EditPersonalProfileForm extends AppCompatActivity implements EditPe
 
                     @Override
                     public void onTagDeleted(final TagView view, final Tag tag, final int position) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(EditPersonalProfileForm.this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(EditPersonalProfileView.this);
                         builder.setMessage("\"" + tag.text + "\" will be delete. Are you sure?");
                         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 view.remove(position);
-                                Toast.makeText(EditPersonalProfileForm.this, "\"" + tag.text + "\" deleted", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EditPersonalProfileView.this, "\"" + tag.text + "\" deleted", Toast.LENGTH_SHORT).show();
                                 interestsArrayList.remove(tag.text);
                             }
                         });
@@ -235,9 +239,9 @@ public class EditPersonalProfileForm extends AppCompatActivity implements EditPe
 
             @Override
             public void onCancelled(DatabaseError databaseError) {}
-        });
+        }); */
 
-
+        // finish setting up the screen
         coursesEditText.setImeOptions(EditorInfo.IME_ACTION_DONE);
         coursesEditText.setRawInputType(InputType.TYPE_CLASS_TEXT);
 
@@ -250,6 +254,8 @@ public class EditPersonalProfileForm extends AppCompatActivity implements EditPe
         interestsEditText = (EditText) findViewById(R.id.tagsEditText);
         interestsEditText.setImeOptions(EditorInfo.IME_ACTION_DONE);
         interestsEditText.setRawInputType(InputType.TYPE_CLASS_TEXT);
+
+        progressDialog.dismiss();
     }
 
 
@@ -261,8 +267,6 @@ public class EditPersonalProfileForm extends AppCompatActivity implements EditPe
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 
 
     public void continueEditProfileButtonClicked(View view) {
@@ -365,7 +369,7 @@ public class EditPersonalProfileForm extends AppCompatActivity implements EditPe
             */
 
             // Finish editing profile activity when updated profile.
-            Toast.makeText(EditPersonalProfileForm.this, "Profile has been edited.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditPersonalProfileView.this, "Profile has been edited.", Toast.LENGTH_SHORT).show();
 
 
             // Wait until the toast is done displaying before going back exiting this activity
@@ -415,6 +419,8 @@ public class EditPersonalProfileForm extends AppCompatActivity implements EditPe
         }
         return allZeros;
     }
+
+    // make sure string contains only letters or digits
     public boolean containsLettersOrDigits(String str) {
         char[] charArray = str.toCharArray();
         for(char c : charArray) {
@@ -425,6 +431,8 @@ public class EditPersonalProfileForm extends AppCompatActivity implements EditPe
         }
         return true;
     }
+
+    // make sure string contains only letters
     public boolean containsLettersOnly(String str) {
         char[] charArray = str.toCharArray();
         for(char c : charArray) {
@@ -475,16 +483,7 @@ public class EditPersonalProfileForm extends AppCompatActivity implements EditPe
     }
 
 
-
-
-    /*
-    public void backButtonClicked(View view) {
-        finish();
-    }
-    */
-
-
-
+    // set up the interests entry point
     private void initializeInterestsMap(User currentUser) {
         Map<String,Integer> interests = currentUser.getInterests();
 
@@ -495,16 +494,10 @@ public class EditPersonalProfileForm extends AppCompatActivity implements EditPe
             interestsMap.put(s, interests.get(s));
         }
 
-        //iterating over keys  and values
-        /*for (String key : interestsMap.keySet()) {
-            System.out.println("******Key = " + key);
-            System.out.println("******Value = " + interestsMap.get(key));
-        }*/
     }
 
 
-
-
+    // initalize seek bars that represent a users rating of each category
     private void initializeSeekBars(User currentUser) {
         Map<String,Integer> interests = currentUser.getInterests();
 
@@ -777,5 +770,78 @@ public class EditPersonalProfileForm extends AppCompatActivity implements EditPe
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
+    }
+
+    // set fields so that the user sees their profile in its current state
+    public User setFields() {
+        // get current user from controller
+        currentUser = profileController.getFields();
+
+        usernameEditText.setText(currentUser.getUsername());
+        firstNameEditText.setText(currentUser.getFirst_name());
+        lastNameEditText.setText(currentUser.getLast_name());
+        bioEditText.setText(currentUser.getBio());
+
+        genderSpinner.setSelection(genderAdapter.getPosition(currentUser.getGender()));
+
+        // User types in classes. When he completes typing and presses "add" a tag should appear under the EditText
+        coursesArrayList = new ArrayList<String>(currentUser.getCourses());
+        for (String course : coursesArrayList) {
+            Tag tag = new Tag(course);
+            tag.isDeletable = true;
+            tag.layoutColor = getResources().getColor(R.color.colorSecondaryA200);
+            coursesTagView.addTag(tag);
+        }
+        coursesTagView.setOnTagDeleteListener(new TagView.OnTagDeleteListener() {
+
+            @Override
+            public void onTagDeleted(final TagView view, final Tag tag, final int position) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(EditPersonalProfileView.this);
+                builder.setMessage("\"" + tag.text + "\" will be delete. Are you sure?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        view.remove(position);
+                        Toast.makeText(EditPersonalProfileView.this, "\"" + tag.text + "\" deleted", Toast.LENGTH_SHORT).show();
+                        coursesArrayList.remove(tag.text);
+                    }
+                });
+                builder.setNegativeButton("No", null);
+                builder.show();
+            }
+        });
+
+        // User types in tags. When he completes typing and presses "add" a tag should appear under the EditText
+        interestsArrayList = new ArrayList<String>(currentUser.getTags());
+        for (String tagStr : interestsArrayList) {
+            Tag tag = new Tag(tagStr);
+            tag.isDeletable = true;
+            tag.layoutColor = getResources().getColor(R.color.colorSecondaryA200);
+            interestsTagView.addTag(tag);
+        }
+        interestsTagView.setOnTagDeleteListener(new TagView.OnTagDeleteListener() {
+
+            @Override
+            public void onTagDeleted(final TagView view, final Tag tag, final int position) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(EditPersonalProfileView.this);
+                builder.setMessage("\"" + tag.text + "\" will be delete. Are you sure?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        view.remove(position);
+                        Toast.makeText(EditPersonalProfileView.this, "\"" + tag.text + "\" deleted", Toast.LENGTH_SHORT).show();
+                        interestsArrayList.remove(tag.text);
+                    }
+                });
+                builder.setNegativeButton("No", null);
+                builder.show();
+            }
+        });
+
+
+        initializeInterestsMap(currentUser);
+        initializeSeekBars(currentUser);
+
+        return currentUser;
     }
 }

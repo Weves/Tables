@@ -20,7 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.msushanth.tablesapp.MainActivity;
-import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Profile.CreatePersonalProfileForm;
+import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Profile.CreatePersonalProfileView;
 import com.msushanth.tablesapp.R;
 import com.msushanth.tablesapp.User;
 
@@ -94,7 +94,7 @@ public class LogInForm extends AppCompatActivity {
                                     startActivity(mainActivity);
                                     finish();
                                 } else {
-                                    Intent mainActivity = new Intent(LogInForm.this, CreatePersonalProfileForm.class);
+                                    Intent mainActivity = new Intent(LogInForm.this, CreatePersonalProfileView.class);
                                     startActivity(mainActivity);
                                     finish();
                                 }

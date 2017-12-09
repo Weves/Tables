@@ -28,10 +28,10 @@ public class InvitationDAO {
         String currentUserID = fireBaseUser.getUid();*/
 
         // go into the database a single time
-        CurrentUserDAO.databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        CurrentUserInfo.databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                User currentUser = dataSnapshot.child(CurrentUserDAO.currentUserID).getValue(User.class);
+                User currentUser = dataSnapshot.child(CurrentUserInfo.currentUserID).getValue(User.class);
                 List<String> currentUserRooms = currentUser.getRoom_ids();
 
                 // do not get users the current user has already added
@@ -75,13 +75,13 @@ public class InvitationDAO {
 
         final ArrayList<String> roomIDs = new ArrayList<String>();
 
-        CurrentUserDAO.databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        CurrentUserInfo.databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // send actual invites to the users in the selected users array
                 for(int i=0; i<selectedUsers.size(); i++) {
-                    Room room = new Room(CurrentUserDAO.currentUserID, selectedUsers.get(i).getID());
-                    String roomID = CurrentUserDAO.databaseReference.push().getKey();
+                    Room room = new Room(CurrentUserInfo.currentUserID, selectedUsers.get(i).getID());
+                    String roomID = CurrentUserInfo.databaseReference.push().getKey();
                     roomIDs.add(roomID);
                     room.setRoomID(roomID);
                     room.setUser1SentInvite(true);
@@ -101,13 +101,13 @@ public class InvitationDAO {
                     chatRoomsUser2.add(room.getRoomID());
                     user2.setRoom_ids(chatRoomsUser2);
 
-                    CurrentUserDAO.databaseReference.child(room.getRoomID()).setValue(room);
+                    CurrentUserInfo.databaseReference.child(room.getRoomID()).setValue(room);
                     //databaseReference.child(user1.getIdForFirebase()).setValue(user1);
-                    CurrentUserDAO.databaseReference.child(user2.getIdForFirebase()).setValue(user2);
+                    CurrentUserInfo.databaseReference.child(user2.getIdForFirebase()).setValue(user2);
                 }
 
 
-                User user1 = dataSnapshot.child(CurrentUserDAO.currentUserID).getValue(User.class);
+                User user1 = dataSnapshot.child(CurrentUserInfo.currentUserID).getValue(User.class);
 
                 List<String> chatRoomsUser1 = user1.getRoom_ids();
                 for(int i=0; i<roomIDs.size(); i++) {
@@ -116,7 +116,7 @@ public class InvitationDAO {
                 user1.setRoom_ids(chatRoomsUser1);
 
 
-                CurrentUserDAO.databaseReference.child(user1.getIdForFirebase()).setValue(user1);
+                CurrentUserInfo.databaseReference.child(user1.getIdForFirebase()).setValue(user1);
             }
 
             @Override

@@ -19,9 +19,9 @@ import android.widget.Toast;
 
 import com.cunoraz.tagview.Tag;
 import com.cunoraz.tagview.TagView;
+import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.ProfileController;
 import com.msushanth.tablesapp.Interfaces.Profile.PersonalProfileInterface;
 import com.msushanth.tablesapp.MainActivity;
-import com.msushanth.tablesapp.PresentationLayer.ActionClasses.Profile.CreatePersonalProfileAction;
 import com.msushanth.tablesapp.R;
 import com.msushanth.tablesapp.User;
 
@@ -35,7 +35,8 @@ import java.util.Map;
  * Created by Sushanth on 11/9/17.
  */
 
-public class CreatePersonalProfileForm extends AppCompatActivity implements PersonalProfileInterface {
+// handles displaying and taking in user input from the create personal profile screen
+public class CreatePersonalProfileView extends AppCompatActivity implements PersonalProfileInterface {
 
     EditText usernameEditText;
     EditText firstNameEditText;
@@ -100,6 +101,7 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
     List<Integer> met_history;
     List<String> room_ids;
 
+    // create the create profile screen and assign variables to different display elements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,13 +125,13 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
 
             @Override
             public void onTagDeleted(final TagView view, final Tag tag, final int position) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(CreatePersonalProfileForm.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(CreatePersonalProfileView.this);
                 builder.setMessage("\"" + tag.text + "\" will be delete. Are you sure?");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         view.remove(position);
-                        Toast.makeText(CreatePersonalProfileForm.this, "\"" + tag.text + "\" deleted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreatePersonalProfileView.this, "\"" + tag.text + "\" deleted", Toast.LENGTH_SHORT).show();
                         coursesArrayList.remove(tag.text);
                     }
                 });
@@ -148,13 +150,13 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
 
             @Override
             public void onTagDeleted(final TagView view, final Tag tag, final int position) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(CreatePersonalProfileForm.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(CreatePersonalProfileView.this);
                 builder.setMessage("\"" + tag.text + "\" will be delete. Are you sure?");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         view.remove(position);
-                        Toast.makeText(CreatePersonalProfileForm.this, "\"" + tag.text + "\" deleted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreatePersonalProfileView.this, "\"" + tag.text + "\" deleted", Toast.LENGTH_SHORT).show();
                         interestsArrayList.remove(tag.text);
                     }
                 });
@@ -218,7 +220,7 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
     }
 
 
-
+    // set up the interests entry point
     private void initializeInterestsMap() {
         Resources res = getResources();
         interestsArray = res.getStringArray(R.array.interests);
@@ -226,15 +228,9 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
         for(String s : interestsArray) {
             interestsMap.put(s, 0);
         }
-
-        //iterating over keys  and values
-        /*for (String key : interestsMap.keySet()) {
-            System.out.println("******Key = " + key);
-            System.out.println("******Value = " + interestsMap.get(key));
-        }*/
     }
 
-
+    // initalize seek bars that represent a users rating of each category
     private void initializeSeekBars() {
         sportsSeekBar = (SeekBar) findViewById(R.id.sportsSeekBar);
         sportsSeekBar.setMax(10);
@@ -554,7 +550,7 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
         }
 
         // it has passed all the cases to check valid input
-        // go to the next screen (search screen?)
+        // go to the next screen (search screen)
         else {
 
             // Update variable needed to create a User
@@ -578,7 +574,7 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
             this.setProfile(user);
 
             // Go to the main activity after creating the user.
-            Intent mainActivity = new Intent(CreatePersonalProfileForm.this, MainActivity.class);
+            Intent mainActivity = new Intent(CreatePersonalProfileView.this, MainActivity.class);
             startActivity(mainActivity);
             finish();
         }
@@ -586,10 +582,11 @@ public class CreatePersonalProfileForm extends AppCompatActivity implements Pers
     }
 
 
+    // call upon ProfileController to set the users profile
     @Override
     public void setProfile(User user) {
-        CreatePersonalProfileAction createProfileAction = new CreatePersonalProfileAction();
-        createProfileAction.setProfile(user);
+        ProfileController profileContoller = new ProfileController();
+        profileContoller.setProfile(user);
     }
 
 

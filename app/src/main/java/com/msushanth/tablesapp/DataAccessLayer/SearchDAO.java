@@ -25,7 +25,7 @@ public class SearchDAO {
 
     User currentUserProfile;
 
-
+    // use the algorithm to give back a random list of users
     public ArrayList<ArrayList<String>> randomSearch() {
 
 
@@ -37,13 +37,13 @@ public class SearchDAO {
 
 
 
-        CurrentUserDAO.databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        CurrentUserInfo.databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
 
                 // This is the current users profile
-                currentUserProfile = dataSnapshot.child(CurrentUserDAO.fireBaseUser.getUid()).getValue(User.class);
+                currentUserProfile = dataSnapshot.child(CurrentUserInfo.fireBaseUser.getUid()).getValue(User.class);
 
                 // This will get the profile of everyone in the database
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -59,7 +59,7 @@ public class SearchDAO {
 
                 numUsers = posIDs.size();
 
-                CurrentUserDAO.databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                CurrentUserInfo.databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
 
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -117,34 +117,38 @@ public class SearchDAO {
 
 
 
-
+    // use the algorithm to give back an ordered list of users
     public ArrayList<ArrayList<String>> searchEngine() {
 
         final ArrayList<User> allUsers = new ArrayList<User>();
         final ArrayList<String> names = new ArrayList<String>();
         final ArrayList<String> tags = new ArrayList<String>();
         final ArrayList<String> IDs = new ArrayList<String>();
+        final ArrayList<String> finalNames = new ArrayList<String>();
+        final ArrayList<String> finalTags = new ArrayList<String>();
+        final ArrayList<String> finalIDs = new ArrayList<String>();
         final ArrayList<Pair<Double,Integer>> allLevels = new ArrayList<Pair<Double,Integer>>();
         final ArrayList<ArrayList<String>> usersS = new ArrayList<>();
 
 
-        CurrentUserDAO.databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        CurrentUserInfo.databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
 
                 // This is the current users profile
-                currentUserProfile = dataSnapshot.child(CurrentUserDAO.fireBaseUser.getUid()).getValue(User.class);
+                currentUserProfile = dataSnapshot.child(CurrentUserInfo.fireBaseUser.getUid()).getValue(User.class);
                 ArrayList<Integer> userLevels = new ArrayList<Integer>(currentUserProfile.getInterests().values());
 
                 // This will get the profiles of everyone in the database
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
 
+                    // only get created profiles
                     if (user.isProfileCreated()) {
                         allUsers.add(user);
 
-
+                        // get relevant info
                         names.add(user.getFirst_name() + " " + user.getLast_name());
                         String tagsString = "";
                         for (int i=0; i < MAX_TAGS && i < user.getTags().size(); i++) {
@@ -154,7 +158,7 @@ public class SearchDAO {
                         tags.add(tagsString);
                         IDs.add(user.getIdForFirebase());
 
-
+                        // find distance
                         ArrayList<Integer> currLevels = new ArrayList<Integer>(user.getInterests().values());
                         Double distance = euclideanDist(userLevels, currLevels);
                         allLevels.add(new Pair(distance, IDs.size() - 1));
@@ -162,10 +166,11 @@ public class SearchDAO {
                     }
                 }
 
+                // start with the closest points
                 Collections.sort(allLevels, new SortByDist());
 
 
-                for(int i = 0; i < allLevels.size(); i++){
+                for(int i = 0; i < NUM_USERS_TO_SHOW && i < allUsers.size(); i++){
 
                     int index = allLevels.get(i).index;
                     User user1 = allUsers.get(index);
@@ -173,14 +178,14 @@ public class SearchDAO {
                     if(!user1.getIdForFirebase().equals(currentUserProfile.getIdForFirebase())) {
 
 
-                        names.add(user1.getFirst_name() + " " + user1.getLast_name());
+                        finalNames.add(user1.getFirst_name() + " " + user1.getLast_name());
                         String tagsString = "";
                         for (int x = 0; x < MAX_TAGS && x < user1.getTags().size(); x++) {
                             tagsString += user1.getTags().get(x) + ", ";
                         }
                         tagsString = tagsString.substring(0, tagsString.length() - 2);
-                        tags.add(tagsString);
-                        IDs.add(user1.getIdForFirebase());
+                        finalTags.add(tagsString);
+                        finalIDs.add(user1.getIdForFirebase());
                     }
                 }
 
@@ -194,15 +199,15 @@ public class SearchDAO {
 
 
 
-        usersS.add(names);
-        usersS.add(tags);
-        usersS.add(IDs);
+        usersS.add(finalNames);
+        usersS.add(finalTags);
+        usersS.add(finalIDs);
         return usersS;
 
     }
 
 
-
+    // get the euclidian distance between two users in the thisUser.size() dimensional space
     public Double euclideanDist(ArrayList<Integer> thisUser, ArrayList<Integer> other){
         int sum = 0;
 

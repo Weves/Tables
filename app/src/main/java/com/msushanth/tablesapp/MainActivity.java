@@ -21,12 +21,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.ProfileController;
 import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Account.LogInForm;
 import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Account.LogOutForm;
 import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Chat.ChatFormXML;
 import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Invitation.ProfileViewer;
-import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Profile.EditPersonalProfileForm;
-import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Search.SearchFormXML;
+import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Profile.EditPersonalProfileView;
+import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Search.SearchView;
 
 
 /*
@@ -107,6 +108,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        ProfileController profileController = new ProfileController();
+        profileController.setFields();
     }
 
 
@@ -123,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
     // Define what is displayed in the tabs
     private void setupViewPager(final ViewPager viewPager) {
         final SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new SearchFormXML(), "Search");
+        adapter.addFragment(new SearchView(), "Search");
         adapter.addFragment(new ChatFormXML(), "Chat");
         viewPager.setAdapter(adapter);
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -189,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                             User currentUserProfile = dataSnapshot.child(fireBaseUser.getUid()).getValue(User.class);
-                            Intent editPersonalProfileIntent = new Intent(MainActivity.this, EditPersonalProfileForm.class);
+                            Intent editPersonalProfileIntent = new Intent(MainActivity.this, EditPersonalProfileView.class);
                             editPersonalProfileIntent.putExtra("UserID", currentUserProfile.getIdForFirebase());
                             startActivity(editPersonalProfileIntent);
                         }
