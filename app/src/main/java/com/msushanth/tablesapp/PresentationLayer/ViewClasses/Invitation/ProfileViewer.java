@@ -179,16 +179,16 @@ public class ProfileViewer extends AppCompatActivity {
         List<String> coursesArrayList = currentUserProfile.getCourses();
         for(int i=0; i<coursesArrayList.size(); i++) {
             Tag tag = new Tag(coursesArrayList.get(i));
-            tag.layoutColor = Color.parseColor("#7C4DFF");
-            tag.layoutColorPress = Color.parseColor("#7C4DFF");
+            tag.layoutColor = Color.parseColor("#0c3e6f");
+            tag.layoutColorPress = Color.parseColor("#0c3e6f");
             coursesTagView.addTag(tag);
         }
 
         List<String> tagsArrayList = currentUserProfile.getTags();
         for(int i=0; i<tagsArrayList.size(); i++) {
             Tag tag = new Tag(tagsArrayList.get(i));
-            tag.layoutColor = Color.parseColor("#7C4DFF");
-            tag.layoutColorPress = Color.parseColor("#7C4DFF");
+            tag.layoutColor = Color.parseColor("#0c3e6f");
+            tag.layoutColorPress = Color.parseColor("#0c3e6f");
             interestsTagView.addTag(tag);
         }
 

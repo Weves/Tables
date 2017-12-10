@@ -1,6 +1,6 @@
 package com.msushanth.tablesapp.BusinessLogicLayer.DispatchClasses;
 
-import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.ChatManager;
+import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.ChatController;
 import com.msushanth.tablesapp.Interfaces.Chat.ChatInterface;
 import com.msushanth.tablesapp.Room;
 import com.msushanth.tablesapp.User;
@@ -25,11 +25,11 @@ public class ChatDispatch implements ChatInterface {
 
     @Override
     public void postMessage(String message) {
-        ChatManager msgMan = new ChatManager(thisRoom, sender);
+        ChatController msgMan = new ChatController(thisRoom, sender);
         msgMan.postMessage(message);
     }
     public void deleteChatRoom() {
-        ChatManager ma = new ChatManager(thisRoom, sender);
+        ChatController ma = new ChatController(thisRoom, sender);
         ma.deleteChatRoom();
     }
 

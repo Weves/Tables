@@ -166,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                System.out.println("@@##$$##@@: Position clicked: " + item.toString() + '\t' + item.getItemId());
 
                 if(item.toString().equals("My Account")) {
                     dbReference.addListenerForSingleValueEvent(new ValueEventListener() {

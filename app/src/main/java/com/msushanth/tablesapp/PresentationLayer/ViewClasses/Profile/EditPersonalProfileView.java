@@ -782,7 +782,7 @@ public class EditPersonalProfileView extends AppCompatActivity implements EditPe
         for (String course : coursesArrayList) {
             Tag tag = new Tag(course);
             tag.isDeletable = true;
-            tag.layoutColor = getResources().getColor(R.color.colorSecondaryA200);
+            tag.layoutColor = getResources().getColor(R.color.tagsColor);
             coursesTagView.addTag(tag);
         }
         coursesTagView.setOnTagDeleteListener(new TagView.OnTagDeleteListener() {
@@ -809,7 +809,7 @@ public class EditPersonalProfileView extends AppCompatActivity implements EditPe
         for (String tagStr : interestsArrayList) {
             Tag tag = new Tag(tagStr);
             tag.isDeletable = true;
-            tag.layoutColor = getResources().getColor(R.color.colorSecondaryA200);
+            tag.layoutColor = getResources().getColor(R.color.tagsColor);
             interestsTagView.addTag(tag);
         }
         interestsTagView.setOnTagDeleteListener(new TagView.OnTagDeleteListener() {
