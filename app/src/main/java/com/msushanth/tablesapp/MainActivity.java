@@ -22,8 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.ProfileController;
-import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Account.LogInForm;
-import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Account.LogOutForm;
+import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Account.LogInView;
+import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Account.LogOutView;
 import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Chat.ChatFormXML;
 import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Invitation.ProfileViewer;
 import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Profile.EditPersonalProfileView;
@@ -206,11 +206,11 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("##$$%%$$##: Availability clicked");
                 }
                 else if(item.toString().equals("Log Out")) {
-                    LogOutForm logout = new LogOutForm();
+                    LogOutView logout = new LogOutView();
                     logout.logout();
 
                     // Send user back to login page when he clicks "Log Out"
-                    Intent logInIntent = new Intent(MainActivity.this, LogInForm.class);
+                    Intent logInIntent = new Intent(MainActivity.this, LogInView.class);
                     startActivity(logInIntent);
                     finish();
                 }

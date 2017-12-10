@@ -10,13 +10,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.AccountController;
-import com.msushanth.tablesapp.MainActivity;
-import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Account.LogInForm;
-import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Profile.CreatePersonalProfileView;
+import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Account.CreateAccountView;
+import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Account.LogInView;
 import com.msushanth.tablesapp.User;
 
 /**
@@ -35,6 +36,7 @@ public class AccountDAO {
     }
 
     public void login(String email, String password) {
+
         (CurrentUserInfo.firebaseAuth.signInWithEmailAndPassword(email, password))
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -44,14 +46,14 @@ public class AccountDAO {
                         // If login successful and email is verified, go to the search tab on the main page.
                         if(task.isSuccessful()) {
                             CurrentUserInfo.firebaseAuth.getCurrentUser().reload();
-                            //fireBaseUser = CurrentUserInfo.firebaseAuth.getCurrentUser();
-                            //Toast.makeText(LogInForm.this, "Login Successful.", Toast.LENGTH_SHORT).show();
+                            FirebaseUser fireBaseUser = CurrentUserInfo.firebaseAuth.getCurrentUser();
+                            //Toast.makeText(LogInView.this, "Login Successful.", Toast.LENGTH_SHORT).show();
 
                             // Check if email has been verified
-                            if(CurrentUserInfo.fireBaseUser.isEmailVerified()) {
+                            if(fireBaseUser.isEmailVerified()) {
 
                                 // Check if the user has created a profile.
-                                // If he hasn't, take him to the CreateAccountForm
+                                // If he hasn't, take him to the CreateAccountView
                                 // If he has, take him to the main activity
                                 CurrentUserInfo.databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
@@ -60,7 +62,7 @@ public class AccountDAO {
                                         if(accountStatus) {
                                             AccountController.successfulLoginOld();
                                         } else {
-                                            AccountController.successfulLoginOld();
+                                            AccountController.successfulLoginNew();
                                         }
                                     }
 
@@ -76,6 +78,8 @@ public class AccountDAO {
                         }
                     }
                 });
+
+                CurrentUserInfo.setUser();
     }
 
     public void passwordRecovery(String email, final Context context){
@@ -93,7 +97,7 @@ public class AccountDAO {
                             (new Handler()).postDelayed(
                                     new Runnable() {
                                         public void run() {
-                                            Intent i = new Intent(context, LogInForm.class);
+                                            Intent i = new Intent(context, LogInView.class);
                                             context.startActivity(i);
                                         }
                                     }, 2500);
@@ -108,6 +112,42 @@ public class AccountDAO {
     // Get data from the database to check if the current logged in user has created a profile.
     public boolean checkIfUserCreatedProfile(DataSnapshot dataSnapshot) {
         return dataSnapshot.child(CurrentUserInfo.fireBaseUser.getUid()).getValue(User.class).isProfileCreated();
+    }
+
+    public void createAccount(String email, String password) {
+        (CurrentUserInfo.firebaseAuth.createUserWithEmailAndPassword(email, password))
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        // if registration successful, send email verification and go to login screen
+                        if(task.isSuccessful()) {
+                            CurrentUserInfo.firebaseAuth.getCurrentUser().reload();
+                            final FirebaseUser fbUser = CurrentUserInfo.firebaseAuth.getCurrentUser();
+                            if(fbUser != null) {
+                                fbUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()) {
+
+                                            // Create a new user. Initialize User fields in database to empty by calling the empty User constructor and sending it to firebase
+                                            CurrentUserInfo.databaseReference = FirebaseDatabase.getInstance().getReference();
+                                            User newUser = new User();
+                                            newUser.setIdForFirebase(fbUser.getUid());
+                                            CurrentUserInfo.databaseReference.child(newUser.getIdForFirebase()).setValue(newUser);
+
+                                            AccountController.createAccountSuccess();
+                                        } else {
+                                            AccountController.createAccountFailed();
+                                        }
+                                    }
+                                });
+                            }
+
+                        } else {
+                            AccountController.createAccountFailed();
+                        }
+                    }
+                });
     }
 
 }

@@ -17,12 +17,16 @@ public class CurrentUserInfo {
 
     public static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     public static FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-    public static FirebaseUser fireBaseUser = firebaseAuth.getCurrentUser();
-    public static String currentUserID = fireBaseUser.getUid();
+    public static FirebaseUser fireBaseUser;
+    public static String currentUserID;
     private static User user;
 
     // store status of current user profile
     public static void setUser() {
+
+        fireBaseUser = firebaseAuth.getCurrentUser();
+        currentUserID = fireBaseUser.getUid();
+
         CurrentUserInfo.databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override

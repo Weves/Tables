@@ -23,10 +23,8 @@ import android.widget.Toast;
 import com.cunoraz.tagview.Tag;
 import com.cunoraz.tagview.TagView;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.ProfileController;
 import com.msushanth.tablesapp.Interfaces.Profile.EditPersonalProfileInterface;
-import com.msushanth.tablesapp.PresentationLayer.ActionClasses.Profile.EditPersonalProfileAction;
 import com.msushanth.tablesapp.R;
 import com.msushanth.tablesapp.User;
 
@@ -363,11 +361,6 @@ public class EditPersonalProfileView extends AppCompatActivity implements EditPe
             this.editProfile(currentUser);
 
 
-            /*
-            System.out.println("**** Printing edited user ****");
-            System.out.println(currentUser.userDataToPrint());
-            */
-
             // Finish editing profile activity when updated profile.
             Toast.makeText(EditPersonalProfileView.this, "Profile has been edited.", Toast.LENGTH_SHORT).show();
 
@@ -388,8 +381,8 @@ public class EditPersonalProfileView extends AppCompatActivity implements EditPe
 
     @Override
     public void editProfile(User user) {
-        EditPersonalProfileAction editProfileAction = new EditPersonalProfileAction();
-        editProfileAction.editProfile(user);
+        ProfileController profileController = new ProfileController();
+        profileController.editProfile(user);
     }
 
 

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".PresentationLayer.ViewClasses.Account.LogInForm"
+            android:name=".PresentationLayer.ViewClasses.Account.LogInView"
             android:windowSoftInputMode="adjustPan"
             android:configChanges = "orientation"
             android:screenOrientation = "portrait">
@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PresentationLayer.ViewClasses.Account.CreateAccountForm"
+            android:name=".PresentationLayer.ViewClasses.Account.CreateAccountView"
             android:label="@string/title_activity_create_account"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"
@@ -66,7 +66,7 @@
             android:configChanges = "orientation"
             android:screenOrientation = "portrait"/>
         <activity
-            android:name=".PresentationLayer.ViewClasses.Account.PasswordRecoveryForm"
+            android:name=".PresentationLayer.ViewClasses.Account.PasswordRecoveryView"
             android:label="PasswordResetForm"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"

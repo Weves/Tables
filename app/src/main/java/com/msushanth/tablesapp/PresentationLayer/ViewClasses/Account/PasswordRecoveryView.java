@@ -3,11 +3,10 @@ package com.msushanth.tablesapp.PresentationLayer.ViewClasses.Account;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.msushanth.tablesapp.PresentationLayer.ActionClasses.Account.PasswordRecoveryAction;
+import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.AccountController;
 import com.msushanth.tablesapp.R;
 
 /**
@@ -15,7 +14,7 @@ import com.msushanth.tablesapp.R;
  */
 
 // view that handles showing the user the passowrd recovery screen and handling their input
-public class PasswordRecoveryForm extends AppCompatActivity {
+public class PasswordRecoveryView extends AppCompatActivity {
 
     EditText emailEditText;
 
@@ -28,14 +27,14 @@ public class PasswordRecoveryForm extends AppCompatActivity {
     }
 
     public void passwordRecovery(String email, Context context){
-        PasswordRecoveryAction act = new PasswordRecoveryAction();
+        AccountController act = new AccountController();
         act.passwordRecovery(email, context);
     }
 
     public void resetPassword() {
         String email = emailEditText.getText().toString();
 
-        // TODO check if email is not empty.. other checks...
+        // check if email is not empty.. other checks...
         if (email == null || email.isEmpty()) {
             Toast.makeText(this, "Please enter a valid email", Toast.LENGTH_SHORT).show();
             return;

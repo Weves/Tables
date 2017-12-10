@@ -17,10 +17,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.AccountController;
 import com.msushanth.tablesapp.R;
 import com.msushanth.tablesapp.User;
 
-public class CreateAccountForm extends AppCompatActivity {
+public class CreateAccountView extends AppCompatActivity {
 
     EditText emailET;
     EditText passwordET;
@@ -30,6 +31,8 @@ public class CreateAccountForm extends AppCompatActivity {
     FirebaseUser fbUser;
 
     ProgressDialog progressDialog;
+
+    AccountController accountController = new AccountController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,7 @@ public class CreateAccountForm extends AppCompatActivity {
 
 
     public void signIn(View v) {
-        Intent mainActivityIntent = new Intent(CreateAccountForm.this, LogInForm.class);
+        Intent mainActivityIntent = new Intent(CreateAccountView.this, LogInView.class);
         startActivity(mainActivityIntent);
         finish();
     }
@@ -86,10 +89,12 @@ public class CreateAccountForm extends AppCompatActivity {
             return;
         }
 
-        // TODO: Do this is the DAO layer
         // Create firebase account
-        progressDialog = ProgressDialog.show(CreateAccountForm.this, "Please wait...", "Processing", true);
-        (firebaseAuth.createUserWithEmailAndPassword(email, password))
+        accountController.createAccount(email, password, this);
+
+
+        progressDialog = ProgressDialog.show(CreateAccountView.this, "Please wait...", "Processing", true);
+        /*(firebaseAuth.createUserWithEmailAndPassword(email, password))
                  .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -103,7 +108,7 @@ public class CreateAccountForm extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()) {
                                     progressDialog.dismiss();
-                                    Toast.makeText(CreateAccountForm.this, "Registration Successful. Check your email.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CreateAccountView.this, "Registration Successful. Check your email.", Toast.LENGTH_SHORT).show();
 
                                     // Create a new user. Initialize User fields in database to empty by calling the empty User constructor and sending it to firebase
                                     databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -116,14 +121,14 @@ public class CreateAccountForm extends AppCompatActivity {
                                     (new Handler()).postDelayed(
                                             new Runnable() {
                                                 public void run() {
-                                                    Intent i = new Intent(CreateAccountForm.this, LogInForm.class);
+                                                    Intent i = new Intent(CreateAccountView.this, LogInView.class);
                                                     startActivity(i);
                                                     finish();
                                                 }
                                             }, 2500);
                                 } else {
                                     progressDialog.dismiss();
-                                    Toast.makeText(CreateAccountForm.this, "Registration Unsuccessful", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CreateAccountView.this, "Registration Unsuccessful", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -131,10 +136,10 @@ public class CreateAccountForm extends AppCompatActivity {
 
                 } else {
                     progressDialog.dismiss();
-                    Toast.makeText(CreateAccountForm.this, "Registration Unsuccessful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateAccountView.this, "Registration Unsuccessful", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
     }
 
 
@@ -149,4 +154,29 @@ public class CreateAccountForm extends AppCompatActivity {
         }
         return true;
     }
+
+
+    // in the case of a successful registration
+    public void succesfulReg() {
+        progressDialog.dismiss();
+        Toast.makeText(CreateAccountView.this, "Registration Successful. Check your email.", Toast.LENGTH_SHORT).show();
+
+        // Wait until the toast is done displaying before going back to the log in screen
+        (new Handler()).postDelayed(
+                new Runnable() {
+                    public void run() {
+                        Intent i = new Intent(CreateAccountView.this, LogInView.class);
+                        startActivity(i);
+                        finish();
+                    }
+                }, 2500);
+    }
+
+    // tell the user registration was unsuccessful
+    public void unsuccesfulReg() {
+        progressDialog.dismiss();
+        Toast.makeText(CreateAccountView.this, "Registration Unsuccessful", Toast.LENGTH_SHORT).show();
+    }
+
+
 }
