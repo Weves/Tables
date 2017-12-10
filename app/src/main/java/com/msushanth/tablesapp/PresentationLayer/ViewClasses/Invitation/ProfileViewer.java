@@ -34,8 +34,6 @@ public class ProfileViewer extends AppCompatActivity {
 
     String ID;
 
-    //TextView usersName;
-    //TextView usersEmail;
     TextView usersBio;
     TextView usersGender;
 

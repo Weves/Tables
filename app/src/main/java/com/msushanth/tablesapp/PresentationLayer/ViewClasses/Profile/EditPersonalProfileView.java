@@ -447,7 +447,7 @@ public class EditPersonalProfileView extends AppCompatActivity implements EditPe
         if(!strCheck.equals("")) {
             Tag tag = new Tag(str);
             tag.isDeletable = true;
-            tag.layoutColor = getResources().getColor(R.color.colorSecondaryA200);
+            tag.layoutColor = getResources().getColor(R.color.tagsColor);
             coursesTagView.addTag(tag);
 
             coursesArrayList.add(tag.text);
