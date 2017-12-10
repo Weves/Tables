@@ -39,16 +39,10 @@ public class SearchController{
     private String[] firstNameList;
     private String[][] tagMatrix;
 
-    //@Override
+
     public ArrayList<ArrayList<String>> searchEngine(){
         return searchDAO.searchEngine();
     }
-
-
-
-
-
-
 
 
 

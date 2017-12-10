@@ -88,52 +88,7 @@ public class CreateAccountView extends AppCompatActivity {
 
 
         progressDialog = ProgressDialog.show(CreateAccountView.this, "Please wait...", "Processing", true);
-        /*(firebaseAuth.createUserWithEmailAndPassword(email, password))
-                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                // if registration successful, send email verification and go to login screen
-                if(task.isSuccessful()) {
-                    firebaseAuth.getCurrentUser().reload();
-                    fbUser = firebaseAuth.getCurrentUser();
-                    if(fbUser != null) {
-                        fbUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()) {
-                                    progressDialog.dismiss();
-                                    Toast.makeText(CreateAccountView.this, "Registration Successful. Check your email.", Toast.LENGTH_SHORT).show();
 
-                                    // Create a new user. Initialize User fields in database to empty by calling the empty User constructor and sending it to firebase
-                                    databaseReference = FirebaseDatabase.getInstance().getReference();
-                                    User newUser = new User();
-                                    newUser.setIdForFirebase(fbUser.getUid());
-                                    databaseReference.child(newUser.getIdForFirebase()).setValue(newUser);
-
-
-                                    // Wait until the toast is done displaying before going back to the log in screen
-                                    (new Handler()).postDelayed(
-                                            new Runnable() {
-                                                public void run() {
-                                                    Intent i = new Intent(CreateAccountView.this, LogInView.class);
-                                                    startActivity(i);
-                                                    finish();
-                                                }
-                                            }, 2500);
-                                } else {
-                                    progressDialog.dismiss();
-                                    Toast.makeText(CreateAccountView.this, "Registration Unsuccessful", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-                    }
-
-                } else {
-                    progressDialog.dismiss();
-                    Toast.makeText(CreateAccountView.this, "Registration Unsuccessful", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });*/
     }
 
 
