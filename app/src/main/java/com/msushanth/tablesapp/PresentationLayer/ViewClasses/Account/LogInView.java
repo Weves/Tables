@@ -73,10 +73,6 @@ public class LogInView extends AppCompatActivity {
         moveTaskToBack(true);
     }
 
-    public void resetPasswordButtonClicked(View view) {
-        PasswordRecoveryView passwordRecoveryView = new PasswordRecoveryView();
-        passwordRecoveryView.resetPassword();
-    }
 
     // succesful login with a new account
     public void successfulLoginNew() {

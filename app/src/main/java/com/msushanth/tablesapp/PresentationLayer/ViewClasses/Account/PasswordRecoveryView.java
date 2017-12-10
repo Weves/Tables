@@ -3,6 +3,7 @@ package com.msushanth.tablesapp.PresentationLayer.ViewClasses.Account;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -30,6 +31,11 @@ public class PasswordRecoveryView extends AppCompatActivity {
         AccountController act = new AccountController();
         act.passwordRecovery(email, context);
     }
+
+    public void resetPasswordButtonClicked(View view) {
+        resetPassword();
+    }
+
 
     public void resetPassword() {
         String email = emailEditText.getText().toString();
