@@ -47,6 +47,7 @@ public class AccountDAO {
                         if(task.isSuccessful()) {
                             CurrentUserInfo.firebaseAuth.getCurrentUser().reload();
                             FirebaseUser fireBaseUser = CurrentUserInfo.firebaseAuth.getCurrentUser();
+                            CurrentUserInfo.setUser();
                             //Toast.makeText(LogInView.this, "Login Successful.", Toast.LENGTH_SHORT).show();
 
                             // Check if email has been verified
@@ -78,8 +79,6 @@ public class AccountDAO {
                         }
                     }
                 });
-
-                CurrentUserInfo.setUser();
     }
 
     public void passwordRecovery(String email, final Context context){
@@ -114,6 +113,7 @@ public class AccountDAO {
         return dataSnapshot.child(CurrentUserInfo.fireBaseUser.getUid()).getValue(User.class).isProfileCreated();
     }
 
+    // create an account on the database (try to at least)
     public void createAccount(String email, String password) {
         (CurrentUserInfo.firebaseAuth.createUserWithEmailAndPassword(email, password))
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
