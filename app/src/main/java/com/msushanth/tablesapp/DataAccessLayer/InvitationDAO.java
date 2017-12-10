@@ -3,10 +3,10 @@ package com.msushanth.tablesapp.DataAccessLayer;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
-import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.InvitationController;
-import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Invitation.ListUser;
-import com.msushanth.tablesapp.Room;
-import com.msushanth.tablesapp.User;
+import com.msushanth.tablesapp.ControllerLayer.InvitationController;
+import com.msushanth.tablesapp.Objects.ListUser;
+import com.msushanth.tablesapp.Objects.Room;
+import com.msushanth.tablesapp.Objects.User;
 
 import java.util.ArrayList;
 import java.util.List;

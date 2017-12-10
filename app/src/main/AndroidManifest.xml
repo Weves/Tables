@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".PresentationLayer.ViewClasses.Account.LogInView"
+            android:name=".ViewLayer.Account.LogInView"
             android:windowSoftInputMode="adjustPan"
             android:configChanges = "orientation"
             android:screenOrientation = "portrait">
@@ -24,62 +24,62 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PresentationLayer.ViewClasses.Account.CreateAccountView"
+            android:name=".ViewLayer.Account.CreateAccountView"
             android:label="@string/title_activity_create_account"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"
             android:configChanges = "orientation"
             android:screenOrientation = "portrait"/>
         <activity
-            android:name=".PresentationLayer.ViewClasses.Invitation.SelectMatchedUsersView"
+            android:name=".ViewLayer.Invitation.SelectMatchedUsersView"
             android:label="SelectMatchedUsersForm"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"
             android:configChanges = "orientation"
             android:screenOrientation = "portrait"/>
         <activity
-            android:name=".PresentationLayer.ViewClasses.Chat.ChatRoomForm"
+            android:name=".ViewLayer.Chat.ChatRoomForm"
             android:label="ChatRoomForm"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"
             android:configChanges = "orientation"
             android:screenOrientation = "portrait"/>
         <activity
-            android:name=".MainActivity"
+            android:name=".ViewLayer.MainActivity"
             android:label="Tables"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"
             android:configChanges = "orientation"
             android:screenOrientation = "portrait"/>
         <activity
-            android:name=".PresentationLayer.ViewClasses.Profile.CreatePersonalProfileView"
+            android:name=".ViewLayer.Profile.CreatePersonalProfileView"
             android:label="CreatePersonalProfileForm"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"
             android:configChanges = "orientation"
             android:screenOrientation = "portrait"/>
         <activity
-            android:name=".PresentationLayer.ViewClasses.Profile.EditPersonalProfileView"
+            android:name=".ViewLayer.Profile.EditPersonalProfileView"
             android:label="EditPersonalProfileForm"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"
             android:configChanges = "orientation"
             android:screenOrientation = "portrait"/>
         <activity
-            android:name=".PresentationLayer.ViewClasses.Account.PasswordRecoveryView"
+            android:name=".ViewLayer.Account.PasswordRecoveryView"
             android:label="PasswordResetForm"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"
             android:configChanges = "orientation"
             android:screenOrientation = "portrait"/>
         <activity
-            android:name=".PresentationLayer.ViewClasses.Invitation.ProfileViewer"
+            android:name=".ViewLayer.Profile.ProfileViewerForm"
             android:label="@string/title_activity_profile_viewer"
             android:theme="@style/AppTheme"
             android:configChanges = "orientation"
             android:screenOrientation = "portrait"/>
         <activity
-            android:name=".PresentationLayer.ViewClasses.Chat.SetWhenAndWhereToMeetForm"
+            android:name=".ViewLayer.Chat.SetWhenAndWhereToMeetForm"
             android:label="WhenAndWhereToMeet"
             android:theme="@style/AppTheme"
             android:configChanges = "orientation"

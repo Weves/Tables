@@ -1,20 +1,11 @@
 package com.msushanth.tablesapp.DataAccessLayer;
 
-import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Color;
-
-import com.cunoraz.tagview.Tag;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.msushanth.tablesapp.Interfaces.Profile.ProfileInterface;
-import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Invitation.ProfileViewer;
-import com.msushanth.tablesapp.R;
-import com.msushanth.tablesapp.User;
-
-import java.util.List;
-import java.util.Map;
+import com.msushanth.tablesapp.ViewLayer.Profile.ProfileViewerForm;
+import com.msushanth.tablesapp.Objects.User;
 
 /**
  * Created by Sushanth on 11/19/17.
@@ -57,7 +48,7 @@ public class ProfileDAO implements ProfileInterface {
     }
 
     // get a specific users info and set the display elements on the screen with that users info
-    public void getUser(final String ID, final ProfileViewer viewClass) {
+    public void getUser(final String ID, final ProfileViewerForm viewClass) {
 
 
         CurrentUserInfo.databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {

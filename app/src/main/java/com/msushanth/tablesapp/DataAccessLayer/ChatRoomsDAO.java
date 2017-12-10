@@ -8,8 +8,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.msushanth.tablesapp.Interfaces.Chat.ChatInterface;
-import com.msushanth.tablesapp.Room;
-import com.msushanth.tablesapp.User;
+import com.msushanth.tablesapp.Objects.Room;
+import com.msushanth.tablesapp.Objects.User;
 
 import java.util.List;
 

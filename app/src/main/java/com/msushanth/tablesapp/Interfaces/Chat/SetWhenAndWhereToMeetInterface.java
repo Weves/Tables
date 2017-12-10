@@ -1,6 +1,6 @@
 package com.msushanth.tablesapp.Interfaces.Chat;
 
-import com.msushanth.tablesapp.Room;
+import com.msushanth.tablesapp.Objects.Room;
 
 /**
  * Created by Sushanth on 11/19/17.

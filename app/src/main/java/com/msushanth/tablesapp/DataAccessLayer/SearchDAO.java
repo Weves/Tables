@@ -3,9 +3,9 @@ package com.msushanth.tablesapp.DataAccessLayer;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
-import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Search.SortByDist;
-import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Search.Pair;
-import com.msushanth.tablesapp.User;
+import com.msushanth.tablesapp.ViewLayer.Search.SortByDist;
+import com.msushanth.tablesapp.ViewLayer.Search.Pair;
+import com.msushanth.tablesapp.Objects.User;
 
 import java.util.ArrayList;
 import java.util.Collections;

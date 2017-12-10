@@ -15,10 +15,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.msushanth.tablesapp.BusinessLogicLayer.ControllerClasses.AccountController;
-import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Account.CreateAccountView;
-import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Account.LogInView;
-import com.msushanth.tablesapp.User;
+import com.msushanth.tablesapp.ControllerLayer.AccountController;
+import com.msushanth.tablesapp.ViewLayer.Account.LogInView;
+import com.msushanth.tablesapp.Objects.User;
 
 /**
  * Created by Sushanth on 11/10/17.

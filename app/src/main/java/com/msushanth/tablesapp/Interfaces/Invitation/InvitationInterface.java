@@ -1,6 +1,6 @@
 package com.msushanth.tablesapp.Interfaces.Invitation;
 
-import com.msushanth.tablesapp.PresentationLayer.ViewClasses.Invitation.ListUser;
+import com.msushanth.tablesapp.Objects.ListUser;
 
 import java.util.ArrayList;
 

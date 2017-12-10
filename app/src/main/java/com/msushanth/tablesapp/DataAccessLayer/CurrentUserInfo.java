@@ -7,7 +7,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.msushanth.tablesapp.User;
+import com.msushanth.tablesapp.Objects.User;
 
 /**
  * Created by Chris Weaver on 12/4/2017.

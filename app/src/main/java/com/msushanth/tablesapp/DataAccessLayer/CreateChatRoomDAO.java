@@ -4,7 +4,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.msushanth.tablesapp.Room;
+import com.msushanth.tablesapp.Objects.Room;
 
 /**
  * Created by khoabui on 11/26/17.
